@@ -9,7 +9,7 @@ import os
 
 #########################################
 # game class import 
-from GameWorld import GameWorld
+from lib.GameWorld import GameWorld
 from lib.GameEngine import GameEngine
 from lib.SerialHalfDuplex import SerialHalfDuplex
 from lib.LaserWeapon import LaserWeapon
@@ -71,29 +71,31 @@ gameWorld.AddLaserWeapon(laserWeapon)
 # init target group 1
 gameWorld.AddTargetGroup('1',0) # id, z-index
 #newTargetGroup.AddTarget('0',0)
-gameWorld.GetTargetGroupByID('1').AddTarget('1',1) # id, z-index
-gameWorld.GetTargetGroupByID('1').AddTarget('2',2) # id, z-index
-gameWorld.GetTargetGroupByID('1').AddTarget('3',3) # id, z-index
+gameWorld.GetTargetGroupByID('1').AddTarget('0',1) # id, z-index
+#gameWorld.GetTargetGroupByID('1').AddTarget('2',2) # id, z-index
+#gameWorld.GetTargetGroupByID('1').AddTarget('3',3) # id, z-index
 
 # init target group 2
-gameWorld.AddTargetGroup('2',0)
-gameWorld.GetTargetGroupByID('2').AddTarget('0',0)
-gameWorld.GetTargetGroupByID('2').AddTarget('1',1)
-gameWorld.GetTargetGroupByID('2').AddTarget('2',2)
+#gameWorld.AddTargetGroup('2',0)
+#gameWorld.GetTargetGroupByID('2').AddTarget('0',0)
+#gameWorld.GetTargetGroupByID('2').AddTarget('1',1)
+#gameWorld.GetTargetGroupByID('2').AddTarget('2',2)
 # gameWorld.GetTargetGroupByID('2').AddTarget('3',3)
 
 # init target group 3
-gameWorld.AddTargetGroup('3',0)
+#gameWorld.AddTargetGroup('3',0)
 # newTargetGroup.AddTarget('0',0)
-gameWorld.GetTargetGroupByID('3').AddTarget('0',1)
-gameWorld.GetTargetGroupByID('3').AddTarget('1',2)
-gameWorld.GetTargetGroupByID('3').AddTarget('2',3)
-gameWorld.GetTargetGroupByID('3').AddTarget('3',3)
+#gameWorld.GetTargetGroupByID('3').AddTarget('0',1)
+#gameWorld.GetTargetGroupByID('3').AddTarget('1',2)
+#gameWorld.GetTargetGroupByID('3').AddTarget('2',3)
+#gameWorld.GetTargetGroupByID('3').AddTarget('3',3)
 
 # init target group 4
 # target blitz and flash effect
 
-newTargetGroup = gameWorld.AddTargetGroup('4',0)
+#newTargetGroup = gameWorld.AddTargetGroup('4',0)
+
+"""
 gameWorld.GetTargetGroupByID('4').AddTarget('0',1)
 gameWorld.GetTargetGroupByID('4').AddTarget('1',2)
 
@@ -108,6 +110,7 @@ gameWorld.GetTargetGroupByID('4').GetTargetByID('1').targetLEDSerialCode_HitRead
 
 gameWorld.GetTargetGroupByID('4').GetTargetByID('0').targetLEDSerialCode_Off = '1000000000'
 gameWorld.GetTargetGroupByID('4').GetTargetByID('1').targetLEDSerialCode_Off = '1000000000'
+"""
 
 
 
@@ -159,23 +162,11 @@ time.sleep(0.1)
 
 
 print 'debug target start';
-print gameHotLine.PingPong('1t1\n') # debug target group
-print gameHotLine.PingPong('1t2\n') # debug target group
-print gameHotLine.PingPong('1t3\n') # debug target group
-print gameHotLine.PingPong('1t4\n') # debug target group
-print gameHotLine.PingPong('1t5\n') # debug target group
-print gameHotLine.PingPong('1t6\n') # debug target group
-print gameHotLine.PingPong('1t7\n') # debug target group
-print gameHotLine.PingPong('1t8\n') # debug target group
-
-print gameHotLine.PingPong('2t1\n') # debug target group
-print gameHotLine.PingPong('3t1\n') # debug target group
-print gameHotLine.PingPong('4t1\n') # debug target group
 print 'debug target stop';
 
 for tg in gameWorld.targetGroupList:
   for tar in tg.targetsList:
-    print 'tg: '+tg.targetGroupID+' tar: '+tar.targetID   
+    print 'tg: '+tg.targetGroupID+' tar: '+tar.targetID
 
 # gameHotLine.Ping('4A120FF040408\n') # blitz kommando
 

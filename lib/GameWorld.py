@@ -9,6 +9,7 @@ class GameWorld:
 		self.targetGroupList = []
 		self.laserWeaponsList = []
 		self.sounds = None
+		self.eventList=[]
 
 
 
@@ -22,7 +23,7 @@ class GameWorld:
 	def CollectTargetSerialBuffersAsList(self):
 		self.collectedSerialBufferList = []
 		for CTSBAL_currentTargetGroup in self.targetGroupList:
-			self.collectedSerialBufferList.append(CTSBAL_currentTargetGroup.CollectSerialBufferFromTargetsAsList())
+			self.collectedSerialBufferList+=CTSBAL_currentTargetGroup.CollectSerialBufferFromTargetsAsList()
 
 		return self.collectedSerialBufferList
 
@@ -35,4 +36,4 @@ class GameWorld:
 		for GTGBID_currentTargetGroup in self.targetGroupList:
 			if GTGBID_currentTargetGroup.targetGroupID==targetGroupID:
 				GTGBID_found = GTGBID_currentTargetGroup
-		return GTGBID_found	
+		return GTGBID_found

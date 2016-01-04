@@ -86,7 +86,8 @@ class GameScreen(object):
 
 
         size = (pygame.display.Info().current_w, pygame.display.Info().current_h)
-        self.screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
+        #self.screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
+        self.screen = pygame.display.set_mode(size)
 
         print("...done!")
 

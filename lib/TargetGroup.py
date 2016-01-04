@@ -1,4 +1,4 @@
-from Target import Target
+from gamemodes.Dummy import Target
 
 class TargetGroup:
 
@@ -16,14 +16,10 @@ class TargetGroup:
 
 
 	def CollectSerialBufferFromTargetsAsList(self):
-		self.collectedSerialStringList = []
-		for CSBFT_currentTarget in self.targetsList:
-			self.currentTargetBuffer = CSBFT_currentTarget.CollectSerialBuffer()
-			if self.currentTargetBuffer != '':
-				self.collectedString = self.currentTargetBuffer
-				self.collectedSerialStringList.append(self.collectedString)
-
-		return self.collectedSerialStringList
+		buf=[]
+		for t in self.targetsList:
+			buf+=t.CollectSerialBuffer()
+		return buf
 
 	def UpdateTargets(self):
 		for currentTarget in self.targetsList:
@@ -32,6 +28,7 @@ class TargetGroup:
 	def GetTargetByID(self,GTBI_id):
 		self.GTBI_found = None
 		for GTBI_currentTarget in self.targetsList:
+			print(GTBI_currentTarget.targetID,GTBI_id)
 			if GTBI_currentTarget.targetID==GTBI_id:
 				self.GTBI_found = GTBI_currentTarget
 		return self.GTBI_found

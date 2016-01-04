@@ -9,7 +9,7 @@ import os
 
 #########################################
 # game class import 
-from GameWorld import GameWorld
+from lib.GameWorld import GameWorld
 from lib.GameEngine import GameEngine
 from lib.SerialHalfDuplex import SerialHalfDuplex
 from lib.LaserWeapon import LaserWeapon

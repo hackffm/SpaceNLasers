@@ -1,15 +1,9 @@
 import serial          
-import wiringpi2
 
 
 class SerialHalfDuplex:
 	# def __init__(self):
 		# self.initSerialGPIO()
-
-	def initSerialGPIO(self):
-		wiringpi2.wiringPiSetup()
-		wiringpi2.pinMode(1,1) # pin mode to output for serial txn (half duplex direction)
-		wiringpi2.digitalWrite(1,0) # set txn to read
 
 	def configSerial(self,device,baud):
 		self.__device = device

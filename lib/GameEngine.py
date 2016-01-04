@@ -2,7 +2,7 @@ import time
 
 from TimeCounter import TimeCounter
 from random import randint
-
+import Events
 
 class GameEngine:
 
@@ -29,6 +29,12 @@ class GameEngine:
 		"gameOver": self.GameOver, 
 		"LoopGamePlay": self.LoopGamePlay  }
 		self.gamePlayGameOverTimer = TimeCounter()
+		self.eventLog=[]
+	
+	def LogEvent(self,event):
+		self.eventLog.append(event)
+		print(event)
+		# TODO: show events on screen/debug
 
 	def MainLoop(self):
 		while 1:
@@ -62,10 +68,12 @@ class GameEngine:
 				self.gameWorld.sounds["mixer"].fadeout(200)
 				time.sleep(0.2)
 				self.gameState = 'gamestart'
+		self.gameState="gamestart" # TODO: remove after testing
 
 
 
 	def GameStart(self):
+		self.eventLoop=[]
 		self.gameScreen.resetScore()
 		self.gameHotLine.Ping('4A120FF040404\n') # blitz kommando
 		self.gameHotLine.Ping('1A120FF040a2A\n') # [id][animation trigger][laserid 0 / 1][ani id 20][FF040a][flash count 08 for 8 time flash]
@@ -82,25 +90,23 @@ class GameEngine:
 		self.gamePlayGameOverTimer.setTimeout(self.gamePlayTime)
 		self.gameScreen.show('Score')
 		# self.HitMeAllTargets()
-		self.TurnOffAllTargets()
-		self.GetRandomTarget(None).HitMe()
+		#self.TurnOffAllTargets()
+		#self.GetRandomTarget(None).HitMe()
 		self.currentActiveTarget = None
 		self.gamePlatTimeCounter_TargetNext = time.time()+self.gamePlayTime_TargetLimit
-
-
 
 	def LoopGamePlay(self):
 		time.sleep(0.01)
 
 		self.GameTargetContoller()
 
-		if self.gamePlatTimeCounter_TargetNext<time.time():
-			self.TurnOffAllTargets()
-			self.gamePlatTimeCounter_TargetNext = time.time()+self.gamePlayTime_TargetLimit
-			nextTarget = self.GetRandomTarget(self.currentActiveTarget)
-			print "next Target: "+nextTarget.targetLEDAniHeader
-			nextTarget.HitMe()
-			self.currentActiveTarget = nextTarget
+		#if self.gamePlatTimeCounter_TargetNext<time.time():
+			#self.TurnOffAllTargets()
+			#self.gamePlatTimeCounter_TargetNext = time.time()+self.gamePlayTime_TargetLimit
+			#nextTarget = self.GetRandomTarget(self.currentActiveTarget)
+			#print "next Target: "+nextTarget.targetLEDAniHeader
+			#nextTarget.HitMe()
+			#self.currentActiveTarget = nextTarget
 
 		# check game over timeout
 		if self.gamePlayGameOverTimer.checkTimeout()==1:
@@ -154,37 +160,10 @@ class GameEngine:
 
 					hitList = self.DecodeHit(hitRaw)	
 					for LoopGamePlay_targetID in hitList:
-						print 'target hit: '+currentTargetGroupA.targetGroupID+' - '+LoopGamePlay_targetID 
-						self.playScore = self.playScore + 10
-						
-						TargetGroupObject = self.gameWorld.GetTargetGroupByID(currentTargetGroupA.targetGroupID)
-						print "TargetGroupObject ID: "+TargetGroupObject.targetGroupID
-						TargetObj = TargetGroupObject.GetTargetByID(LoopGamePlay_targetID)
-						if TargetObj!=None:
-							print "TargetObj ID: "+TargetObj.targetID
-							if TargetObj.targetState == 'hitme':
-
-								# update hit point on game screen
-								self.gameScreen.show('Score') 
-								#self.gameScreen.scorePlayer1=XXXX
-								#self.gameScreen.scorePlayer2=XXXX
-								self.gameScreen.update()
-
-								# begin: next target
-								nextTarget = self.GetRandomTarget(TargetObj)
-								nextTarget.HitMe()
-								print "next Target: "+nextTarget.targetLEDAniHeader
-								self.currentActiveTarget = nextTarget
-								# end: next target
-
-								TargetObj.AddHit(self.gameWorld.laserWeaponsList[0],5,'laser')
-
-								self.gameScreen.changeScore(25)
-
-								if currentTargetGroupA.targetGroupID=='1' and LoopGamePlay_targetID=='1':
-									# laser special effect on
-									self.gameHotLine.Ping('1A120FF040a08\n')
-
+						targetObj = currentTargetGroupA.GetTargetByID(LoopGamePlay_targetID)
+						event=Events.TargetHitEvent(time.time(),self.gameWorld.laserWeaponsList[0],targetObj) # TODO: pass correct weapon from bus data
+						targetObj.Hit(event)
+						self.LogEvent(event)
 	def DecodeHit(self,hitCode):
 		hitSensor = []
 		#print("hitCode",hitCode)
@@ -220,7 +199,6 @@ class GameEngine:
 		print "allTargets:"
 		for GRT_currentTargetGroup in self.gameWorld.targetGroupList:
 			for GRT_currentTarget in GRT_currentTargetGroup.targetsList:
-				print "theader: "+GRT_currentTarget.targetLEDAniHeader
 				if GRT_currentTarget!=excludeTarget:
 					allTargets.append(GRT_currentTarget)
 		
@@ -234,7 +212,7 @@ class GameEngine:
 
 	def GameOver(self):
 		self.gameScreen.pushCurrentScoreToHighScore()
-		self.TurnOffAllTargets()
+		#self.TurnOffAllTargets()
 		self.gameHotLine.Ping('AA10200\n') # trune off laser weapon A
 		self.gameHotLine.Ping('BA10200\n') # trune off laser weapon B
 		self.gameWorld.sounds["mixer"].fadeout(500) # stop all sounds
@@ -253,19 +231,6 @@ class GameEngine:
 		self.gameState = 'intro'
 		self.playScore = 0
 
-
-	def TurnOffAllTargets(self):
-		for TOAT_currentTargetGroup in self.gameWorld.targetGroupList:
-			for TOAT_currentTarget in TOAT_currentTargetGroup.targetsList:
-				TOAT_currentTarget.TurnOffTarget()
-		self.PollTargetBuffer()
-
-	def HitMeAllTargets(self):
-		for HMAT_currentTargetGroup in self.gameWorld.targetGroupList:
-			for HMAT_currentTarget in HMAT_currentTargetGroup.targetsList:
-				HMAT_currentTarget.HitMe()
-		self.PollTargetBuffer()
-	
 		
 
 	def PollTargetBuffer(self):

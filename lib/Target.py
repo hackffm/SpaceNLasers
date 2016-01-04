@@ -2,6 +2,40 @@ import time
 
 from lib.TimeCounter import TimeCounter
 
+import Events
+
+class BusFactory:
+	@staticmethod
+	def setTargetColor(target,color):
+		return "{grp}a{target}02{color}".format(grp=target.group.targetGroupID,target=target.targetID,color=color)
+
+class Target:
+	def __init__(self,group,gameWorld,id,targetZIndex):
+		self.group=group
+		self.targetID=id
+		self.gameWorld=gameWorld
+		self.targetZIndex=targetZIndex
+
+		self.buffer=[]
+
+	def Hit(self,event):
+		"""Called from game engine when this target has been hit."""
+		raise NotImplementedError()
+
+	def CollectSerialBuffer(self):
+		"""Return a list of all buffered bus commands."""
+		tmp=self.buffer
+		self.buffer=[]
+		return tmp
+
+	def Update(self):
+		"""Do game mode specific stuff."""
+		raise NotImplementedError()
+
+	def setColor(self,color):
+		"""Write new color command for target to the target queue"""
+		self.buffer.append(BusFactory.setTargetColor(self,color))
+
 class TargetHitRecord:
 	
 
@@ -15,7 +49,8 @@ class TargetHitRecord:
 		self.targetType = 'single'
 
 
-class Target:
+
+class Target2:
 
 	
 
@@ -55,6 +90,7 @@ class Target:
 		self.targetSerialBuffer = ''
 
 	def HitMe(self):
+		"""Set target to be hittable"""
 		self.targetState = 'hitme'
 		self.targetSerialBuffer = self.targetLEDAniHeader+self.targetLEDSerialCode_HitReady+'\n'
 
