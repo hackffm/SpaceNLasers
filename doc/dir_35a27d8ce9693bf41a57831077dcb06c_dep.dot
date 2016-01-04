@@ -1,0 +1,6 @@
+digraph "gamemodes" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  dir_35a27d8ce9693bf41a57831077dcb06c [shape=box, label="gamemodes", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_35a27d8ce9693bf41a57831077dcb06c.html"];
+}
