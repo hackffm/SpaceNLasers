@@ -59,6 +59,7 @@ import gamemodes
 
 DISPLAY_PORT_NUMBER=5000
 
+## Exception which is thrown if fully received message is available during game (all message transmissions mean "abort")
 class AbortGameException(Exception):
 	pass
 
