@@ -20,10 +20,10 @@ import Player
 
 DISPLAY_PORT_NUMBER=5000
 
+## Abstraction of a display for scores and stuff.
 class Display:
-	"""Abstraction of a display for scores and stuff."""
+	## Initialises state and sends player information to display.
 	def __init__(self, targetHostname, players):
-		"""Initialises state and sends player information to display."""
 		self.targetHostname=targetHostname
 		self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		self.s.connect((targetHostname, DISPLAY_PORT_NUMBER))
@@ -31,12 +31,12 @@ class Display:
 
 		self.send_json({"players":[{"name":p.name,"color":p.color} for p in players]})
 	
+	## Send current state to display.
 	def send(self):
-		"""Send current state to display."""
 		self.send_json({"values":self.state})
 	
+	## Internal helper function
 	def send_json(self,data):
-		"""Internal helper function"""
 		j=json.dumps(data)+"\0"
 		self.s.send(j)
 
