@@ -1,0 +1,84 @@
+TODOs
+
+Legende:
+	p0 = blocker
+	p[n] = prio niedriger mit steigender Zahl
+	o[n] = optional
+
+---------------------------------------------------------------------------
+GameMaster Hardware
+
+	p1: Box fuer RS485
+	p2: Verkabelung finalisieren
+	p3: Pollin Display sauber montieren
+
+
+---------------------------------------------------------------------------
+GameMaster Sorftware
+
+	p0: Basis classen erstellen / vorhandene optimieren
+
+
+---------------------------------------------------------------------------
+GameDisplay
+
+	p0: GameMaster Kommunikation
+	p1: Domination Mode Game Screen Implementierung
+	p2: Lobby Screen
+	p3: HighScore Screen
+
+
+---------------------------------------------------------------------------
+Target Elektronik
+
+	p1: Platinen aufbauen
+	p2: Halterung Platinen
+
+
+---------------------------------------------------------------------------
+Virobi UFO
+
+	p1: Target sensoren an mini pro und testen
+	p2: UART zwischen mini pro controller implementieren 
+	p2: Motorsteuerung implementieren
+	p3: Deko finaliseren
+
+
+---------------------------------------------------------------------------
+Std. Targets
+
+	p1: Std. Halterung fuer Target Alien an Aufhaengung
+	p1: Std. Halterung fuer Sensor
+	p1: Std. Halterung fuer NeoPixel
+	p2: Target Designs
+	p2: Target Aufhaenung System
+
+
+---------------------------------------------------------------------------
+[o] Lobby PC
+
+	p1: Processing APP implementieren
+
+
+---------------------------------------------------------------------------
+Raum Installation
+
+	p0: Strom
+	p0: Netzwerk Infrastrucktur
+	p1: DMX Lampen
+	p1: DMX Nebelmaschienen
+	p1: DMX Laser
+	p1: Virobi Bodenbegrenzung
+	p1: Space n Lasers Schild
+	p2: NeoPixel / LED Deko Blink stuff
+	o1: Mondlandschaft Module
+		- Krater
+		- Decke mit Strucktur
+	o1: Space Port Kartonaufsteller
+	o2: Piuu Piuu Laser Abwaehrtuerme
+
+
+
+---------------------------------------------------------------------------
+Sontiges
+
