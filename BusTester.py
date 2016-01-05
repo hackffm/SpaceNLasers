@@ -50,6 +50,7 @@ gameHotLine.Ping('1a10200FF00\n')
 gameHotLine.Ping('1a202FF00FF\n')
 gameHotLine.Ping('1a302FFFF00\n')
 
+# noch ein kommentar
 
 # gameHotLine.Ping('2a002FF0000\n')
 # gameHotLine.Ping('2a10200FF00\n')
