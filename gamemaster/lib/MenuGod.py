@@ -106,7 +106,7 @@ class MenuGod:
 				self.SendError(str(e))
 		return msg
 
-	## Send game info (scores). Raises exception if data received
+	## Send game info (scores). Raises AbortGameException if data received
 	def SendGameInfo(self, info):
 		assert self.state=="game"
 		self._SendJson({"gameinfo":info})
