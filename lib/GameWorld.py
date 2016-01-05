@@ -1,9 +1,7 @@
 from TargetGroup import TargetGroup
 
 class GameWorld:
-
-	
-
+	"""Helper functions for bus queries"""
 	def __init__(self):
 		self.targetCount = 0
 		self.targetGroupList = []
