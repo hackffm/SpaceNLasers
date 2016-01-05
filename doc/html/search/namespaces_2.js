@@ -15,6 +15,5 @@ var searchData=
   ['targetgroup',['TargetGroup',['../namespacelib_1_1TargetGroup.html',1,'lib']]],
   ['targethit',['TargetHit',['../namespacelib_1_1TargetHit.html',1,'lib']]],
   ['targethitrecord',['TargetHitRecord',['../namespacelib_1_1TargetHitRecord.html',1,'lib']]],
-  ['timecounter',['TimeCounter',['../namespacelib_1_1TimeCounter.html',1,'lib']]],
-  ['weapon',['Weapon',['../namespacelib_1_1Weapon.html',1,'lib']]]
+  ['timecounter',['TimeCounter',['../namespacelib_1_1TimeCounter.html',1,'lib']]]
 ];
