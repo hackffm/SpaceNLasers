@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['space_27n_27lasers',['Space&apos;n&apos;Lasers',['../md_README.html',1,'']]],
   ['scorecount',['scoreCount',['../classlib_1_1GameScreen_1_1GameScreen.html#a048fd5e196de5a2414b116fe01d4362a',1,'lib::GameScreen::GameScreen']]],
   ['scorecounter',['scoreCounter',['../classlib_1_1GameScreen_1_1GameScreen.html#a268d0ff84e0e11ee5578672eb7f2efd7',1,'lib::GameScreen::GameScreen']]],
   ['scoreplayer1',['scorePlayer1',['../classlib_1_1GameScreen_1_1GameScreen.html#a7cb9c1e067bf0abccef3ff7b9571017d',1,'lib.GameScreen.GameScreen.scorePlayer1()'],['../classlib_1_1GameScreen_1_1GameScreen.html#a8aebd95b760f8986cf457f10657f03dd',1,'lib.GameScreen.GameScreen.scorePlayer1()']]],

@@ -1,0 +1,9 @@
+digraph "gamemaster/gamemodes" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_281d32fa459f528f2e5031658b334f87 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="gamemaster" fontname="Helvetica", fontsize="10", URL="dir_281d32fa459f528f2e5031658b334f87.html"]
+  dir_3b2df2d6d5d3c2d374c7abc50d273719 [shape=box, label="gamemodes", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_3b2df2d6d5d3c2d374c7abc50d273719.html"];
+  }
+}
