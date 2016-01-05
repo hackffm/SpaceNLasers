@@ -16,6 +16,7 @@ from lib.LaserWeapon import LaserWeapon
 from lib.GameScreen import GameScreen
 
 #test by hephaisto
+# some other test to annoy shintaro :P
 
 
 #########################################
