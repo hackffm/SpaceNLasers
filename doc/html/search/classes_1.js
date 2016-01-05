@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['display',['Display',['../classlib_1_1Display_1_1Display.html',1,'lib::Display']]]
+  ['event',['Event',['../classlib_1_1Events_1_1Event.html',1,'lib::Events']]]
 ];
