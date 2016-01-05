@@ -6,6 +6,8 @@ var searchData=
   ['scoreplayer1',['scorePlayer1',['../classlib_1_1GameScreen_1_1GameScreen.html#a7cb9c1e067bf0abccef3ff7b9571017d',1,'lib.GameScreen.GameScreen.scorePlayer1()'],['../classlib_1_1GameScreen_1_1GameScreen.html#a8aebd95b760f8986cf457f10657f03dd',1,'lib.GameScreen.GameScreen.scorePlayer1()']]],
   ['scoreplayer2',['scorePlayer2',['../classlib_1_1GameScreen_1_1GameScreen.html#a6c686ed2576a1d28d737dcbdf3fe283b',1,'lib::GameScreen::GameScreen']]],
   ['screen',['screen',['../classlib_1_1GameScreen_1_1GameScreen.html#a246277fd94adcca90b307c86a51b8106',1,'lib.GameScreen.GameScreen.screen()'],['../classlib_1_1GameScreen_1_1GameScreen.html#ab2862d9ec0358371482bdd244dcb0e02',1,'lib.GameScreen.GameScreen.screen()']]],
+  ['send',['send',['../classlib_1_1Display_1_1Display.html#acdaab78781fd690eecebeb1eb43f34a7',1,'lib::Display::Display']]],
+  ['send_5fjson',['send_json',['../classlib_1_1Display_1_1Display.html#ad6e67beba7e27b8c3154cadab1eea4b8',1,'lib::Display::Display']]],
   ['serialbuffer',['serialBuffer',['../classlib_1_1Target_1_1Target2.html#afd007871f020211848e8078596a6f405',1,'lib::Target::Target2']]],
   ['serialhalfduplex',['SerialHalfDuplex',['../classlib_1_1SerialHalfDuplex_1_1SerialHalfDuplex.html',1,'lib::SerialHalfDuplex']]],
   ['serialhalfduplex_2epy',['SerialHalfDuplex.py',['../SerialHalfDuplex_8py.html',1,'']]],
@@ -17,5 +19,6 @@ var searchData=
   ['settargetcolor',['setTargetColor',['../classlib_1_1Target_1_1BusFactory.html#a03f37e7cb8761cb458835a1cfd949db0',1,'lib::Target::BusFactory']]],
   ['settimeout',['setTimeout',['../classlib_1_1TimeCounter_1_1TimeCounter.html#adadd0a8187603ae5a9b7c4f6c3fba6fc',1,'lib::TimeCounter::TimeCounter']]],
   ['show',['show',['../classlib_1_1GameScreen_1_1GameScreen.html#ac37465d3e4b6cd74ff65033693d7e0d9',1,'lib::GameScreen::GameScreen']]],
-  ['sounds',['sounds',['../classlib_1_1GameWorld_1_1GameWorld.html#a9b848c63c10344874b3760515e5849a7',1,'lib.GameWorld.GameWorld.sounds()'],['../namespaceGameMaster.html#aefb99e3c560fac3a3a4b7768d6f4a51a',1,'GameMaster.sounds()']]]
+  ['sounds',['sounds',['../classlib_1_1GameWorld_1_1GameWorld.html#a9b848c63c10344874b3760515e5849a7',1,'lib.GameWorld.GameWorld.sounds()'],['../namespaceGameMaster.html#aefb99e3c560fac3a3a4b7768d6f4a51a',1,'GameMaster.sounds()']]],
+  ['state',['state',['../classlib_1_1Display_1_1Display.html#a3a46efaacea8c9416f74d93cb2cc2b7f',1,'lib::Display::Display']]]
 ];

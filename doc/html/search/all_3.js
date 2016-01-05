@@ -11,6 +11,7 @@ var searchData=
   ['collectserialbuffer',['CollectSerialBuffer',['../classlib_1_1Target_1_1Target.html#ac5f1f7abba61582828c6654238d42e55',1,'lib.Target.Target.CollectSerialBuffer()'],['../classlib_1_1Target_1_1Target2.html#a6320615453727e979696d3250e8308d1',1,'lib.Target.Target2.CollectSerialBuffer()']]],
   ['collectserialbufferfromtargetsaslist',['CollectSerialBufferFromTargetsAsList',['../classlib_1_1TargetGroup_1_1TargetGroup.html#a780c5b4e44df5d9caad2c97ad260a63f',1,'lib::TargetGroup::TargetGroup']]],
   ['collecttargetserialbuffersaslist',['CollectTargetSerialBuffersAsList',['../classlib_1_1GameWorld_1_1GameWorld.html#a762116899b44d646df54fe082dcae434',1,'lib::GameWorld::GameWorld']]],
+  ['color',['color',['../classlib_1_1Player_1_1Player.html#a5ec09526162e700079f6ac2b90bcf262',1,'lib::Player::Player']]],
   ['configserial',['configSerial',['../classlib_1_1SerialHalfDuplex_1_1SerialHalfDuplex.html#aac51a3c4a0db774114fbb7215ab5f5dd',1,'lib::SerialHalfDuplex::SerialHalfDuplex']]],
   ['coolingspeed',['coolingSpeed',['../namespacelib_1_1LaserWeapon.html#a56196533114b6892b1160d5e16d34843',1,'lib::LaserWeapon']]],
   ['currentactivetarget',['currentActiveTarget',['../classlib_1_1GameEngine_1_1GameEngine.html#a3e73ab04dd037a6b2adf94878924cfae',1,'lib::GameEngine::GameEngine']]],
