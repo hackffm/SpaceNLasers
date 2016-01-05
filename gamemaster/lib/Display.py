@@ -1,5 +1,6 @@
 import socket
 import json
+import Player
 
 # init
 """
@@ -17,21 +18,26 @@ import json
 }
 """
 
-DISPLAY_PORT_NUMBER=1339
+DISPLAY_PORT_NUMBER=5000
 
 class Display:
 	"""Abstraction of a display for scores and stuff."""
 	def __init__(self, targetHostname, players):
 		self.targetHostname=targetHostname
-		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		s.connect((targetHostname, DISPLAY_PORT_NUMBER))
+		self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		self.s.connect((targetHostname, DISPLAY_PORT_NUMBER))
 		self.state={}
 
 		self.send_json({"players":[{"name":p.name,"color":p.color} for p in players]})
 	
 	def send(self):
-		self.send_json(self.state)
+		self.send_json({"values":self.state})
 	
 	def send_json(self,data):
 		j=json.dumps(data)+"\0"
-		s.send(j)
+		self.s.send(j)
+
+if __name__=="__main__":
+	d=Display("10.0.0.102",[Player.Player("hephaisto","00FF00")])
+	d.state["scores"]={"type":"int","values":[100]}
+	d.send()
