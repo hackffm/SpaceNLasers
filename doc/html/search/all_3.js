@@ -1,6 +1,7 @@
 var searchData=
 [
   ['changescore',['changeScore',['../classlib_1_1GameScreen_1_1GameScreen.html#acf44a2a96adc33d464abcc041830bb23',1,'lib::GameScreen::GameScreen']]],
+  ['checknewgamestart',['CheckNewGameStart',['../classlib_1_1MenuGod_1_1MenuGod.html#afd41e3ac16d74c9b6114a6a176c0e432',1,'lib::MenuGod::MenuGod']]],
   ['checktimeout',['checkTimeout',['../classlib_1_1TimeCounter_1_1TimeCounter.html#a93ba1f2dc127c6cdf4646c05df4a49a9',1,'lib::TimeCounter::TimeCounter']]],
   ['close',['Close',['../classlib_1_1SerialHalfDuplex_1_1SerialHalfDuplex.html#a223f6199ec527a50a0ea59a00648b55c',1,'lib::SerialHalfDuplex::SerialHalfDuplex']]],
   ['code_5fbarrelanimation',['code_BarrelAnimation',['../namespacelib_1_1LaserWeapon.html#aa0e5af0adc04c4044995ed98a7a6b14e',1,'lib::LaserWeapon']]],

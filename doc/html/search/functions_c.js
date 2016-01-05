@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['send',['send',['../classlib_1_1MenuGod_1_1MenuGod.html#a4f85e56ddf81f3fbe53ba6caa5ac1269',1,'lib::MenuGod::MenuGod']]],
-  ['send_5fjson',['send_json',['../classlib_1_1MenuGod_1_1MenuGod.html#a3404cbcf9bf2030df8cb27b610460435',1,'lib::MenuGod::MenuGod']]],
+  ['senderror',['SendError',['../classlib_1_1MenuGod_1_1MenuGod.html#a8aeb02352b20605d2fbea2c640a2cb8e',1,'lib::MenuGod::MenuGod']]],
+  ['sendgameinfo',['SendGameInfo',['../classlib_1_1MenuGod_1_1MenuGod.html#a8c0773034b9e0c120b6d10acaf74bf8c',1,'lib::MenuGod::MenuGod']]],
   ['set_5finput',['set_Input',['../namespacelib_1_1LaserWeapon.html#ae1e83474220b85e1ff1f9470412b6821',1,'lib::LaserWeapon']]],
   ['setbuffer',['SetBuffer',['../classlib_1_1SerialHalfDuplex_1_1SerialHalfDuplex.html#af8186f714aebb67d58c4374d5838c469',1,'lib::SerialHalfDuplex::SerialHalfDuplex']]],
   ['setcolor',['setColor',['../classlib_1_1Target_1_1Target.html#adf1e1544853c415159891298154286a5',1,'lib::Target::Target']]],

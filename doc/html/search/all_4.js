@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['d',['d',['../namespacelib_1_1MenuGod.html#add13c724b08ad63601c5973b15fa474e',1,'lib::MenuGod']]],
   ['decodehit',['DecodeHit',['../classlib_1_1GameEngine_1_1GameEngine.html#a695dc1c6122a3671dc07a53c07b28754',1,'lib::GameEngine::GameEngine']]],
   ['deltaticktock',['deltaTickTock',['../classlib_1_1Target_1_1Target2.html#adf84ea630ffc9d291d67f0176f0b8011',1,'lib::Target::Target2']]],
   ['deltaticktockmiliseconds',['deltaTickTockMiliseconds',['../classlib_1_1Target_1_1Target2.html#aa58ba76ba087853d1215d4bc14f0d936',1,'lib::Target::Target2']]],
