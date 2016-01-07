@@ -66,25 +66,25 @@ class AbortGameException(Exception):
 ## Abstraction of a display for scores and stuff.
 # Usage
 # \code
-	m=MenuGod("")
-	# in lobby mode now
-	while(True):
-		gamestart=m.CheckNewGameStart()
-		if gamestart is not None:
-			# use gamestart info to initialize game
-			break
-	
+#	m=MenuGod("")
+#	# in lobby mode now
+#	while(True):
+#		gamestart=m.CheckNewGameStart()
+#		if gamestart is not None:
+#			# use gamestart info to initialize game
+#			break
+#	
 # \endcode
 # During game
 # \code
-	try:
-		while(True):
-			# game loop
-			m.SendGameInfo(info)
-		m.GameOver()
-	except AbortGameException:
-		# cleanup game
-		return
+#	try:
+#		while(True):
+#			# game loop
+#			m.SendGameInfo(info)
+#		m.GameOver()
+#	except AbortGameException:
+#		# cleanup game
+#		return
 # \endcode
 class MenuGod:
 	## Initialises state and sends player information to display.
