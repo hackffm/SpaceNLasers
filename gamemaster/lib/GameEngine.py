@@ -43,6 +43,7 @@ class GameEngine:
 
 
 	def LoopIntro(self):
+		"""waiting for game start. do lobby light show and sound FX"""
 		if self.introTimeCounter==None:
 			self.introTimeCounter = TimeCounter()
 
@@ -71,8 +72,8 @@ class GameEngine:
 		self.gameState="gamestart" # TODO: remove after testing
 
 
-
 	def GameStart(self):
+		"""Do transition from lobby to game mode light show and sound FX"""
 		self.eventLoop=[]
 		self.gameScreen.resetScore()
 		self.gameHotLine.Ping('4A120FF040404\n') # blitz kommando
@@ -95,6 +96,8 @@ class GameEngine:
 		self.currentActiveTarget = None
 		self.gamePlatTimeCounter_TargetNext = time.time()+self.gamePlayTime_TargetLimit
 
+
+
 	def LoopGamePlay(self):
 		time.sleep(0.01)
 
@@ -113,78 +116,106 @@ class GameEngine:
 			self.gameState = 'gameOver'
 			return None
 		
-		a = self.gameHotLine.PingPong('Ab\n')
-		self.gameWorld.UpdateTargets()
-		self.PollTargetBuffer()
-		if len(a)>=4:
+		a = self.gameHotLine.PingPong('Ab\n') # requesting weapon status from weapon "A". returns 8 bit button and barrelcount data. 
+		# detailed documentation check wiki, http://www.hackerspace-ffm.de/wiki/index.php?title=SpaceInLasers#Serielle_Kommandos
+		# Section "Unicast Kommandos" -> "_b"
+		# TODO: should poll all connected weapons on the game bus.
+
+		self.gameWorld.UpdateTargets() # call target update method
+
+		self.PollTargetBuffer() # collect from all targets serial bus data to required to be sent
+
+		if len(a)>=4: # expecting four chars from weapon status 
 			# print "weapon raw: "+a
 			try:
-				b=int(eval("0x"+a[0:2]))
+				b=int(eval("0x"+a[0:2])) # try to convert first two chars to interger value
 			except:
 				print "weapon button error: "+a
-				b = 0
+				b = 0 # prevent do crap if crap data recieved
 			
 			if b == 2:
-				self.laserAShrotGunMode = 1
-			if b&1:
+				self.laserAShrotGunMode = 1 # ?????
+			if b&1: # default gun trigger pulled. next start laser shot sequence.
 
 				# print a
 				# print b
 				# print bin(int(a, 16))[2:]
 
-				# begin: laser shoot
+				# begin: shoot laser
 				#self.gameHotLine.Ping('sB\n') # broadcast: ready to shoot weapon B
-				self.gameHotLine.Ping('AA011FF000401\n')
-				self.gameHotLine.Ping('Aa00704\n')
-				self.gameHotLine.Ping('sA\n') # broadcast: ready to shoot weapon A
+				self.gameHotLine.Ping('AA011FF000401\n') # weapon A "Rumble Shot" animation
+				self.gameHotLine.Ping('Aa00704\n') # weapon A Neopixel animation ????? Do some blink blink ??!!
+				self.gameHotLine.Ping('sA\n') # broadcast: ready to shoot weapon A for multiple weapon shot, for example weapon A and B send "sAB"
 				time.sleep(0.01)
-				self.gameHotLine.PingPong('S\n') # boradcast: shoot
+				self.gameHotLine.PingPong('S\n') # boradcast shoot. weapons fires 9 bit weapon id with the laser. targets pause any tasks, waiting for laser bit data.
 				time.sleep(0.01)
 				# end: laser shoot
 
 				# print self.gameHotLine.PingPong('3t0\n') # debug target group
 
-
-				
 				self.gameWorld.sounds["laserblasterSound"].play()
 
-				self.gameScreen.changeScore(25)
+				self.gameScreen.changeScore(25) # wtf?!
 				
 
 				self.laserAShrotGunMode = 0
 
 				for currentTargetGroupA in self.gameWorld.targetGroupList:
 					# print "hitRaw = self.gameHotLine.PingPong(currentTargetGroupA.targetGroupID)" + currentTargetGroupA.targetGroupID
-					hitRaw = self.gameHotLine.PingPong(currentTargetGroupA.targetGroupID+'tr\n') # get target status
+					hitRaw = self.gameHotLine.PingPong(currentTargetGroupA.targetGroupID+'tr\n') # get target status. Rückgabe: AABBCCDDEEFFGGHH = data value
 					time.sleep(0.01)	
 
-					hitList = self.DecodeHit(hitRaw)	
+					hitList = self.DecodeHit(hitRaw)	# decode recieved target hit status
 					for LoopGamePlay_targetID in hitList:
 						targetObj = currentTargetGroupA.GetTargetByID(LoopGamePlay_targetID)
 						event=Events.TargetHitEvent(time.time(),self.gameWorld.laserWeaponsList[0],targetObj) # TODO: pass correct weapon from bus data
 						targetObj.Hit(event)
 						self.LogEvent(event)
+
+	def GameOver(self):
+		"""Game is over. Turn off weapons, do game over lightshow and sound FX"""
+		self.gameScreen.pushCurrentScoreToHighScore()
+		#self.TurnOffAllTargets()
+		self.gameHotLine.Ping('AA10200\n') # trune off laser weapon A
+		self.gameHotLine.Ping('BA10200\n') # trune off laser weapon B
+		self.gameWorld.sounds["mixer"].fadeout(500) # stop all sounds
+		time.sleep(0.5)
+
+		self.gameScreen.show('GameOver')
+		self.gameScreen.update()
+
+		print "Game Over"
+		self.gameWorld.sounds["gameOverSound"].play()
+		time.sleep(4)
+		self.gameScreen.show('Highscore')
+		self.gameScreen.update()
+		self.gameWorld.sounds["gameOverJingleSound"].play()
+		time.sleep(7)
+		self.gameState = 'intro'
+		self.playScore = 0
+
 	def DecodeHit(self,hitCode):
+		"""try to decode hitCode AABBCCDDEEFFGGHH. for example AA contains hit data"""
 		hitSensor = []
 		#print("hitCode",hitCode)
 		try:
 			if len(hitCode)>10:
-				if int(eval("0x"+hitCode[0:2]))==145: # ==145
+				if int(eval("0x"+hitCode[0:2]))==145:	# 0x91 or in binary 1001 0001
 					print("hitCode[0:2]",int(eval("0x"+hitCode[0:2])))
 					hitSensor.append('0')
-				if int(eval("0x"+hitCode[2:4]))==145:
+				if int(eval("0x"+hitCode[2:4]))==145:  # 0x91 or in binary 1001 0001
 					print("hitCode[2:4]",int(eval("0x"+hitCode[2:4])))
 					hitSensor.append('1')
-				if int(eval("0x"+hitCode[4:6]))==145:
+				if int(eval("0x"+hitCode[4:6]))==145:  # 0x91 or in binary 1001 0001
 					print("hitCode[4:6]",int(eval("0x"+hitCode[4:6])))
 					hitSensor.append('2')
-				if int(eval("0x"+hitCode[6:8]))==145:
+				if int(eval("0x"+hitCode[6:8]))==145:  # 0x91 or in binary 1001 0001
 					print("hitCode[6:8]",int(eval("0x"+hitCode[6:8])))
 					hitSensor.append('3')
-				if int(eval("0x"+hitCode[8:10]))==145:
+				if int(eval("0x"+hitCode[8:10]))==145:  # 0x91 or in binary 1001 0001
 					print("hitCode[8:10]",int(eval("0x"+hitCode[8:10])))
 					hitSensor.append('4')
-				if int(eval("0x"+hitCode[10:12]))==145:
+				if int(eval("0x"+hitCode[10:12]))==145:  # 0x91 or in binary 1001 0001
 					print("hitCode[10:12]",int(eval("0x"+hitCode[10:12])))
 					hitSensor.append('5')
 		except:
@@ -209,28 +240,6 @@ class GameEngine:
 
 	def GameTargetContoller(self):
 		return None
-
-	def GameOver(self):
-		self.gameScreen.pushCurrentScoreToHighScore()
-		#self.TurnOffAllTargets()
-		self.gameHotLine.Ping('AA10200\n') # trune off laser weapon A
-		self.gameHotLine.Ping('BA10200\n') # trune off laser weapon B
-		self.gameWorld.sounds["mixer"].fadeout(500) # stop all sounds
-		time.sleep(0.5)
-
-		self.gameScreen.show('GameOver')
-		self.gameScreen.update()
-
-		print "Game Over"
-		self.gameWorld.sounds["gameOverSound"].play()
-		time.sleep(4)
-		self.gameScreen.show('Highscore')
-		self.gameScreen.update()
-		self.gameWorld.sounds["gameOverJingleSound"].play()
-		time.sleep(7)
-		self.gameState = 'intro'
-		self.playScore = 0
-
 		
 
 	def PollTargetBuffer(self):
