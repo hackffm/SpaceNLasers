@@ -12,7 +12,7 @@ import os
 from lib.GameWorld import GameWorld
 from lib.GameEngine import GameEngine
 from lib.SerialHalfDuplex import SerialHalfDuplex
-from lib.LaserWeapon import LaserWeapon
+from lib.Weapon import Weapon
 from lib.GameScreen import GameScreen
 
 
@@ -59,8 +59,8 @@ gameWorld.sounds = sounds
 
 #########################################
 # init laser class
-laserWeapon = LaserWeapon() # create laser weapon
-gameWorld.AddLaserWeapon(laserWeapon)
+weaponA=Weapon("A",145)
+gameWorld.AddLaserWeapon(weaponA)
 
 #########################################
 # init targets
@@ -173,7 +173,7 @@ for tg in gameWorld.targetGroupList:
 gameHotLine.Ping('1A020FF040a08\n') # [id][animation trigger][laserid 0 / 1][ani id 20][FF040a][flash count 08 for 8 time flash]
 
 try:
- gameEngine.MainLoop()
+ gameEngine.Run()
  #bla = None
   
         

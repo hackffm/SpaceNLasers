@@ -3,12 +3,9 @@ import time
 from lib.TimeCounter import TimeCounter
 
 import Events
+import BusFactory
 
-class BusFactory:
-	@staticmethod
-	def setTargetColor(target,color):
-		return "{grp}a{target}02{color}".format(grp=target.group.targetGroupID,target=target.targetID,color=color)
-
+## Base class for gamemode target AIs
 class Target:
 	def __init__(self,group,gameWorld,id,targetZIndex):
 		self.group=group
@@ -18,22 +15,23 @@ class Target:
 
 		self.buffer=[]
 
+	## Called from game engine when this target has been hit.
+	# \param event a TargetHitEvent
 	def Hit(self,event):
-		"""Called from game engine when this target has been hit."""
 		raise NotImplementedError()
 
+	## Return a list of all buffered bus commands.
 	def CollectSerialBuffer(self):
-		"""Return a list of all buffered bus commands."""
 		tmp=self.buffer
 		self.buffer=[]
 		return tmp
 
-	def Update(self):
-		"""Do game mode specific stuff."""
+	## Do game mode specific stuff
+	def Update(self,dt):
 		raise NotImplementedError()
 
+	## Write new color command for target to the target queue
 	def setColor(self,color):
-		"""Write new color command for target to the target queue"""
 		self.buffer.append(BusFactory.setTargetColor(self,color))
 
 class TargetHitRecord:

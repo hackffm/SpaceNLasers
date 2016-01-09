@@ -86,6 +86,18 @@ class AbortGameException(Exception):
 #		# cleanup game
 #		return
 # \endcode
+class FakeMenuGod:
+	def __init__(self):
+		pass
+	def CheckNewGameStart(self):
+		return {"players": [{"name":"Player1","color":"00FF00"}],"game": {"mode":"dummy","duration":60}}
+	def SendGameInfo(self, info):
+		#print("game info: {}".format(info))
+		pass
+	def GameOver(self):
+		print("GAME OVER")
+
+
 class MenuGod:
 	## Initialises state and sends player information to display.
 	# \param targetHostname IP of server to connect to. Use None to use server-mode
@@ -99,9 +111,9 @@ class MenuGod:
 		self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		if targetHostname is None: # server mode
 			print("server mode: waiting for connection...")
-			self.s.bind("",DISPLAY_PORT_NUMBER)
+			self.s.bind(("",DISPLAY_PORT_NUMBER))
 			self.s.listen(1)
-			conn, addr = s.accept()
+			conn, addr = self.s.accept()
 			print("connection from {}".format(addr))
 			self.connection=conn
 		else:
@@ -135,6 +147,7 @@ class MenuGod:
 		assert self.state=="game"
 		self._SendJson({"gameinfo":info})
 		if self._CheckForMessage():
+			self._PopMessage()
 			raise AbortGameException()
 
 	## Send available game modes etc.
@@ -167,6 +180,8 @@ class MenuGod:
 	# \returns True if new message complete available, else False
 	# use popMessage to retrieve the message
 	def _CheckForMessage(self):
+		if len(self.buffer)>0 and buffer[-1]=="\0": # already a message in the buffer
+			return True
 		try:
 			while(True):
 				self.buffer+=self.connection.recv(1)

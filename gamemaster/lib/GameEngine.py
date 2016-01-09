@@ -3,8 +3,141 @@ import time
 from TimeCounter import TimeCounter
 from random import randint
 import Events
+from MenuGod import MenuGod,AbortGameException,FakeMenuGod
+import gamemodes
+from Player import Player
+import BusFactory
 
 class GameEngine:
+	def __init__(self,gameHotLine, gameWorld, gameScreen, runWithoutMenugod=True):
+		self.gameHotLine=gameHotLine
+		self.gameWorld=gameWorld
+		if runWithoutMenugod:
+			self.menugod=FakeMenuGod()
+		else:
+			self.menugod=MenuGod(None)
+		self.eventLog=[]
+
+	def LogEvent(self,event):
+		self.eventLog.append(event)
+		print(event)
+		# TODO: show events on screen/debug
+
+	def Run(self):
+		lobbydef={"game":{"mode":"lobby","duration":None},"players":[]}
+		print("starting lobby...")
+		gamestart=self.RunGame(lobbydef,lobbymode=True)
+		print("starting game...")
+		self.RunGame(gamestart)
+
+	def RunGame(self,gamestart,lobbymode=False):
+		try:
+			gamemode_classes=gamemodes.available_modes[gamestart["game"]["mode"]]
+			self.players=[Player(p["name"],p["color"]) for p in gamestart["players"]]
+			self.gamemodeMaster=gamemode_classes[1](self.players,gamestart["game"])
+
+			# initialize targets
+			targets={(group.targetGroupID,t.targetID):gamemode_classes[0](group,self.gameWorld,t.targetID,t.targetZIndex) for group in self.gameWorld.targetGroupList for t in group.targetsList}
+
+			if not lobbymode:
+				self._gameStart()
+			lastTime=time.time()
+			while(True):
+				now=time.time()
+				dt=now-lastTime
+				lastTime=now
+
+				# main game logic
+				self.gamemodeMaster.Update(dt)
+
+				# target logic
+				for t in targets.values():
+					t.Update(dt)
+
+				# event logic
+				self._shootSequenceIfTriggerPulled(targets)
+
+				# menugod communication
+				info=self.gamemodeMaster.getGameInfo()
+				if lobbymode:
+					gamestart=self.menugod.CheckNewGameStart()
+					if gamestart:
+						return gamestart
+				else:
+					self.menugod.SendGameInfo(info)
+
+				# send target buffer
+				for target in targets.values():
+					for buf in target.buffer:
+						self.gameHotLine.Ping(buf)
+
+		except gamemodes.GameOverException:
+			self.menugod.GameOver()
+
+		except AbortGameException:
+			print("aborting game due to command from menugod")
+
+	def DecodeHit(self,hitCode,weapon):
+		if len(hitCode)<12:
+			return []
+		try:
+			return [str(i) for i in range(6) if int(eval("0x"+hitCode[i*2:(i+1)*2]))==weapon.shotCode]
+		except Exception as e:
+			print("Decode hit error. Code: {} Error: {} ".format(hitCode,e))
+			return []
+
+	def PlaySoundAndWait(self,sound,wait):
+		self.gameWorld.sounds[sound].play()
+		time.sleep(wait)
+	
+	def _turnOnLaserWeapons(self):
+		self.gameHotLine.Ping('AA102FF\n') # turn on Laserweapon A laser
+		self.gameHotLine.Ping('BA102FF\n') # turn on Laserweapon B laser
+
+	def _gameStart(self):
+		self.gameHotLine.Ping('4A120FF040404\n') # blitz kommando
+		self.gameHotLine.Ping('1A120FF040a2A\n') # [id][animation trigger][laserid 0 / 1][ani id 20][FF040a][flash count 08 for 8 time flash]
+		self.PlaySoundAndWait("boing8bitSound",1.5)
+		self.PlaySoundAndWait("startSound",0.0)
+		self.PlaySoundAndWait("musicSound",0.0)
+
+		self._turnOnLaserWeapons()
+	
+	def _shootSequenceIfTriggerPulled(self,targets):
+		for weapon in self.gameWorld.laserWeaponsList:
+			weaponState = self.gameHotLine.PingPong(BusFactory.getWeaponButtons(weapon.code))
+			if len(weaponState)>=4:
+				try:
+					buttonState=int(eval("0x"+weaponState[0:2]))
+				except:
+					print "weapon button error: "+weaponState
+					continue
+				
+				if buttonState & BusFactory.Constants.WEAPON_PRIMARY_BTN:
+					# begin: laser shoot
+					self.gameHotLine.Ping(BusFactory.rumbleShootAnimation(weapon.code))
+					self.gameHotLine.Ping(BusFactory.doSomethingAnimationLikeOnWeapon(weapon.code))
+					self.gameHotLine.Ping(BusFactory.readyToShoot(weapon.code))
+					time.sleep(0.01)
+					self.gameHotLine.PingPong('S\n') # boradcast: shoot
+					time.sleep(0.01)
+					# end: laser shoot
+
+					self.gameWorld.sounds["laserblasterSound"].play()
+
+					for targetGroup in self.gameWorld.targetGroupList:
+						hitRaw = self.gameHotLine.PingPong(BusFactory.pollTargetState(targetGroup.targetGroupID)) # get target status
+						print(hitRaw)
+						time.sleep(0.01)
+
+						hitList = self.DecodeHit(hitRaw,weapon)
+						for targetID in hitList:
+							targetObj = targets[(targetGroup.targetGroupID,targetID)]
+							event=Events.TargetHitEvent(time.time(),weapon,targetObj)
+							targetObj.Hit(event)
+							self.LogEvent(event)
+
+class GameEngine2:
 
 	def __init__(self,gameHotLine, gameWorld, gameScreen):
 		self.gamePlayTime = 50
@@ -36,12 +169,12 @@ class GameEngine:
 		print(event)
 		# TODO: show events on screen/debug
 
+	## calls other loops depending on state. only called once
 	def MainLoop(self):
 		while 1:
 			self.loops[self.gameState]()
 			self.gameScreen.update()
-
-
+	
 	def LoopIntro(self):
 		"""waiting for game start. do lobby light show and sound FX"""
 		if self.introTimeCounter==None:

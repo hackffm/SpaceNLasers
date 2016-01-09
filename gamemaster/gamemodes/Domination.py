@@ -8,7 +8,7 @@ class Target(lib.Target.Target):
 		"""Called from game engine when this target has been hit."""
 		print(event)
 		self.setColor("00FF00")
-	def Update(self):
+	def Update(self,dt):
 		"""Do game mode specific stuff."""
 		pass
 

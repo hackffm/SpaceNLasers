@@ -1,10 +1,13 @@
-from gamemodes.Dummy import Target
+
+class TargetInfo:
+	def __init__(self,targetID,targetZIndex):
+		self.targetID=targetID
+		self.targetZIndex=targetZIndex
 
 class TargetGroup:
 
 	def __init__(self,gameWorld,targetGroupID,targetGroupZIndex):
 		self.targetGroupID = ''
-		self.targetGtoupZindex = -1
 		self.gameWorld = None
 		self.targetsList = []
 		self.gameWorld = gameWorld
@@ -12,7 +15,7 @@ class TargetGroup:
 		self.targetGroupZIndex = targetGroupZIndex
 
 	def AddTarget(self,targetID,targetZIndex):
-		self.targetsList.append(Target(self,self.gameWorld,targetID,targetZIndex))
+		self.targetsList.append(TargetInfo(targetID,targetZIndex))
 
 
 	def CollectSerialBufferFromTargetsAsList(self):
