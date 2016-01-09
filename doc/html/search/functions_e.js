@@ -4,5 +4,5 @@ var searchData=
   ['update_5fstate',['update_State',['../namespacelib_1_1LaserWeapon.html#ac8cf3af2be0a5aa1a71f4b80289b5f78',1,'lib::LaserWeapon']]],
   ['update_5fweaponheat',['update_WeaponHeat',['../namespacelib_1_1LaserWeapon.html#a6b02fc6a54c8323755422a86b899da8c',1,'lib::LaserWeapon']]],
   ['updateanimation',['UpdateAnimation',['../classlib_1_1Target_1_1Target2.html#a8e4ec115cfa98dcdaefedb87614512bd',1,'lib::Target::Target2']]],
-  ['updatetargets',['UpdateTargets',['../classlib_1_1TargetGroup_1_1TargetGroup.html#a370d5af397cc510b97b89ab2ae1a3e07',1,'lib::TargetGroup::TargetGroup']]]
+  ['updatetargets',['UpdateTargets',['../classlib_1_1GameWorld_1_1GameWorld.html#aac6d0cb9639e4409650b6f9548b267a3',1,'lib.GameWorld.GameWorld.UpdateTargets()'],['../classlib_1_1TargetGroup_1_1TargetGroup.html#a370d5af397cc510b97b89ab2ae1a3e07',1,'lib.TargetGroup.TargetGroup.UpdateTargets()']]]
 ];
