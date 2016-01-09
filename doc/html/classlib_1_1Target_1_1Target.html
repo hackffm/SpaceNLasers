@@ -95,6 +95,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">lib.Target.Target Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Base class for gamemode target AIs.  
+ <a href="classlib_1_1Target_1_1Target.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for lib.Target.Target:</div>
 <div class="dyncontent">
@@ -108,12 +111,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa3363a22160e60893edc5ccb89e428d3"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1Target_1_1Target.html#aa3363a22160e60893edc5ccb89e428d3">__init__</a> (self, <a class="el" href="classlib_1_1Target_1_1Target.html#af2635a4df456ace5c5b54a73a6c0f602">group</a>, <a class="el" href="classlib_1_1Target_1_1Target.html#a6fd13abcd8658b3f5dd53c493e3c042d">gameWorld</a>, id, <a class="el" href="classlib_1_1Target_1_1Target.html#a900b34d7f66c3817c676e0029b42c2fc">targetZIndex</a>)</td></tr>
 <tr class="separator:aa3363a22160e60893edc5ccb89e428d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29913b44e1bb762d022f7bbb511a1e32"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1Target_1_1Target.html#a29913b44e1bb762d022f7bbb511a1e32">Hit</a> (self, event)</td></tr>
+<tr class="memdesc:a29913b44e1bb762d022f7bbb511a1e32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called from game engine when this target has been hit.  <a href="#a29913b44e1bb762d022f7bbb511a1e32">More...</a><br /></td></tr>
 <tr class="separator:a29913b44e1bb762d022f7bbb511a1e32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5f1f7abba61582828c6654238d42e55"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1Target_1_1Target.html#ac5f1f7abba61582828c6654238d42e55">CollectSerialBuffer</a> (self)</td></tr>
+<tr class="memdesc:ac5f1f7abba61582828c6654238d42e55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a list of all buffered bus commands.  <a href="#ac5f1f7abba61582828c6654238d42e55">More...</a><br /></td></tr>
 <tr class="separator:ac5f1f7abba61582828c6654238d42e55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc7ab44951ac5c94453fe5c9c7644d1d"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1Target_1_1Target.html#afc7ab44951ac5c94453fe5c9c7644d1d">Update</a> (self)</td></tr>
-<tr class="separator:afc7ab44951ac5c94453fe5c9c7644d1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab991545826fe4b5bfce7b0b8436872d9"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1Target_1_1Target.html#ab991545826fe4b5bfce7b0b8436872d9">Update</a> (self, dt)</td></tr>
+<tr class="memdesc:ab991545826fe4b5bfce7b0b8436872d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Do game mode specific stuff.  <a href="#ab991545826fe4b5bfce7b0b8436872d9">More...</a><br /></td></tr>
+<tr class="separator:ab991545826fe4b5bfce7b0b8436872d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf1e1544853c415159891298154286a5"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1Target_1_1Target.html#adf1e1544853c415159891298154286a5">setColor</a> (self, color)</td></tr>
+<tr class="memdesc:adf1e1544853c415159891298154286a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write new color command for target to the target queue.  <a href="#adf1e1544853c415159891298154286a5">More...</a><br /></td></tr>
 <tr class="separator:adf1e1544853c415159891298154286a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -129,7 +136,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:aa01aab520a5bc6ab87c42a080c59c794"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1Target_1_1Target.html#aa01aab520a5bc6ab87c42a080c59c794">buffer</a></td></tr>
 <tr class="separator:aa01aab520a5bc6ab87c42a080c59c794"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Base class for gamemode target AIs. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aa3363a22160e60893edc5ccb89e428d3"></a>
 <div class="memitem">
 <div class="memproto">
@@ -188,7 +197,9 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Return a list of all buffered bus commands.</pre> 
+
+<p>Return a list of all buffered bus commands. </p>
+
 </div>
 </div>
 <a class="anchor" id="a29913b44e1bb762d022f7bbb511a1e32"></a>
@@ -214,7 +225,15 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Called from game engine when this target has been hit.</pre> 
+
+<p>Called from game engine when this target has been hit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>a TargetHitEvent </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="adf1e1544853c415159891298154286a5"></a>
@@ -240,10 +259,12 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Write new color command for target to the target queue</pre> 
+
+<p>Write new color command for target to the target queue. </p>
+
 </div>
 </div>
-<a class="anchor" id="afc7ab44951ac5c94453fe5c9c7644d1d"></a>
+<a class="anchor" id="ab991545826fe4b5bfce7b0b8436872d9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -251,12 +272,24 @@ Public Attributes</h2></td></tr>
           <td class="memname">def lib.Target.Target.Update </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>self</em></td><td>)</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>dt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Do game mode specific stuff.</pre> 
+
+<p>Do game mode specific stuff. </p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
