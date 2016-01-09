@@ -295,7 +295,7 @@ class GameEngine2:
 
 				for currentTargetGroupA in self.gameWorld.targetGroupList:
 					# print "hitRaw = self.gameHotLine.PingPong(currentTargetGroupA.targetGroupID)" + currentTargetGroupA.targetGroupID
-					hitRaw = self.gameHotLine.PingPong(currentTargetGroupA.targetGroupID+'tr\n') # get target status. Rückgabe: AABBCCDDEEFFGGHH = data value
+					hitRaw = self.gameHotLine.PingPong(currentTargetGroupA.targetGroupID+'tr\n') # get target status. return value: AABBCCDDEEFFGGHH = data value
 					time.sleep(0.01)	
 
 					hitList = self.DecodeHit(hitRaw)	# decode recieved target hit status
