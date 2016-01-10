@@ -9,7 +9,7 @@ import os
 
 #########################################
 # game class import 
-from lib.GameWorld import GameWorld
+#from lib.GameWorld import GameWorld
 from lib.GameEngine import GameEngine
 from lib.SerialHalfDuplex import SerialHalfDuplex
 from lib.Weapon import Weapon
@@ -53,14 +53,14 @@ gameHotLine.configSerial('/dev/ttyUSB0',38400) # init serial
 
 #########################################
 # init game world class
-gameWorld = GameWorld() # create game world
-gameWorld.sounds = sounds
+#gameWorld = GameWorld() # create game world
+#gameWorld.sounds = sounds
 
 
 #########################################
 # init laser class
-weaponA=Weapon("A",145)
-gameWorld.AddLaserWeapon(weaponA)
+#weaponA=Weapon("A",145)
+#gameWorld.AddLaserWeapon(weaponA)
 
 #########################################
 # init targets
@@ -69,59 +69,13 @@ gameWorld.AddLaserWeapon(weaponA)
 # sensors anlog pins from 0-
 
 # init target group 1
-gameWorld.AddTargetGroup('1',0) # id, z-index
-#newTargetGroup.AddTarget('0',0)
-gameWorld.GetTargetGroupByID('1').AddTarget('0',1) # id, z-index
-#gameWorld.GetTargetGroupByID('1').AddTarget('2',2) # id, z-index
-#gameWorld.GetTargetGroupByID('1').AddTarget('3',3) # id, z-index
-
-# init target group 2
-#gameWorld.AddTargetGroup('2',0)
-#gameWorld.GetTargetGroupByID('2').AddTarget('0',0)
-#gameWorld.GetTargetGroupByID('2').AddTarget('1',1)
-#gameWorld.GetTargetGroupByID('2').AddTarget('2',2)
-# gameWorld.GetTargetGroupByID('2').AddTarget('3',3)
-
-# init target group 3
-#gameWorld.AddTargetGroup('3',0)
-# newTargetGroup.AddTarget('0',0)
-#gameWorld.GetTargetGroupByID('3').AddTarget('0',1)
-#gameWorld.GetTargetGroupByID('3').AddTarget('1',2)
-#gameWorld.GetTargetGroupByID('3').AddTarget('2',3)
-#gameWorld.GetTargetGroupByID('3').AddTarget('3',3)
-
-# init target group 4
-# target blitz and flash effect
-
-#newTargetGroup = gameWorld.AddTargetGroup('4',0)
-
-"""
-gameWorld.GetTargetGroupByID('4').AddTarget('0',1)
-gameWorld.GetTargetGroupByID('4').AddTarget('1',2)
-
-gameWorld.GetTargetGroupByID('4').GetTargetByID('0').targetLEDAniHeader = '4a0'
-gameWorld.GetTargetGroupByID('4').GetTargetByID('1').targetLEDAniHeader = '4a0'
-
-gameWorld.GetTargetGroupByID('4').GetTargetByID('0').targetLEDSerialCode_Hit = '10FF000008'
-gameWorld.GetTargetGroupByID('4').GetTargetByID('1').targetLEDSerialCode_Hit = '10FF000008'
-
-gameWorld.GetTargetGroupByID('4').GetTargetByID('0').targetLEDSerialCode_HitReady = '1000FFFFAA'
-gameWorld.GetTargetGroupByID('4').GetTargetByID('1').targetLEDSerialCode_HitReady = '1000FFFFAA'
-
-gameWorld.GetTargetGroupByID('4').GetTargetByID('0').targetLEDSerialCode_Off = '1000000000'
-gameWorld.GetTargetGroupByID('4').GetTargetByID('1').targetLEDSerialCode_Off = '1000000000'
-"""
-
-
-
-# newTargetGroup.AddTarget('2',2)
-# newTargetGroup.AddTarget('3',3)
-
+#gameWorld.AddTargetGroup('1',0) # id, z-index
+#gameWorld.GetTargetGroupByID('1').AddTarget('0',1) # id, z-index
 
 
 #########################################
 # init game engine class
-gameEngine = GameEngine(gameHotLine, gameWorld, myScreen)
+gameEngine = GameEngine(gameHotLine, myScreen, sounds)
 
 
 gameHotLine.Ping('AA10200\n')
@@ -164,9 +118,9 @@ time.sleep(0.1)
 print 'debug target start';
 print 'debug target stop';
 
-for tg in gameWorld.targetGroupList:
-  for tar in tg.targetsList:
-    print 'tg: '+tg.targetGroupID+' tar: '+tar.targetID
+#for tg in gameWorld.targetGroupList:
+#  for tar in tg.targetsList:
+#    print 'tg: '+tg.targetGroupID+' tar: '+tar.targetID
 
 # gameHotLine.Ping('4A120FF040408\n') # blitz kommando
 

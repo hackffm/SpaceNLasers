@@ -1,0 +1,26 @@
+{
+	"weaponControllers":
+	[
+		{
+			"code":"A",
+			"shotCode":137
+		}
+	],
+	"targetControllers":
+	[
+		{
+			"id":"1",
+			"targets":
+			[
+				{
+					"id":"0","zIndex":0
+				}
+			]
+
+		}
+	],
+	"globalEffects":
+	{
+		"makeTargetRed":"1a002FF0000\n"
+	}
+}

@@ -63,6 +63,18 @@ DISPLAY_PORT_NUMBER=5000
 class AbortGameException(Exception):
 	pass
 
+class FakeMenuGod:
+	def __init__(self):
+		pass
+	def CheckNewGameStart(self):
+		return {"players": [{"name":"Player1","color":"00FF00"}],"game": {"mode":"dummy","duration":60}}
+	def SendGameInfo(self, info):
+		#print("game info: {}".format(info))
+		pass
+	def GameOver(self):
+		print("GAME OVER")
+
+
 ## Abstraction of a display for scores and stuff.
 # Usage
 # \code
@@ -86,18 +98,6 @@ class AbortGameException(Exception):
 #		# cleanup game
 #		return
 # \endcode
-class FakeMenuGod:
-	def __init__(self):
-		pass
-	def CheckNewGameStart(self):
-		return {"players": [{"name":"Player1","color":"00FF00"}],"game": {"mode":"dummy","duration":60}}
-	def SendGameInfo(self, info):
-		#print("game info: {}".format(info))
-		pass
-	def GameOver(self):
-		print("GAME OVER")
-
-
 class MenuGod:
 	## Initialises state and sends player information to display.
 	# \param targetHostname IP of server to connect to. Use None to use server-mode

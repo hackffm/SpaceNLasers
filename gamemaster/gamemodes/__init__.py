@@ -3,8 +3,9 @@ class GameOverException:
 	pass
 
 class Gamemode:
-	def __init__(self,duration):
+	def __init__(self,duration,gameEngine):
 		self.durationLeft=duration
+		self.gameEngine=gameEngine
 	
 	def Update(self,dt):
 		if self.durationLeft is not None:

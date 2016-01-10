@@ -1,12 +1,13 @@
 import lib.Target
 import gamemodes
+from lib.CountdownTimer import CountdownTimer
 
 ## A dummy target that switches to green when hit
 class Target(lib.Target.Target):
-	def __init__(self,group,gameWorld,id,targetZIndex):
-		lib.Target.Target.__init__(self,group,gameWorld,id,targetZIndex)
+	def __init__(self,groupID,gameModeMaster,id,targetZIndex):
+		lib.Target.Target.__init__(self,groupID,id,targetZIndex)
 		print(self.__dict__)
-		self.setColor("FF0000")
+		self.setColor("0000FF")
 	
 	def Hit(self,event):
 		print("dummy target Hit()")
@@ -18,9 +19,10 @@ class Target(lib.Target.Target):
 		pass
 
 class Gamemode(gamemodes.Gamemode):
-	def __init__(self,players,gameInfo):
-		gamemodes.Gamemode.__init__(self,gameInfo["duration"])
+	def __init__(self,players,gameInfo,gameEngine):
+		gamemodes.Gamemode.__init__(self,gameInfo["duration"],gameEngine)
 		self.players=players
+		self.EffectCountdown=CountdownTimer(lambda: self.gameEngine.Effect("makeTargetRed"),2.0)
 
 	def getGameInfo(self,additionalConsoleOutput=""):
 		myConsoleOutput=""
@@ -33,8 +35,7 @@ class Gamemode(gamemodes.Gamemode):
 	
 	def Update(self,dt):
 		gamemodes.Gamemode.Update(self,dt)
-
+		self.EffectCountdown.Update(dt)
 
 def GetClasses():
-	"""Returns a tuple of classes for this game mode: (target,gameworld)"""
-	return (Target,Gamemode)
+	return {"targetClass":Target,"masterClass":Gamemode}

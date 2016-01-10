@@ -1,5 +1,5 @@
 def setTargetColor(target,color):
-	return "{grp}a{target}02{color}\n".format(grp=target.group.targetGroupID,target=target.targetID,color=color)
+	return "{grp}a{target}02{color}\n".format(grp=target.groupID,target=target.targetID,color=color)
 
 def readyToShoot(weaponLetter):
 	return "s{}\n".format(weaponLetter)

@@ -7,10 +7,9 @@ import BusFactory
 
 ## Base class for gamemode target AIs
 class Target:
-	def __init__(self,group,gameWorld,id,targetZIndex):
-		self.group=group
+	def __init__(self,groupID,id,targetZIndex):
+		self.groupID=groupID
 		self.targetID=id
-		self.gameWorld=gameWorld
 		self.targetZIndex=targetZIndex
 
 		self.buffer=[]
@@ -32,6 +31,7 @@ class Target:
 
 	## Write new color command for target to the target queue
 	def setColor(self,color):
+		print(BusFactory.setTargetColor(self,color))
 		self.buffer.append(BusFactory.setTargetColor(self,color))
 
 class TargetHitRecord:

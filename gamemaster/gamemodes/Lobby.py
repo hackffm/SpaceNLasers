@@ -1,24 +1,36 @@
 import lib.Target
 import gamemodes
+import random
+from lib.CountdownTimer import CountdownTimer
+from lib.hexstring import myhex
 
-## A dummy target that switches to green when hit
+## Target which changes color randomly
 class Target(lib.Target.Target):
-	def __init__(self,group,gameWorld,id,targetZIndex):
-		lib.Target.Target.__init__(self,group,gameWorld,id,targetZIndex)
+	def __init__(self,groupID,gameModeMaster,id,targetZIndex):
+		lib.Target.Target.__init__(self,groupID,id,targetZIndex)
+		self.gameModeMaster=gameModeMaster
+		self._changeColor() # change color on init because the countdown timer is initialised there
 	
 	def Hit(self,event):
 		pass
 	
 	def Update(self,dt):
-		"""Do game mode specific stuff."""
-		# TODO: lobby blinking
+		self.countdownTimer.Update(dt)
+	
+	def _changeColor(self):
+		r=random.randint(0,255)
+		g=random.randint(0,255)
+		b=random.randint(0,255)
+		self.setColor(myhex(r)+myhex(g)+myhex(b))
+		self.countdownTimer=CountdownTimer(self._changeColor,random.uniform(0.8,1.2))
+		
 
 class Gamemode(gamemodes.Gamemode):
-	def __init__(self,players,gamestartInfo):
+	def __init__(self,players,gamestartInfo,gameEngine):
 		pass
 
 	def getGameInfo(self,additionalConsoleOutput=""):
-		myConsoleOutput="lobby"
+		myConsoleOutput="Waiting for game start..."
 		main_score=[]
 		return {"scores":{"score":{"type":"int","values":main_score}},"consoleoutput":myConsoleOutput+"\n"+additionalConsoleOutput}
 	
@@ -27,5 +39,4 @@ class Gamemode(gamemodes.Gamemode):
 
 
 def GetClasses():
-	"""Returns a tuple of classes for this game mode: (target,gameworld)"""
-	return (Target,Gamemode)
+	return {"targetClass":Target,"masterClass":Gamemode}
