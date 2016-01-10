@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['ping',['Ping',['../classlib_1_1SerialHalfDuplex_1_1SerialHalfDuplex.html#a81a8c2d91fd7e118a2f9ac5b9e874497',1,'lib::SerialHalfDuplex::SerialHalfDuplex']]],
-  ['pingpong',['PingPong',['../classlib_1_1SerialHalfDuplex_1_1SerialHalfDuplex.html#a663dab5a77fcfc9a897d72b12c6d43ba',1,'lib::SerialHalfDuplex::SerialHalfDuplex']]],
-  ['playsoundandwait',['PlaySoundAndWait',['../classlib_1_1GameEngine_1_1GameEngine.html#a24deb90ab1f811eb809bca139259a45a',1,'lib::GameEngine::GameEngine']]],
-  ['polltargetbuffer',['PollTargetBuffer',['../classlib_1_1GameEngine_1_1GameEngine2.html#ad59d1d705b4ded4d828184294a450dc1',1,'lib::GameEngine::GameEngine2']]],
-  ['polltargetstate',['pollTargetState',['../namespacelib_1_1BusFactory.html#aeefc63a379f88e80c0cebfcbfe5e68ba',1,'lib::BusFactory']]],
-  ['pushcurrentscoretohighscore',['pushCurrentScoreToHighScore',['../classlib_1_1GameScreen_1_1GameScreen.html#a34965d6cc698e3917998ce0cac10bc1d',1,'lib::GameScreen::GameScreen']]]
+  ['mainloop',['MainLoop',['../classlib_1_1GameEngine_1_1GameEngine2.html#a5ea3ebc5d02b04ee7b3681c44eecc970',1,'lib::GameEngine::GameEngine2']]],
+  ['makehitserialbuffer',['MakeHitSerialBuffer',['../classlib_1_1Target_1_1Target2.html#a654d0de477cc8ff627932e0ed960c745',1,'lib::Target::Target2']]],
+  ['myhex',['myhex',['../namespacelib_1_1hexstring.html#a12c726a75e7543af12a34544c2cc89e4',1,'lib::hexstring']]]
 ];

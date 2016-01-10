@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['serialhalfduplex_2epy',['SerialHalfDuplex.py',['../SerialHalfDuplex_8py.html',1,'']]]
+  ['menugod_2epy',['MenuGod.py',['../MenuGod_8py.html',1,'']]]
 ];

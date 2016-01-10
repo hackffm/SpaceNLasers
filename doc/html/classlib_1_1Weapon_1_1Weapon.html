@@ -100,6 +100,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ae770454559dc2a03418330ac308d0aa8"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1Weapon_1_1Weapon.html#ae770454559dc2a03418330ac308d0aa8">__init__</a> (self, <a class="el" href="classlib_1_1Weapon_1_1Weapon.html#a298b2255d1c9ef57e60dd8ad44093a4a">code</a>, <a class="el" href="classlib_1_1Weapon_1_1Weapon.html#a9016940ed76668dd27274a426a5e3120">shotCode</a>)</td></tr>
 <tr class="separator:ae770454559dc2a03418330ac308d0aa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae882466da93f68c3686149c9ad1d8a91"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1Weapon_1_1Weapon.html#ae882466da93f68c3686149c9ad1d8a91">SetCurrentState</a> (self, stateCode)</td></tr>
+<tr class="memdesc:ae882466da93f68c3686149c9ad1d8a91"><td class="mdescLeft">&#160;</td><td class="mdescRight">parse state from bus  <a href="#ae882466da93f68c3686149c9ad1d8a91">More...</a><br /></td></tr>
+<tr class="separator:ae882466da93f68c3686149c9ad1d8a91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ff046e9adc639e35b7bb1df1707f920"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1Weapon_1_1Weapon.html#a3ff046e9adc639e35b7bb1df1707f920">Update</a> (self, dt)</td></tr>
+<tr class="memdesc:a3ff046e9adc639e35b7bb1df1707f920"><td class="mdescLeft">&#160;</td><td class="mdescRight">virtual weapon logic (cooloff etc.)  <a href="#a3ff046e9adc639e35b7bb1df1707f920">More...</a><br /></td></tr>
+<tr class="separator:a3ff046e9adc639e35b7bb1df1707f920"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af645aab99132c338eea1adc107a04ac1"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1Weapon_1_1Weapon.html#af645aab99132c338eea1adc107a04ac1">ShootsThisFrame</a> (self)</td></tr>
+<tr class="memdesc:af645aab99132c338eea1adc107a04ac1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return whether shot is fired this round.  <a href="#af645aab99132c338eea1adc107a04ac1">More...</a><br /></td></tr>
+<tr class="separator:af645aab99132c338eea1adc107a04ac1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -107,6 +116,14 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a298b2255d1c9ef57e60dd8ad44093a4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9016940ed76668dd27274a426a5e3120"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1Weapon_1_1Weapon.html#a9016940ed76668dd27274a426a5e3120">shotCode</a></td></tr>
 <tr class="separator:a9016940ed76668dd27274a426a5e3120"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa34688e123ec6f2adb52d8f223abdb89"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1Weapon_1_1Weapon.html#aa34688e123ec6f2adb52d8f223abdb89">player</a></td></tr>
+<tr class="separator:aa34688e123ec6f2adb52d8f223abdb89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accfbfaf51371e42021504660ef79dd7c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1Weapon_1_1Weapon.html#accfbfaf51371e42021504660ef79dd7c">cooloff</a></td></tr>
+<tr class="separator:accfbfaf51371e42021504660ef79dd7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ae95eaf488bf2a45f9da8af90581c94"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1Weapon_1_1Weapon.html#a1ae95eaf488bf2a45f9da8af90581c94">heat</a></td></tr>
+<tr class="separator:a1ae95eaf488bf2a45f9da8af90581c94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c20d081f51ca981a1f90abbcc978d9e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1Weapon_1_1Weapon.html#a2c20d081f51ca981a1f90abbcc978d9e">primaryPressed</a></td></tr>
+<tr class="separator:a2c20d081f51ca981a1f90abbcc978d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ae770454559dc2a03418330ac308d0aa8"></a>
@@ -141,6 +158,81 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ae882466da93f68c3686149c9ad1d8a91"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lib.Weapon.Weapon.SetCurrentState </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>stateCode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>parse state from bus </p>
+
+</div>
+</div>
+<a class="anchor" id="af645aab99132c338eea1adc107a04ac1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lib.Weapon.Weapon.ShootsThisFrame </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return whether shot is fired this round. </p>
+
+</div>
+</div>
+<a class="anchor" id="a3ff046e9adc639e35b7bb1df1707f920"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lib.Weapon.Weapon.Update </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>dt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>virtual weapon logic (cooloff etc.) </p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a class="anchor" id="a298b2255d1c9ef57e60dd8ad44093a4a"></a>
 <div class="memitem">
@@ -148,6 +240,54 @@ Public Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">lib.Weapon.Weapon.code</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="accfbfaf51371e42021504660ef79dd7c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">lib.Weapon.Weapon.cooloff</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1ae95eaf488bf2a45f9da8af90581c94"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">lib.Weapon.Weapon.heat</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa34688e123ec6f2adb52d8f223abdb89"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">lib.Weapon.Weapon.player</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a2c20d081f51ca981a1f90abbcc978d9e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">lib.Weapon.Weapon.primaryPressed</td>
         </tr>
       </table>
 </div><div class="memdoc">

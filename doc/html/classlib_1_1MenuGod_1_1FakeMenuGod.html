@@ -94,9 +94,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">lib.MenuGod.FakeMenuGod Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Abstraction of a display for scores and stuff.  
- <a href="classlib_1_1MenuGod_1_1FakeMenuGod.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -109,24 +106,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab86c30048eed8d2e7fa17917ad646e12"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1MenuGod_1_1FakeMenuGod.html#ab86c30048eed8d2e7fa17917ad646e12">GameOver</a> (self)</td></tr>
 <tr class="separator:ab86c30048eed8d2e7fa17917ad646e12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Abstraction of a display for scores and stuff. </p>
-<p>Usage </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;m=<a class="code" href="classlib_1_1MenuGod_1_1MenuGod.html">MenuGod</a>(<span class="stringliteral">&quot;&quot;</span>)</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"># in lobby mode now</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;while(<span class="keyword">True</span>):</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    gamestart=m.CheckNewGameStart()</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <span class="keywordflow">if</span> gamestart <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        <span class="comment"># use gamestart info to initialize game</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        <span class="keywordflow">break</span></div>
-</div><!-- fragment --><p> During game </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keywordflow">try</span>:</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    while(<span class="keyword">True</span>):</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;        <span class="comment"># game loop</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        m.SendGameInfo(info)</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    m.GameOver()</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keywordflow">except</span> AbortGameException:</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="comment"># cleanup game</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">return</span></div>
-</div><!-- fragment --> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a30407945ccec7ecee114cdf843a10a21"></a>
 <div class="memitem">
 <div class="memproto">

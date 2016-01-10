@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['pixelfont_2epy',['PixelFont.py',['../PixelFont_8py.html',1,'']]],
-  ['player_2epy',['Player.py',['../Player_8py.html',1,'']]]
+  ['laserweapon_2epy',['LaserWeapon.py',['../LaserWeapon_8py.html',1,'']]],
+  ['lobby_2epy',['Lobby.py',['../Lobby_8py.html',1,'']]],
+  ['log_2epy',['Log.py',['../Log_8py.html',1,'']]]
 ];

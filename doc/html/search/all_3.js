@@ -11,13 +11,17 @@ var searchData=
   ['code_5frumbleanimation',['code_RumbleAnimation',['../namespacelib_1_1LaserWeapon.html#a281592e2dd44ec3f1dca8e1696808dcc',1,'lib::LaserWeapon']]],
   ['collectedserialbufferlist',['collectedSerialBufferList',['../classlib_1_1GameWorld_1_1GameWorld.html#a3be4dae6845839bafc6441be9d241a8a',1,'lib::GameWorld::GameWorld']]],
   ['collectserialbuffer',['CollectSerialBuffer',['../classlib_1_1Target_1_1Target.html#ac5f1f7abba61582828c6654238d42e55',1,'lib.Target.Target.CollectSerialBuffer()'],['../classlib_1_1Target_1_1Target2.html#a6320615453727e979696d3250e8308d1',1,'lib.Target.Target2.CollectSerialBuffer()']]],
-  ['collectserialbufferfromtargetsaslist',['CollectSerialBufferFromTargetsAsList',['../classlib_1_1TargetGroup_1_1TargetGroup.html#a780c5b4e44df5d9caad2c97ad260a63f',1,'lib::TargetGroup::TargetGroup']]],
   ['collecttargetserialbuffersaslist',['CollectTargetSerialBuffersAsList',['../classlib_1_1GameWorld_1_1GameWorld.html#a762116899b44d646df54fe082dcae434',1,'lib::GameWorld::GameWorld']]],
   ['color',['color',['../classlib_1_1Player_1_1Player.html#a5ec09526162e700079f6ac2b90bcf262',1,'lib::Player::Player']]],
+  ['conf',['conf',['../classgamemodes_1_1Domination_1_1Gamemode.html#acb7cacefb6135718ce302e5dbca93fc0',1,'gamemodes::Domination::Gamemode']]],
   ['configserial',['configSerial',['../classlib_1_1SerialHalfDuplex_1_1SerialHalfDuplex.html#aac51a3c4a0db774114fbb7215ab5f5dd',1,'lib::SerialHalfDuplex::SerialHalfDuplex']]],
   ['connection',['connection',['../classlib_1_1MenuGod_1_1MenuGod.html#aa300871e655ad0de8dfccaeae5b43447',1,'lib::MenuGod::MenuGod']]],
   ['constants',['Constants',['../classlib_1_1BusFactory_1_1Constants.html',1,'lib::BusFactory']]],
   ['coolingspeed',['coolingSpeed',['../namespacelib_1_1LaserWeapon.html#a56196533114b6892b1160d5e16d34843',1,'lib::LaserWeapon']]],
+  ['cooloff',['cooloff',['../classlib_1_1Weapon_1_1Weapon.html#accfbfaf51371e42021504660ef79dd7c',1,'lib::Weapon::Weapon']]],
+  ['countdowntimer',['CountdownTimer',['../classlib_1_1CountdownTimer_1_1CountdownTimer.html',1,'lib::CountdownTimer']]],
+  ['countdowntimer',['countdownTimer',['../classgamemodes_1_1Lobby_1_1Target.html#a6accc5d4a2efbc83a7215ad51401907f',1,'gamemodes::Lobby::Target']]],
+  ['countdowntimer_2epy',['CountdownTimer.py',['../CountdownTimer_8py.html',1,'']]],
   ['currentactivetarget',['currentActiveTarget',['../classlib_1_1GameEngine_1_1GameEngine2.html#ad94d23eda2e818dc20f6e777f34508e2',1,'lib::GameEngine::GameEngine2']]],
   ['currentstate',['currentState',['../classlib_1_1GameScreen_1_1GameScreen.html#ac40b1fecb36635ef36ea2f369b408112',1,'lib.GameScreen.GameScreen.currentState()'],['../classlib_1_1GameScreen_1_1GameScreen.html#affe4fd4b324fdf2204571193a20e08cb',1,'lib.GameScreen.GameScreen.currentState()'],['../namespacelib_1_1LaserWeapon.html#a95e7f0ab8ceeecfeb5fdde9479d906a0',1,'lib.LaserWeapon.currentState()']]]
 ];
