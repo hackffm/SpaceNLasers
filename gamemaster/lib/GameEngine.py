@@ -16,16 +16,17 @@ class GameEngine:
 	##
 	# \param gameHotLine SerialHalfDuplex object for bus communication
 	# \param sounds dictionary which maps sound names on sound files
-	# \param runWithoutMenugod if True, a FakeMenuGod will be created to allow for testing without a MenuGod instance
-	def __init__(self,gameHotLine, sounds, runWithoutMenugod=True):
+	# \param hwconfig filename of hardware configuration
+	# \param menugod which menugod host to connect to. empty string for server mode, None for testing FakeMenuGod
+	def __init__(self,gameHotLine, sounds, hwconfig, menugod):
 		self.gameHotLine=gameHotLine
-		if runWithoutMenugod:
+		if menugod is None:
 			self.menugod=FakeMenuGod()
 		else:
-			self.menugod=MenuGod(None)
+			self.menugod=MenuGod(menugod)
 		self.eventLog=[]
 		self.sounds=sounds
-		with open("hardwareconfig/testbox.json","r") as fp:
+		with open(hwconfig,"r") as fp:
 			self._InitHardware(json.load(fp))
 	
 	## Reads the hardware definitions (weapon/target controller codes etc.)

@@ -100,7 +100,7 @@ class FakeMenuGod:
 # \endcode
 class MenuGod:
 	## Initialises state and sends player information to display.
-	# \param targetHostname IP of server to connect to. Use None to use server-mode
+	# \param targetHostname IP of server to connect to. Use empty string to use server-mode
 	def __init__(self, targetHostname):
 		self.state="init"
 
@@ -109,7 +109,7 @@ class MenuGod:
 		# init network
 		self.targetHostname=targetHostname
 		self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		if targetHostname is None: # server mode
+		if targetHostname is "": # server mode
 			print("server mode: waiting for connection...")
 			self.s.bind(("",DISPLAY_PORT_NUMBER))
 			self.s.listen(1)
