@@ -165,7 +165,7 @@ class GameEngine:
 		# begin: laser shoot
 		self.gameHotLine.Ping(BusFactory.readyToShoot(shootingCodes))
 		time.sleep(0.01)
-		self.gameHotLine.PingPong('S\n') # boradcast: shoot
+		self.gameHotLine.PingPong(BusFactory.startShootingSequence())
 		time.sleep(0.01)
 		# end: laser shoot
 

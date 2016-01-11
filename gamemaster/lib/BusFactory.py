@@ -13,6 +13,9 @@ def getWeaponButtons(weaponLetter):
 def readyToShoot(weaponLetter):
 	return "s{}\n".format(weaponLetter)
 
+def startShootingSequence():
+	return "S\n"
+
 def rumbleShootAnimation(weaponLetter):
 	return "{}A011FF000401\n".format(weaponLetter)
 
