@@ -1,11 +1,12 @@
 import lib.Target
 import gamemodes
 import json
+from lib.CountdownTimer import CountdownTimer
 
 class Target(lib.Target.Target):
 	def __init__(self,groupID,gameModeMaster,id,targetZIndex):
 		lib.Target.Target.__init__(self,groupID,id,targetZIndex)
-		self.protectionTimer=CountdownTimer(lambda: pass, 0.0)
+		self.protectionTimer=CountdownTimer(lambda: None, 0.0)
 		self.protected=False
 		self.owner=None
 		self.gameModeMaster=gameModeMaster
@@ -16,7 +17,10 @@ class Target(lib.Target.Target):
 			self.setOwner(event.weapon.player)
 
 	def Update(self,dt):
-		pass
+		self.protectionTimer.Update(dt)
+	
+	def _unprotect(self):
+		self.protected=False
 
 	def setOwner(self,player):
 		self.setColor(player.color)
@@ -24,7 +28,7 @@ class Target(lib.Target.Target):
 			self.gameModeMaster.numOccupiedTargets[self.owner]-=1
 		if player is not None:
 			self.gameModeMaster.numOccupiedTargets[player]+=1
-		self.protectionTimer=CountdownTimer(lambda: self.protected=False, self.gameModeMaster.config["targetProtectionDuration"])
+		self.protectionTimer=CountdownTimer(self._unprotect, self.gameModeMaster.conf["targetProtectionDuration"])
 		self.protected=True
 		self.owner=player
 

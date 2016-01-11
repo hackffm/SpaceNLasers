@@ -2,7 +2,7 @@
 ## Class to manage delayed actions similar to setTimeout in JS
 class CountdownTimer:
 	def __init__(self,action,time):
-		assert time>0
+		assert time>=0
 		self.action=action
 		self.time=time
 		self.done=False

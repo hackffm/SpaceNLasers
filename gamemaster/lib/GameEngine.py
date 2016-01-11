@@ -178,7 +178,7 @@ class GameEngine:
 		for targetGroupID in self.targetGroups.keys():
 			hitRaw = self.gameHotLine.PingPong(BusFactory.pollTargetState(targetGroupID)) # get target status
 			for weapon in self.weapons:
-				hitList = [str(i) for i in range(6) if int(eval("0x"+hitCode[i*2:(i+1)*2]))==weapon.shotCode]
+				hitList = [str(i) for i in range(6) if int(eval("0x"+hitRaw[i*2:(i+1)*2]))==weapon.shotCode]
 				for targetID in hitList:
 					targetObj = targets[(targetGroupID,targetID)]
 					event=Events.TargetHitEvent(time.time(),weapon,targetObj)
