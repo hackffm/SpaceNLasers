@@ -36,6 +36,9 @@ class GameEngine:
 		self.sounds=sounds
 		with open(hwconfig,"r") as fp:
 			self._InitHardware(json.load(fp))
+
+		print("initialising bus...")
+		self.Effect("busInit")
 	
 	## Reads the hardware definitions (weapon/target controller codes etc.)
 	def _InitHardware(self,config):
@@ -98,6 +101,7 @@ class GameEngine:
 				self._gameStart()
 			lastTime=time.time()
 			print("starting game!")
+			self.Effect("lobby" if lobbymode else "gameStart")
 			while(True):
 				now=time.time()
 				dt=now-lastTime
@@ -141,6 +145,8 @@ class GameEngine:
 		except gamemodes.GameOverException:
 			self.menugod.GameOver()
 			self.beamer.GameOver()
+			self.Effect("gameOver")
+			print("GAME OVER!")
 
 		except AbortGameException:
 			print("aborting game due to command from menugod")
@@ -158,7 +164,7 @@ class GameEngine:
 	
 	## Game start sequence with lots of effects
 	def _gameStart(self):
-		self.Effect("startupSequence")
+		self.Effect("gameIntro")
 		self.PlaySoundAndWait("boing8bitSound",1.5)
 		self.PlaySoundAndWait("startSound",0.0)
 		self.PlaySoundAndWait("musicSound",0.0)
