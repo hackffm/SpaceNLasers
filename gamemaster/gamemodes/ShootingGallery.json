@@ -1,0 +1,6 @@
+{
+	"owningTime":2.0,
+	"activeTimeout":5.0,
+	"maximumActiveTargets":1,
+	"newTargetProbabilityModifier":1.0
+}

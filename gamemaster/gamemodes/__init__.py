@@ -19,10 +19,12 @@ class Gamemode:
 
 import Dummy
 import Domination
+import ShootingGallery
 import Lobby
 
 available_modes={
 	"dummy":Dummy.GetClasses(),
 	"domination":Domination.GetClasses(),
+	"shootingGallery":ShootingGallery.GetClasses(),
 	"lobby":Lobby.GetClasses()
 	}
