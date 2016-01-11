@@ -17,14 +17,14 @@ class Target(lib.Target.Target):
 	def Activate(self):
 		print("target activated")
 		self.active=True
-		self.setColor("FFFFFF")
+		self.Effect("enable")
 		self.timeout=CountdownTimer(self.Deactivate, self.gameModeMaster.conf["activeTimeout"])
 	
 	def Deactivate(self):
 		print("target deactivated")
 		self.active=False
 		self.owner=None
-		self.setColor("000000")
+		self.Effect("disable")
 	
 	def Hit(self,event):
 		if self.active:
