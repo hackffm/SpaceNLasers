@@ -143,8 +143,7 @@ class GameEngine:
 	
 	## Game start sequence with lots of effects
 	def _gameStart(self):
-		self.gameHotLine.Ping('4A120FF040404\n') # blitz kommando
-		self.gameHotLine.Ping('1A120FF040a2A\n') # [id][animation trigger][laserid 0 / 1][ani id 20][FF040a][flash count 08 for 8 time flash]
+		self.Effect("startupSequence")
 		self.PlaySoundAndWait("boing8bitSound",1.5)
 		self.PlaySoundAndWait("startSound",0.0)
 		self.PlaySoundAndWait("musicSound",0.0)

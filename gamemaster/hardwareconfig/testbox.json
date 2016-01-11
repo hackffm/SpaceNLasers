@@ -21,6 +21,7 @@
 	],
 	"globalEffects":
 	{
-		"makeTargetRed":"1a002FF0000\n"
+		"makeTargetRed":"1a002FF0000\n",
+		"startupSequence":"4A120FF040404\n1A120FF040a2A\n"
 	}
 }
