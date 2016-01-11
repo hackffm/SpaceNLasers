@@ -89,6 +89,7 @@ class GameEngine:
 					for targetGroupID,targetGroup in self.targetGroups.iteritems()
 					for target in targetGroup
 				}
+			self.gamemodeMaster.SetTargets(targets.values())
 
 			if not lobbymode:
 				self._gameStart()

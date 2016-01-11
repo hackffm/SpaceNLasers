@@ -13,6 +13,9 @@ class Gamemode:
 			self.durationLeft-=dt
 			if self.durationLeft<=0:
 				raise GameOverException()
+	
+	def SetTargets(self,targets):
+		self.targets=targets
 
 import Dummy
 import Domination
