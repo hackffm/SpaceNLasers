@@ -1,7 +1,7 @@
 var searchData=
 [
   ['s',['s',['../classlib_1_1MenuGod_1_1MenuGod.html#a25401fd260631768b22d80e0dd61f970',1,'lib::MenuGod::MenuGod']]],
-  ['scores',['scores',['../classgamemodes_1_1Domination_1_1Gamemode.html#aec3228d29e3ec3acc3d5a950b9c16377',1,'gamemodes::Domination::Gamemode']]],
+  ['scores',['scores',['../classgamemodes_1_1Domination_1_1Gamemode.html#aec3228d29e3ec3acc3d5a950b9c16377',1,'gamemodes.Domination.Gamemode.scores()'],['../classgamemodes_1_1ShootingGallery_1_1Gamemode.html#acfc99211f9548f6c2e67b97634366bc5',1,'gamemodes.ShootingGallery.Gamemode.scores()']]],
   ['senderror',['SendError',['../classlib_1_1MenuGod_1_1MenuGod.html#a8aeb02352b20605d2fbea2c640a2cb8e',1,'lib::MenuGod::MenuGod']]],
   ['sendgameinfo',['SendGameInfo',['../classlib_1_1MenuGod_1_1FakeMenuGod.html#a545090667d6356d8d857e04387c6d4ba',1,'lib.MenuGod.FakeMenuGod.SendGameInfo()'],['../classlib_1_1MenuGod_1_1MenuGod.html#a8c0773034b9e0c120b6d10acaf74bf8c',1,'lib.MenuGod.MenuGod.SendGameInfo()']]],
   ['serialhalfduplex',['SerialHalfDuplex',['../classlib_1_1SerialHalfDuplex_1_1SerialHalfDuplex.html',1,'lib::SerialHalfDuplex']]],
@@ -12,7 +12,9 @@ var searchData=
   ['setcurrentstate',['SetCurrentState',['../classlib_1_1Weapon_1_1Weapon.html#ae882466da93f68c3686149c9ad1d8a91',1,'lib::Weapon::Weapon']]],
   ['setowner',['setOwner',['../classgamemodes_1_1Domination_1_1Target.html#af8abf050c6fac18d35bdf4c44f9cad5a',1,'gamemodes::Domination::Target']]],
   ['settargetcolor',['setTargetColor',['../namespacelib_1_1BusFactory.html#ae86bc64f753916525a3a659173a3cfaa',1,'lib::BusFactory']]],
+  ['settargets',['SetTargets',['../classgamemodes_1_1Gamemode.html#ad0921f854ea1979481d1b942ac49a617',1,'gamemodes::Gamemode']]],
   ['settimeout',['setTimeout',['../classlib_1_1TimeCounter_1_1TimeCounter.html#adadd0a8187603ae5a9b7c4f6c3fba6fc',1,'lib::TimeCounter::TimeCounter']]],
+  ['shootinggallery_2epy',['ShootingGallery.py',['../ShootingGallery_8py.html',1,'']]],
   ['shootnow',['shootNow',['../namespacelib_1_1BusFactory.html#add8e2b8c45f3f43292ccd8aa10dcb025',1,'lib::BusFactory']]],
   ['shootsthisframe',['ShootsThisFrame',['../classlib_1_1Weapon_1_1Weapon.html#af645aab99132c338eea1adc107a04ac1',1,'lib::Weapon::Weapon']]],
   ['shotcode',['shotCode',['../classlib_1_1Weapon_1_1Weapon.html#a9016940ed76668dd27274a426a5e3120',1,'lib::Weapon::Weapon']]],

@@ -12,7 +12,7 @@ var searchData=
   ['collectserialbuffer',['CollectSerialBuffer',['../classlib_1_1Target_1_1Target.html#ac5f1f7abba61582828c6654238d42e55',1,'lib::Target::Target']]],
   ['collecttargetserialbuffersaslist',['CollectTargetSerialBuffersAsList',['../classlib_1_1GameWorld_1_1GameWorld.html#a762116899b44d646df54fe082dcae434',1,'lib::GameWorld::GameWorld']]],
   ['color',['color',['../classlib_1_1Player_1_1Player.html#a5ec09526162e700079f6ac2b90bcf262',1,'lib::Player::Player']]],
-  ['conf',['conf',['../classgamemodes_1_1Domination_1_1Gamemode.html#acb7cacefb6135718ce302e5dbca93fc0',1,'gamemodes::Domination::Gamemode']]],
+  ['conf',['conf',['../classgamemodes_1_1Domination_1_1Gamemode.html#acb7cacefb6135718ce302e5dbca93fc0',1,'gamemodes.Domination.Gamemode.conf()'],['../classgamemodes_1_1ShootingGallery_1_1Gamemode.html#a65bc56a9d53bbf74ae1ae51985f320b9',1,'gamemodes.ShootingGallery.Gamemode.conf()']]],
   ['connection',['connection',['../classlib_1_1MenuGod_1_1MenuGod.html#aa300871e655ad0de8dfccaeae5b43447',1,'lib::MenuGod::MenuGod']]],
   ['constants',['Constants',['../classlib_1_1BusFactory_1_1Constants.html',1,'lib::BusFactory']]],
   ['coolingspeed',['coolingSpeed',['../namespacelib_1_1LaserWeapon.html#a56196533114b6892b1160d5e16d34843',1,'lib::LaserWeapon']]],

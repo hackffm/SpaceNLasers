@@ -10,4 +10,6 @@ digraph "Graphical Class Hierarchy"
   Node3 [label="gamemodes.Dummy.Target",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classgamemodes_1_1Dummy_1_1Target.html",tooltip="A dummy target that switches to green when hit. "];
   Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node4 [label="gamemodes.Lobby.Target",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classgamemodes_1_1Lobby_1_1Target.html",tooltip="Target which changes color randomly. "];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="gamemodes.ShootingGallery.\lTarget",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classgamemodes_1_1ShootingGallery_1_1Target.html"];
 }
