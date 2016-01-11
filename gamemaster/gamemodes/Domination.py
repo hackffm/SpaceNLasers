@@ -47,7 +47,7 @@ class Gamemode(gamemodes.Gamemode):
 	def Update(self,dt):
 		gamemodes.Gamemode.Update(self,dt)
 		for p in self.players:
-			self.scores[p]+=self.numOccupiedTargets[p]*dt*self.conf["scoreFactor"]
+			self.scores[p]+=self.numOccupiedTargets[p]*dt*self.conf["scoreFactor"]/self.duration
 
 
 

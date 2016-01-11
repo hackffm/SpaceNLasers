@@ -4,6 +4,7 @@ class GameOverException:
 
 class Gamemode:
 	def __init__(self,duration,gameEngine):
+		self.duration=duration
 		self.durationLeft=duration
 		self.gameEngine=gameEngine
 	
