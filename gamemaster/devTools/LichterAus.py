@@ -15,8 +15,7 @@ from lib.SerialHalfDuplex import SerialHalfDuplex
 
 #########################################
 # init serial comunication
-gameHotLine = SerialHalfDuplex()
-gameHotLine.configSerial('/dev/ttyUSB0',38400) # init serial
+gameHotLine = SerialHalfDuplex('/dev/ttyUSB0',38400)
 gameHotLine.Ping('\n\n')
 
 print 'Number of arguments:', len(sys.argv), 'arguments.'

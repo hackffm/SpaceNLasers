@@ -2,10 +2,7 @@ import serial
 
 
 class SerialHalfDuplex:
-	# def __init__(self):
-		# self.initSerialGPIO()
-
-	def configSerial(self,device,baud):
+	def __init__(self,device,baud):
 		self.__device = device
 		self.__baud = baud
 		self.Init()

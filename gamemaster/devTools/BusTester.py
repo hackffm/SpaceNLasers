@@ -10,7 +10,6 @@ import os
 #########################################
 # game class import 
 from lib.GameWorld import GameWorld
-from lib.GameEngine import GameEngine
 from lib.SerialHalfDuplex import SerialHalfDuplex
 from lib.LaserWeapon import LaserWeapon
 
@@ -18,8 +17,7 @@ from lib.LaserWeapon import LaserWeapon
 
 #########################################
 # init serial comunication
-gameHotLine = SerialHalfDuplex()
-gameHotLine.configSerial('/dev/ttyUSB0',38400) # init serial
+gameHotLine = SerialHalfDuplex('/dev/ttyUSB0',38400)
 
 
 #########################################

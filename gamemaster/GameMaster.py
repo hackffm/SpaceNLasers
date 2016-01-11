@@ -39,8 +39,7 @@ sounds = {
 
 #########################################
 # init serial comunication
-gameHotLine = SerialHalfDuplex()
-gameHotLine.configSerial('/dev/ttyUSB0',38400) # init serial
+gameHotLine = SerialHalfDuplex('/dev/ttyUSB0',38400)
 
 
 #########################################
