@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['menugod',['MenuGod',['../classlib_1_1MenuGod_1_1MenuGod.html',1,'lib::MenuGod']]]
+  ['laserweapon',['LaserWeapon',['../classlib_1_1LaserWeapon_1_1LaserWeapon.html',1,'lib::LaserWeapon']]]
 ];
