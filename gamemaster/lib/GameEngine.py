@@ -34,6 +34,9 @@ class GameEngine:
 
 		self.eventLog=[]
 		self.sounds=sounds
+
+		with open("hardwareconfig/global.json","r") as fp:
+			self.globalConfig=json.load(fp)
 		with open(hwconfig,"r") as fp:
 			self._InitHardware(json.load(fp))
 

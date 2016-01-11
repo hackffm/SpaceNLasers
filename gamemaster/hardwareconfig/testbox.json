@@ -11,9 +11,9 @@
 		"1":{
 			"targets":
 			[
-				{
-					"id":"0","zIndex":0
-				}
+				{"id":"0","zIndex":0,"type":"simple"},
+				{"id":"1","zIndex":0,"type":"simple"},
+				{"id":"2","zIndex":0,"type":"simple"}
 			]
 
 		}

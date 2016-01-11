@@ -1,0 +1,27 @@
+{
+	"__comment__":"use {targetGroup}, {targetID} as placeholders and {0}, {1}, ... for positional arguments",
+	"targetTypes":
+	{
+		"simple":
+		{
+		},
+		"mothership":
+		{
+			"effects":
+			{
+				"enable":"",
+				"disable":"",
+				"destroy":""
+			}
+		},
+		"virobi":
+		{
+			"effects":
+			{
+				"enable":"",
+				"disable":"",
+				"destroy":""
+			}
+		}
+	}
+}

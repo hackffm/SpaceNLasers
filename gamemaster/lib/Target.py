@@ -29,3 +29,10 @@ class Target:
 	## Write new color command for target to the target queue
 	def setColor(self,color):
 		self.buffer.append(BusFactory.setTargetColor(self.hardwareTarget.groupID,self.hardwareTarget.id,color))
+	
+	## Put effect to the target queue
+	def Effect(self,name,*args):
+		#try:
+			self.buffer.append(self.hardwareTarget.getEffect(name,*args))
+		#except KeyError:
+		#	print("skipping effect {}".format(name))

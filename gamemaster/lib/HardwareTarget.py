@@ -6,4 +6,4 @@ class HardwareTarget:
 		self.type=globalConfig["targetTypes"][hwdef["type"]]
 	
 	def getEffect(self,name,*args):
-		return self.type["effects"][name].format(*args,targetGroup=self.groupID, targetID=self.id)
+		return str(self.type["effects"][name].format(*args,targetGroup=self.groupID, targetID=self.id))
