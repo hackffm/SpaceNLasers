@@ -8,7 +8,6 @@ var searchData=
   ['hexstring',['hexstring',['../namespacelib_1_1hexstring.html',1,'lib']]],
   ['laserweapon',['LaserWeapon',['../namespacelib_1_1LaserWeapon.html',1,'lib']]],
   ['lib',['lib',['../namespacelib.html',1,'']]],
-  ['log',['Log',['../namespacelib_1_1Log.html',1,'lib']]],
   ['menugod',['MenuGod',['../namespacelib_1_1MenuGod.html',1,'lib']]],
   ['player',['Player',['../namespacelib_1_1Player.html',1,'lib']]],
   ['serialhalfduplex',['SerialHalfDuplex',['../namespacelib_1_1SerialHalfDuplex.html',1,'lib']]],
