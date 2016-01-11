@@ -118,15 +118,6 @@ class GameEngine:
 		except AbortGameException:
 			print("aborting game due to command from menugod")
 
-	def DecodeHit(self,hitCode,weapon):
-		if len(hitCode)<12:
-			return []
-		try:
-			return [str(i) for i in range(6) if int(eval("0x"+hitCode[i*2:(i+1)*2]))==weapon.shotCode]
-		except Exception as e:
-			print("Decode hit error. Code: {} Error: {} ".format(hitCode,e))
-			return []
-
 	def PlaySoundAndWait(self,sound,wait):
 		self.sounds[sound].play()
 		time.sleep(wait)
@@ -167,7 +158,7 @@ class GameEngine:
 		for targetGroupID in self.targetGroups.keys():
 			hitRaw = self.gameHotLine.PingPong(BusFactory.pollTargetState(targetGroupID)) # get target status
 			for weapon in self.weapons:
-				hitList = self.DecodeHit(hitRaw,weapon)
+				hitList = [str(i) for i in range(6) if int(eval("0x"+hitCode[i*2:(i+1)*2]))==weapon.shotCode]
 				for targetID in hitList:
 					targetObj = targets[(targetGroupID,targetID)]
 					event=Events.TargetHitEvent(time.time(),weapon,targetObj)
