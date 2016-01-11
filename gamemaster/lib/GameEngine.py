@@ -1,7 +1,7 @@
 import time
 import json
 
-from TargetGroup import TargetInfo
+from HardwareTarget import HardwareTarget
 
 from TimeCounter import TimeCounter
 from random import randint
@@ -39,9 +39,13 @@ class GameEngine:
 	
 	## Reads the hardware definitions (weapon/target controller codes etc.)
 	def _InitHardware(self,config):
-		self.targetGroups={str(tg["id"]):[TargetInfo(str(t["id"]),int(t["zIndex"])) for t in tg["targets"]] for tg in config["targetControllers"]}
 		self.weapons=[Weapon(str(w["code"]),int(w["shotCode"])) for w in config["weaponControllers"]]
 		self.effects={str(name):str(command) for name,command in config["globalEffects"].iteritems()}
+		self.hardwareTargets=[]
+		self.targetGroupIDs=config["targetControllers"].keys()
+		for groupID,groupDef in config["targetControllers"].iteritems():
+			for target in groupDef["targets"]:
+				self.hardwareTargets.append(HardwareTarget(groupID,target,self.globalConfig))
 	
 	## Starts a global effect
 	# Global effects are: fog, stroboscope etc.
@@ -85,11 +89,10 @@ class GameEngine:
 			# initialize targets
 			print("creating targets...")
 			targets={
-					(targetGroupID,target.targetID) : gamemode_classes["targetClass"](targetGroupID,self.gamemodeMaster,target.targetID,target.targetZIndex)
-					for targetGroupID,targetGroup in self.targetGroups.iteritems()
-					for target in targetGroup
+					gamemode_classes["targetClass"](hwTarget,self.gamemodeMaster)
+					for hwTarget in self.hardwareTargets
 				}
-			self.gamemodeMaster.SetTargets(targets.values())
+			self.gamemodeMaster.SetTargets(targets)
 
 			if not lobbymode:
 				self._gameStart()
@@ -105,7 +108,7 @@ class GameEngine:
 
 
 				# target logic
-				for t in targets.values():
+				for t in targets:
 					t.Update(dt)
 
 				# weapons
@@ -131,7 +134,7 @@ class GameEngine:
 					self.beamer.SendGameInfo(info)
 
 				# send target buffer
-				for target in targets.values():
+				for target in targets:
 					for buf in target.CollectSerialBuffer():
 						self.gameHotLine.Ping(buf)
 
@@ -186,12 +189,12 @@ class GameEngine:
 	## Retrieve hit data from all targets and start Target-specific processing
 	# \param targets list of Target instances
 	def _pollTargetHits(self,targets):
-		for targetGroupID in self.targetGroups.keys():
+		for targetGroupID in self.targetGroupIDs:
 			hitRaw = self.gameHotLine.PingPong(BusFactory.pollTargetState(targetGroupID)) # get target status
 			for weapon in self.weapons:
 				hitList = [str(i) for i in range(6) if int(eval("0x"+hitRaw[i*2:(i+1)*2]))==weapon.shotCode]
 				for targetID in hitList:
-					targetObj = targets[(targetGroupID,targetID)]
+					targetObj = [t for t in targets if t.hardwareTarget.id==targetID and t.hardwareTarget.groupID==targetGroupID][0]
 					event=Events.TargetHitEvent(time.time(),weapon,targetObj)
 					targetObj.Hit(event)
 					self.LogEvent(event)

@@ -7,9 +7,8 @@
 		}
 	],
 	"targetControllers":
-	[
-		{
-			"id":"1",
+	{
+		"1":{
 			"targets":
 			[
 				{
@@ -18,7 +17,7 @@
 			]
 
 		}
-	],
+	},
 	"globalEffects":
 	{
 		"makeTargetRed":"1a002FF0000\n",

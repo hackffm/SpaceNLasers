@@ -5,8 +5,8 @@ import random
 from lib.CountdownTimer import CountdownTimer
 
 class Target(lib.Target.Target):
-	def __init__(self,groupID,gameModeMaster,id,targetZIndex):
-		lib.Target.Target.__init__(self,groupID,id,targetZIndex)
+	def __init__(self,hwTarget,gameModeMaster):
+		lib.Target.Target.__init__(self,hwTarget)
 		self.gameModeMaster=gameModeMaster
 
 		self.value=10.0 # how many points this target ist worth

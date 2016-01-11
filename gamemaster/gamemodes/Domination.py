@@ -4,8 +4,8 @@ import json
 from lib.CountdownTimer import CountdownTimer
 
 class Target(lib.Target.Target):
-	def __init__(self,groupID,gameModeMaster,id,targetZIndex):
-		lib.Target.Target.__init__(self,groupID,id,targetZIndex)
+	def __init__(self,hwTarget,gameModeMaster):
+		lib.Target.Target.__init__(self,hwTarget)
 		self.protectionTimer=CountdownTimer(lambda: None, 0.0)
 		self.protected=False
 		self.owner=None

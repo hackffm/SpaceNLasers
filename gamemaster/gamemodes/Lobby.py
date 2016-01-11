@@ -6,8 +6,8 @@ from lib.hexstring import myhex
 
 ## Target which changes color randomly
 class Target(lib.Target.Target):
-	def __init__(self,groupID,gameModeMaster,id,targetZIndex):
-		lib.Target.Target.__init__(self,groupID,id,targetZIndex)
+	def __init__(self,hwTarget,gameModeMaster):
+		lib.Target.Target.__init__(self,hwTarget)
 		self.gameModeMaster=gameModeMaster
 		self._changeColor() # change color on init because the countdown timer is initialised there
 	

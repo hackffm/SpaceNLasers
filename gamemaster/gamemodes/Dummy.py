@@ -4,8 +4,8 @@ from lib.CountdownTimer import CountdownTimer
 
 ## A dummy target that switches to green when hit
 class Target(lib.Target.Target):
-	def __init__(self,groupID,gameModeMaster,id,targetZIndex):
-		lib.Target.Target.__init__(self,groupID,id,targetZIndex)
+	def __init__(self,hwTarget,gameModeMaster):
+		lib.Target.Target.__init__(self,hwTarget)
 		print(self.__dict__)
 		self.setColor("0000FF")
 	
