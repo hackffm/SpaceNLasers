@@ -1,3 +1,3 @@
 
 def myhex(i):
-	return hex(i)[2:4]
+	return "%0.2X"%i

@@ -89,7 +89,6 @@ except KeyboardInterrupt:
 """
 Hilfen:
   String parsen auf Hex-to-Dezimal: a="xx7Fyy", b=eval("0x"+a[2:4]) Achtung: 2:4 => 2 bis nicht einschließlich 4!
-  String generieren mit genau 2 Hex-Digits: a=7, b="%0.2X"%a
   
   Zeitstempel: (Fließkommazahl wird zurückgegeben, Ganzzahlteil sind die Sekunden)
     import time 
