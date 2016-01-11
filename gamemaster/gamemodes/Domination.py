@@ -5,13 +5,13 @@ import json
 class Target(lib.Target.Target):
 	def __init__(self,groupID,gameModeMaster,id,targetZIndex):
 		lib.Target.Target.__init__(self,groupID,id,targetZIndex)
+		self.protectionTimer=CountdownTimer(lambda: pass, 0.0)
 		self.protected=False
 		self.owner=None
 		self.gameModeMaster=gameModeMaster
 		self.setColor("FFFFFF")
 	
 	def Hit(self,event):
-		print("hit")
 		if not self.protected:
 			self.setOwner(event.weapon.player)
 
@@ -24,6 +24,8 @@ class Target(lib.Target.Target):
 			self.gameModeMaster.numOccupiedTargets[self.owner]-=1
 		if player is not None:
 			self.gameModeMaster.numOccupiedTargets[player]+=1
+		self.protectionTimer=CountdownTimer(lambda: self.protected=False, self.gameModeMaster.config["targetProtectionDuration"])
+		self.protected=True
 		self.owner=player
 
 class Gamemode(gamemodes.Gamemode):
