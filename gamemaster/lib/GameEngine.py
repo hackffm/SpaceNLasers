@@ -24,20 +24,25 @@ class GameEngine:
 		with open("hardwareconfig/testbox.json","r") as fp:
 			self._InitHardware(json.load(fp))
 	
+	## Reads the hardware definitions (weapon/target controller codes etc.)
 	def _InitHardware(self,config):
 		self.targetGroups={str(tg["id"]):[TargetInfo(str(t["id"]),int(t["zIndex"])) for t in tg["targets"]] for tg in config["targetControllers"]}
 		self.weapons=[Weapon(str(w["code"]),int(w["shotCode"])) for w in config["weaponControllers"]]
 		self.effects={str(name):str(command) for name,command in config["globalEffects"].iteritems()}
 	
+	## Starts a global effect
+	# Global effects are: fog, stroboscope etc.
 	def Effect(self,name):
 		command=self.effects[name]
 		print("global effect: {} -> command={}".format(name,command))
 		self.gameHotLine.Ping(command)
 
+	## Log an Event for later analysis 
 	def LogEvent(self,event):
 		self.eventLog.append(event)
 		print(event)
-
+	
+	## Start the game engine and loop-run games started from MenuGod
 	def Run(self):
 		while(True):
 			lobbydef={"game":{"mode":"lobby","duration":None},"players":[]}
@@ -46,6 +51,9 @@ class GameEngine:
 			print("starting game...")
 			self.RunGame(gamestart)
 
+	## Run a specific game
+	# \param gamestart Dictionary as retrieved from MenuGod.CheckNewGameStart
+	# \param lobbymode If set to True, a gamestart message will be expected from Menugod. If False (default), the game aborts on all messages received.
 	def RunGame(self,gamestart,lobbymode=False):
 		try:
 			print("reading gamemode {}".format(gamestart["game"]["mode"]))
@@ -117,7 +125,10 @@ class GameEngine:
 
 		except AbortGameException:
 			print("aborting game due to command from menugod")
-
+	
+	## Play a predefined sound and sleep
+	# \param sound sound name to play. The sound has to be defined previously
+	# \param time seconds to wait after play
 	def PlaySoundAndWait(self,sound,wait):
 		self.sounds[sound].play()
 		time.sleep(wait)
@@ -125,7 +136,8 @@ class GameEngine:
 	def _turnOnLaserWeapons(self):
 		self.gameHotLine.Ping('AA102FF\n') # turn on Laserweapon A laser
 		self.gameHotLine.Ping('BA102FF\n') # turn on Laserweapon B laser
-
+	
+	## Game start sequence with lots of effects
 	def _gameStart(self):
 		self.gameHotLine.Ping('4A120FF040404\n') # blitz kommando
 		self.gameHotLine.Ping('1A120FF040a2A\n') # [id][animation trigger][laserid 0 / 1][ani id 20][FF040a][flash count 08 for 8 time flash]
@@ -135,6 +147,8 @@ class GameEngine:
 
 		self._turnOnLaserWeapons()
 	
+	## Start shooting sequence (disable lights, send laser info)
+	# Hit data evaluation is done in _pollTargetHits to allow for delay in the targets
 	def _shootSequence(self):
 		shootingCodes=""
 		for weapon in self.weapons:
@@ -154,6 +168,8 @@ class GameEngine:
 
 		self.sounds["laserblasterSound"].play()
 	
+	## Retrieve hit data from all targets and start Target-specific processing
+	# \param targets list of Target instances
 	def _pollTargetHits(self,targets):
 		for targetGroupID in self.targetGroups.keys():
 			hitRaw = self.gameHotLine.PingPong(BusFactory.pollTargetState(targetGroupID)) # get target status
