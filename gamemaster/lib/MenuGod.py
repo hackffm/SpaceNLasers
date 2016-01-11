@@ -144,7 +144,6 @@ class MenuGod:
 
 	## Send game info (scores). Raises AbortGameException if data received
 	def SendGameInfo(self, info):
-		assert self.state=="game"
 		self._SendJson({"gameinfo":info})
 		if self._CheckForMessage():
 			self._PopMessage()
@@ -152,7 +151,6 @@ class MenuGod:
 
 	## Send available game modes etc.
 	def _SendCapabilities(self):
-		assert self.state=="init"
 		self._SendJson({"capabilities":{"gamemodes":gamemodes.available_modes.keys()}})
 	
 	## Try to get specific message and throw error is other messages are incoming

@@ -18,12 +18,20 @@ class GameEngine:
 	# \param sounds dictionary which maps sound names on sound files
 	# \param hwconfig filename of hardware configuration
 	# \param menugod which menugod host to connect to. empty string for server mode, None for testing FakeMenuGod
-	def __init__(self,gameHotLine, sounds, hwconfig, menugod):
+	# \param beamer similar connection for non-controlling connection. None disables beamer output
+	def __init__(self,gameHotLine, sounds, hwconfig, menugod, beamer):
 		self.gameHotLine=gameHotLine
+
+		if beamer is None:
+			self.beamer=FakeMenuGod()
+		else:
+			self.beamer=MenuGod(beamer)
+
 		if menugod is None:
 			self.menugod=FakeMenuGod()
 		else:
 			self.menugod=MenuGod(menugod)
+
 		self.eventLog=[]
 		self.sounds=sounds
 		with open(hwconfig,"r") as fp:
@@ -119,6 +127,7 @@ class GameEngine:
 						return gamestart
 				else:
 					self.menugod.SendGameInfo(info)
+					self.beamer.SendGameInfo(info)
 
 				# send target buffer
 				for target in targets.values():
@@ -127,6 +136,7 @@ class GameEngine:
 
 		except gamemodes.GameOverException:
 			self.menugod.GameOver()
+			self.beamer.GameOver()
 
 		except AbortGameException:
 			print("aborting game due to command from menugod")

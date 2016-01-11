@@ -16,6 +16,7 @@ from lib.Weapon import Weapon
 parser=argparse.ArgumentParser(description="SpaceNLasers game master")
 parser.add_argument("hwconfig", type=str, help="a json file describing the current hardware setup")
 parser.add_argument("--menugod",type=str, nargs="?", default=None, const="", help="IP of menugod to connect to. Leave empty to run in server mode. Omit this option to use a FakeMenuGod for testing")
+parser.add_argument("--beamer",type=str, nargs="?", default=None, const="", help="IP of beamer to connect to. Leave empty to run in server mode. Omit this option to disable beamer output")
 args=parser.parse_args()
 
 # init audio mixer
@@ -42,7 +43,7 @@ sounds = {
 gameHotLine = SerialHalfDuplex('/dev/ttyUSB0',38400)
 
 # init game engine class and wait for menugod
-gameEngine = GameEngine(gameHotLine, sounds, args.hwconfig, args.menugod)
+gameEngine = GameEngine(gameHotLine, sounds, args.hwconfig, args.menugod, args.beamer)
 
 
 gameHotLine.Ping('AA10200\n')
