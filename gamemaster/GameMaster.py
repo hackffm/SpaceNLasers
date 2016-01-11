@@ -81,43 +81,10 @@ time.sleep(0.1)
 gameHotLine.Ping('4T0020\n') # set treshold to 205
 time.sleep(0.1)
 
-# gameHotLine.Ping('1a002000000\n')
-# gameHotLine.Ping('1a10200FF00\n')
-# gameHotLine.Ping('1a202FF00FF\n')
-# gameHotLine.Ping('1a302FFFF00\n')
-
-
-# gameHotLine.Ping('2a002FF0000\n')
-# gameHotLine.Ping('2a10200FF00\n')
-# gameHotLine.Ping('2a202FF00FF\n')
-# gameHotLine.Ping('2a302FFFF00\n')
-
-
-# gameHotLine.Ping('3a002FF0000\n')
-# gameHotLine.Ping('3a10200FF00\n')
-# gameHotLine.Ping('3a202FF00FF\n')
-# gameHotLine.Ping('3a302FFFF00\n')
-
-# gameHotLine.Ping('4a0100000FF08\n')
-
-
-print 'debug target start';
-print 'debug target stop';
-
-# gameHotLine.Ping('4A120FF040408\n') # blitz kommando
-
-gameHotLine.Ping('1A020FF040a08\n') # [id][animation trigger][laserid 0 / 1][ani id 20][FF040a][flash count 08 for 8 time flash]
-
 try:
- gameEngine.Run()
- #bla = None
-  
-        
+	gameEngine.Run()
 except KeyboardInterrupt:
-  gameHotLine.Close()
-
-
-
+	gameHotLine.Close()
 
 """
 Hilfen:
