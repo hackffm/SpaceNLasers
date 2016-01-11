@@ -138,8 +138,8 @@ class GameEngine:
 		time.sleep(wait)
 	
 	def _turnOnLaserWeapons(self):
-		self.gameHotLine.Ping('AA102FF\n') # turn on Laserweapon A laser
-		self.gameHotLine.Ping('BA102FF\n') # turn on Laserweapon B laser
+		for weapon in self.weapons:
+			self.gameHotLine.Ping(BusFactory.enableWeapon(weapon.code))
 	
 	## Game start sequence with lots of effects
 	def _gameStart(self):

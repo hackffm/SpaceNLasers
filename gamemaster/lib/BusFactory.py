@@ -22,5 +22,8 @@ def doSomethingAnimationLikeOnWeapon(weaponLetter): # TODO: please fix name here
 def pollTargetState(targetGroupID):
 	return "{}tr\n".format(targetGroupID)
 
+def enableWeapon(weaponLetter):
+	return "{}A102FF\n".format(weaponLetter)
+
 class Constants:
 	WEAPON_PRIMARY_BTN=1
