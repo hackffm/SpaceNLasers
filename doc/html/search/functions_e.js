@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['turnoffneopixel',['TurnOffNeoPixel',['../classlib_1_1Target_1_1Target2.html#a5ef77528522f42811ab6f8871496b272',1,'lib::Target::Target2']]],
-  ['turnofftarget',['TurnOffTarget',['../classlib_1_1Target_1_1Target2.html#a5c53fbed1ea484615f5a1bf0be093375',1,'lib::Target::Target2']]]
+  ['writebuffer',['WriteBuffer',['../classlib_1_1SerialHalfDuplex_1_1SerialHalfDuplex.html#acbacec1da122f9bc097476233cbe2363',1,'lib::SerialHalfDuplex::SerialHalfDuplex']]]
 ];

@@ -12,6 +12,5 @@ var searchData=
   ['coolingspeed',['coolingSpeed',['../namespacelib_1_1LaserWeapon.html#a56196533114b6892b1160d5e16d34843',1,'lib::LaserWeapon']]],
   ['cooloff',['cooloff',['../classlib_1_1Weapon_1_1Weapon.html#accfbfaf51371e42021504660ef79dd7c',1,'lib::Weapon::Weapon']]],
   ['countdowntimer',['countdownTimer',['../classgamemodes_1_1Lobby_1_1Target.html#a6accc5d4a2efbc83a7215ad51401907f',1,'gamemodes::Lobby::Target']]],
-  ['currentactivetarget',['currentActiveTarget',['../classlib_1_1GameEngine_1_1GameEngine2.html#ad94d23eda2e818dc20f6e777f34508e2',1,'lib::GameEngine::GameEngine2']]],
-  ['currentstate',['currentState',['../classlib_1_1GameScreen_1_1GameScreen.html#ac40b1fecb36635ef36ea2f369b408112',1,'lib.GameScreen.GameScreen.currentState()'],['../classlib_1_1GameScreen_1_1GameScreen.html#affe4fd4b324fdf2204571193a20e08cb',1,'lib.GameScreen.GameScreen.currentState()'],['../namespacelib_1_1LaserWeapon.html#a95e7f0ab8ceeecfeb5fdde9479d906a0',1,'lib.LaserWeapon.currentState()']]]
+  ['currentstate',['currentState',['../namespacelib_1_1LaserWeapon.html#a95e7f0ab8ceeecfeb5fdde9479d906a0',1,'lib::LaserWeapon']]]
 ];

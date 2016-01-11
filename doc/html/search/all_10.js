@@ -1,15 +1,9 @@
 var searchData=
 [
   ['s',['s',['../classlib_1_1MenuGod_1_1MenuGod.html#a25401fd260631768b22d80e0dd61f970',1,'lib::MenuGod::MenuGod']]],
-  ['scorecount',['scoreCount',['../classlib_1_1GameScreen_1_1GameScreen.html#a048fd5e196de5a2414b116fe01d4362a',1,'lib::GameScreen::GameScreen']]],
-  ['scorecounter',['scoreCounter',['../classlib_1_1GameScreen_1_1GameScreen.html#a268d0ff84e0e11ee5578672eb7f2efd7',1,'lib::GameScreen::GameScreen']]],
-  ['scoreplayer1',['scorePlayer1',['../classlib_1_1GameScreen_1_1GameScreen.html#a7cb9c1e067bf0abccef3ff7b9571017d',1,'lib.GameScreen.GameScreen.scorePlayer1()'],['../classlib_1_1GameScreen_1_1GameScreen.html#a8aebd95b760f8986cf457f10657f03dd',1,'lib.GameScreen.GameScreen.scorePlayer1()']]],
-  ['scoreplayer2',['scorePlayer2',['../classlib_1_1GameScreen_1_1GameScreen.html#a6c686ed2576a1d28d737dcbdf3fe283b',1,'lib::GameScreen::GameScreen']]],
   ['scores',['scores',['../classgamemodes_1_1Domination_1_1Gamemode.html#aec3228d29e3ec3acc3d5a950b9c16377',1,'gamemodes::Domination::Gamemode']]],
-  ['screen',['screen',['../classlib_1_1GameScreen_1_1GameScreen.html#a246277fd94adcca90b307c86a51b8106',1,'lib.GameScreen.GameScreen.screen()'],['../classlib_1_1GameScreen_1_1GameScreen.html#ab2862d9ec0358371482bdd244dcb0e02',1,'lib.GameScreen.GameScreen.screen()']]],
   ['senderror',['SendError',['../classlib_1_1MenuGod_1_1MenuGod.html#a8aeb02352b20605d2fbea2c640a2cb8e',1,'lib::MenuGod::MenuGod']]],
   ['sendgameinfo',['SendGameInfo',['../classlib_1_1MenuGod_1_1FakeMenuGod.html#a545090667d6356d8d857e04387c6d4ba',1,'lib.MenuGod.FakeMenuGod.SendGameInfo()'],['../classlib_1_1MenuGod_1_1MenuGod.html#a8c0773034b9e0c120b6d10acaf74bf8c',1,'lib.MenuGod.MenuGod.SendGameInfo()']]],
-  ['serialbuffer',['serialBuffer',['../classlib_1_1Target_1_1Target2.html#afd007871f020211848e8078596a6f405',1,'lib::Target::Target2']]],
   ['serialhalfduplex',['SerialHalfDuplex',['../classlib_1_1SerialHalfDuplex_1_1SerialHalfDuplex.html',1,'lib::SerialHalfDuplex']]],
   ['serialhalfduplex_2epy',['SerialHalfDuplex.py',['../SerialHalfDuplex_8py.html',1,'']]],
   ['set_5finput',['set_Input',['../namespacelib_1_1LaserWeapon.html#ae1e83474220b85e1ff1f9470412b6821',1,'lib::LaserWeapon']]],
@@ -22,7 +16,7 @@ var searchData=
   ['shootnow',['shootNow',['../namespacelib_1_1BusFactory.html#add8e2b8c45f3f43292ccd8aa10dcb025',1,'lib::BusFactory']]],
   ['shootsthisframe',['ShootsThisFrame',['../classlib_1_1Weapon_1_1Weapon.html#af645aab99132c338eea1adc107a04ac1',1,'lib::Weapon::Weapon']]],
   ['shotcode',['shotCode',['../classlib_1_1Weapon_1_1Weapon.html#a9016940ed76668dd27274a426a5e3120',1,'lib::Weapon::Weapon']]],
-  ['show',['show',['../classlib_1_1GameScreen_1_1GameScreen.html#ac37465d3e4b6cd74ff65033693d7e0d9',1,'lib::GameScreen::GameScreen']]],
   ['sounds',['sounds',['../classlib_1_1GameEngine_1_1GameEngine.html#ab230b5897f2ac60ec3a3231ab7f8e7a5',1,'lib.GameEngine.GameEngine.sounds()'],['../classlib_1_1GameWorld_1_1GameWorld.html#a9b848c63c10344874b3760515e5849a7',1,'lib.GameWorld.GameWorld.sounds()'],['../namespaceGameMaster.html#aefb99e3c560fac3a3a4b7768d6f4a51a',1,'GameMaster.sounds()']]],
+  ['startshootingsequence',['startShootingSequence',['../namespacelib_1_1BusFactory.html#a20b8d8a104430e96be4fac08ffd9a48b',1,'lib::BusFactory']]],
   ['state',['state',['../classlib_1_1MenuGod_1_1MenuGod.html#aad43eaafd897363d9f47ad5468a08d6e',1,'lib::MenuGod::MenuGod']]]
 ];

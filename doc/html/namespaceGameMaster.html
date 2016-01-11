@@ -90,32 +90,39 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:ab90dc0c7516f4ea5694f171fa02ea1f3"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#ab90dc0c7516f4ea5694f171fa02ea1f3">myScreen</a> = <a class="el" href="classlib_1_1GameScreen_1_1GameScreen.html">GameScreen</a>(&quot;&quot;)</td></tr>
-<tr class="memdesc:ab90dc0c7516f4ea5694f171fa02ea1f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">init game screen  <a href="#ab90dc0c7516f4ea5694f171fa02ea1f3">More...</a><br /></td></tr>
-<tr class="separator:ab90dc0c7516f4ea5694f171fa02ea1f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a393e67ae1b3fd2bb245aa1ccb05ee62c"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#a393e67ae1b3fd2bb245aa1ccb05ee62c">parser</a> = argparse.ArgumentParser(description=&quot;SpaceNLasers game master&quot;)</td></tr>
+<tr class="separator:a393e67ae1b3fd2bb245aa1ccb05ee62c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2db493f42e7f9f3509192288415ace73"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#a2db493f42e7f9f3509192288415ace73">args</a> = parser.parse_args()</td></tr>
+<tr class="separator:a2db493f42e7f9f3509192288415ace73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aefb99e3c560fac3a3a4b7768d6f4a51a"><td class="memItemLeft" align="right" valign="top">dictionary&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#aefb99e3c560fac3a3a4b7768d6f4a51a">sounds</a></td></tr>
-<tr class="memdesc:aefb99e3c560fac3a3a4b7768d6f4a51a"><td class="mdescLeft">&#160;</td><td class="mdescRight">init audio mixer  <a href="#aefb99e3c560fac3a3a4b7768d6f4a51a">More...</a><br /></td></tr>
 <tr class="separator:aefb99e3c560fac3a3a4b7768d6f4a51a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78f9289087d979b578508e506d40d5ec"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#a78f9289087d979b578508e506d40d5ec">gameHotLine</a> = <a class="el" href="classlib_1_1SerialHalfDuplex_1_1SerialHalfDuplex.html">SerialHalfDuplex</a>()</td></tr>
-<tr class="memdesc:a78f9289087d979b578508e506d40d5ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">init serial comunication  <a href="#a78f9289087d979b578508e506d40d5ec">More...</a><br /></td></tr>
+<tr class="memitem:a78f9289087d979b578508e506d40d5ec"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#a78f9289087d979b578508e506d40d5ec">gameHotLine</a> = <a class="el" href="classlib_1_1SerialHalfDuplex_1_1SerialHalfDuplex.html">SerialHalfDuplex</a>('/dev/ttyUSB0',38400)</td></tr>
 <tr class="separator:a78f9289087d979b578508e506d40d5ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04595adb1c3c2bb948cd60529956f09e"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#a04595adb1c3c2bb948cd60529956f09e">gameEngine</a> = <a class="el" href="classlib_1_1GameEngine_1_1GameEngine.html">GameEngine</a>(<a class="el" href="namespaceGameMaster.html#a78f9289087d979b578508e506d40d5ec">gameHotLine</a>, <a class="el" href="namespaceGameMaster.html#ab90dc0c7516f4ea5694f171fa02ea1f3">myScreen</a>, <a class="el" href="namespaceGameMaster.html#aefb99e3c560fac3a3a4b7768d6f4a51a">sounds</a>)</td></tr>
-<tr class="memdesc:a04595adb1c3c2bb948cd60529956f09e"><td class="mdescLeft">&#160;</td><td class="mdescRight">init game world class gameWorld = GameWorld() # create game world gameWorld.sounds = sounds  <a href="#a04595adb1c3c2bb948cd60529956f09e">More...</a><br /></td></tr>
+<tr class="memitem:a04595adb1c3c2bb948cd60529956f09e"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#a04595adb1c3c2bb948cd60529956f09e">gameEngine</a> = <a class="el" href="classlib_1_1GameEngine_1_1GameEngine.html">GameEngine</a>(<a class="el" href="namespaceGameMaster.html#a78f9289087d979b578508e506d40d5ec">gameHotLine</a>, <a class="el" href="namespaceGameMaster.html#aefb99e3c560fac3a3a4b7768d6f4a51a">sounds</a>, args.hwconfig, args.menugod)</td></tr>
 <tr class="separator:a04595adb1c3c2bb948cd60529956f09e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="a2db493f42e7f9f3509192288415ace73"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">tuple GameMaster.args = parser.parse_args()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a04595adb1c3c2bb948cd60529956f09e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">tuple GameMaster.gameEngine = <a class="el" href="classlib_1_1GameEngine_1_1GameEngine.html">GameEngine</a>(<a class="el" href="namespaceGameMaster.html#a78f9289087d979b578508e506d40d5ec">gameHotLine</a>, <a class="el" href="namespaceGameMaster.html#ab90dc0c7516f4ea5694f171fa02ea1f3">myScreen</a>, <a class="el" href="namespaceGameMaster.html#aefb99e3c560fac3a3a4b7768d6f4a51a">sounds</a>)</td>
+          <td class="memname">tuple GameMaster.gameEngine = <a class="el" href="classlib_1_1GameEngine_1_1GameEngine.html">GameEngine</a>(<a class="el" href="namespaceGameMaster.html#a78f9289087d979b578508e506d40d5ec">gameHotLine</a>, <a class="el" href="namespaceGameMaster.html#aefb99e3c560fac3a3a4b7768d6f4a51a">sounds</a>, args.hwconfig, args.menugod)</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>init game world class gameWorld = GameWorld() # create game world gameWorld.sounds = sounds </p>
-<p>init laser class weaponA=Weapon("A",145) gameWorld.AddLaserWeapon(weaponA) init targets init game engine class </p>
 
 </div>
 </div>
@@ -124,26 +131,22 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">tuple GameMaster.gameHotLine = <a class="el" href="classlib_1_1SerialHalfDuplex_1_1SerialHalfDuplex.html">SerialHalfDuplex</a>()</td>
+          <td class="memname">tuple GameMaster.gameHotLine = <a class="el" href="classlib_1_1SerialHalfDuplex_1_1SerialHalfDuplex.html">SerialHalfDuplex</a>('/dev/ttyUSB0',38400)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>init serial comunication </p>
-
 </div>
 </div>
-<a class="anchor" id="ab90dc0c7516f4ea5694f171fa02ea1f3"></a>
+<a class="anchor" id="a393e67ae1b3fd2bb245aa1ccb05ee62c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">tuple GameMaster.myScreen = <a class="el" href="classlib_1_1GameScreen_1_1GameScreen.html">GameScreen</a>(&quot;&quot;)</td>
+          <td class="memname">tuple GameMaster.parser = argparse.ArgumentParser(description=&quot;SpaceNLasers game master&quot;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>init game screen </p>
 
 </div>
 </div>
@@ -168,9 +171,6 @@ Variables</h2></td></tr>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="stringliteral">&quot;explosionSound&quot;</span>:pygame.mixer.Sound(<span class="stringliteral">&quot;sounds/explo_robot_down.wav&quot;</span>)</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;}</div>
 </div><!-- fragment -->
-<p>init audio mixer </p>
-<p>load audio files in list </p>
-
 </div>
 </div>
 </div><!-- contents -->

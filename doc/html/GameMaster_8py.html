@@ -99,17 +99,15 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:ab90dc0c7516f4ea5694f171fa02ea1f3"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#ab90dc0c7516f4ea5694f171fa02ea1f3">GameMaster.myScreen</a> = GameScreen(&quot;&quot;)</td></tr>
-<tr class="memdesc:ab90dc0c7516f4ea5694f171fa02ea1f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">init game screen  <a href="#ab90dc0c7516f4ea5694f171fa02ea1f3">More...</a><br /></td></tr>
-<tr class="separator:ab90dc0c7516f4ea5694f171fa02ea1f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a393e67ae1b3fd2bb245aa1ccb05ee62c"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#a393e67ae1b3fd2bb245aa1ccb05ee62c">GameMaster.parser</a> = argparse.ArgumentParser(description=&quot;SpaceNLasers game master&quot;)</td></tr>
+<tr class="separator:a393e67ae1b3fd2bb245aa1ccb05ee62c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2db493f42e7f9f3509192288415ace73"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#a2db493f42e7f9f3509192288415ace73">GameMaster.args</a> = parser.parse_args()</td></tr>
+<tr class="separator:a2db493f42e7f9f3509192288415ace73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aefb99e3c560fac3a3a4b7768d6f4a51a"><td class="memItemLeft" align="right" valign="top">dictionary&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#aefb99e3c560fac3a3a4b7768d6f4a51a">GameMaster.sounds</a></td></tr>
-<tr class="memdesc:aefb99e3c560fac3a3a4b7768d6f4a51a"><td class="mdescLeft">&#160;</td><td class="mdescRight">init audio mixer  <a href="#aefb99e3c560fac3a3a4b7768d6f4a51a">More...</a><br /></td></tr>
 <tr class="separator:aefb99e3c560fac3a3a4b7768d6f4a51a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78f9289087d979b578508e506d40d5ec"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#a78f9289087d979b578508e506d40d5ec">GameMaster.gameHotLine</a> = SerialHalfDuplex()</td></tr>
-<tr class="memdesc:a78f9289087d979b578508e506d40d5ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">init serial comunication  <a href="#a78f9289087d979b578508e506d40d5ec">More...</a><br /></td></tr>
+<tr class="memitem:a78f9289087d979b578508e506d40d5ec"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#a78f9289087d979b578508e506d40d5ec">GameMaster.gameHotLine</a> = SerialHalfDuplex('/dev/ttyUSB0',38400)</td></tr>
 <tr class="separator:a78f9289087d979b578508e506d40d5ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04595adb1c3c2bb948cd60529956f09e"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#a04595adb1c3c2bb948cd60529956f09e">GameMaster.gameEngine</a> = GameEngine(gameHotLine, myScreen, sounds)</td></tr>
-<tr class="memdesc:a04595adb1c3c2bb948cd60529956f09e"><td class="mdescLeft">&#160;</td><td class="mdescRight">init game world class gameWorld = GameWorld() # create game world gameWorld.sounds = sounds  <a href="#a04595adb1c3c2bb948cd60529956f09e">More...</a><br /></td></tr>
+<tr class="memitem:a04595adb1c3c2bb948cd60529956f09e"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#a04595adb1c3c2bb948cd60529956f09e">GameMaster.gameEngine</a> = GameEngine(gameHotLine, sounds, args.hwconfig, args.menugod)</td></tr>
 <tr class="separator:a04595adb1c3c2bb948cd60529956f09e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
