@@ -13,6 +13,10 @@ import BusFactory
 from Weapon import Weapon
 
 class GameEngine:
+	##
+	# \param gameHotLine SerialHalfDuplex object for bus communication
+	# \param sounds dictionary which maps sound names on sound files
+	# \param runWithoutMenugod if True, a FakeMenuGod will be created to allow for testing without a MenuGod instance
 	def __init__(self,gameHotLine, sounds, runWithoutMenugod=True):
 		self.gameHotLine=gameHotLine
 		if runWithoutMenugod:
