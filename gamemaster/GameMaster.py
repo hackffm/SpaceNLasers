@@ -12,14 +12,7 @@ import os
 from lib.GameEngine import GameEngine
 from lib.SerialHalfDuplex import SerialHalfDuplex
 from lib.Weapon import Weapon
-from lib.GameScreen import GameScreen
 
-
-#########################################
-# init game screen 
-myScreen = GameScreen("")
-#myScreen.initScreenDevice()
-#myScreen.fillBackground((0,0,0))
 
 
 #########################################
@@ -69,7 +62,7 @@ gameHotLine.configSerial('/dev/ttyUSB0',38400) # init serial
 
 #########################################
 # init game engine class
-gameEngine = GameEngine(gameHotLine, myScreen, sounds)
+gameEngine = GameEngine(gameHotLine, sounds)
 
 
 gameHotLine.Ping('AA10200\n')

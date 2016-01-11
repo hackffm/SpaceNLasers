@@ -13,7 +13,7 @@ import BusFactory
 from Weapon import Weapon
 
 class GameEngine:
-	def __init__(self,gameHotLine, gameScreen, sounds, runWithoutMenugod=True):
+	def __init__(self,gameHotLine, sounds, runWithoutMenugod=True):
 		self.gameHotLine=gameHotLine
 		if runWithoutMenugod:
 			self.menugod=FakeMenuGod()
@@ -37,7 +37,6 @@ class GameEngine:
 	def LogEvent(self,event):
 		self.eventLog.append(event)
 		print(event)
-		# TODO: show events on screen/debug
 
 	def Run(self):
 		lobbydef={"game":{"mode":"lobby","duration":None},"players":[]}
