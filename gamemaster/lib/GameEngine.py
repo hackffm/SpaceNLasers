@@ -39,11 +39,12 @@ class GameEngine:
 		print(event)
 
 	def Run(self):
-		lobbydef={"game":{"mode":"lobby","duration":None},"players":[]}
-		print("starting lobby...")
-		gamestart=self.RunGame(lobbydef,lobbymode=True)
-		print("starting game...")
-		self.RunGame(gamestart)
+		while(True):
+			lobbydef={"game":{"mode":"lobby","duration":None},"players":[]}
+			print("starting lobby...")
+			gamestart=self.RunGame(lobbydef,lobbymode=True)
+			print("starting game...")
+			self.RunGame(gamestart)
 
 	def RunGame(self,gamestart,lobbymode=False):
 		try:
