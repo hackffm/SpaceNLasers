@@ -9,7 +9,6 @@ import os
 
 #########################################
 # game class import 
-#from lib.GameWorld import GameWorld
 from lib.GameEngine import GameEngine
 from lib.SerialHalfDuplex import SerialHalfDuplex
 from lib.Weapon import Weapon
@@ -52,9 +51,6 @@ gameHotLine.configSerial('/dev/ttyUSB0',38400) # init serial
 
 
 #########################################
-# init game world class
-#gameWorld = GameWorld() # create game world
-#gameWorld.sounds = sounds
 
 
 #########################################
@@ -69,8 +65,6 @@ gameHotLine.configSerial('/dev/ttyUSB0',38400) # init serial
 # sensors anlog pins from 0-
 
 # init target group 1
-#gameWorld.AddTargetGroup('1',0) # id, z-index
-#gameWorld.GetTargetGroupByID('1').AddTarget('0',1) # id, z-index
 
 
 #########################################
@@ -117,10 +111,6 @@ time.sleep(0.1)
 
 print 'debug target start';
 print 'debug target stop';
-
-#for tg in gameWorld.targetGroupList:
-#  for tar in tg.targetsList:
-#    print 'tg: '+tg.targetGroupID+' tar: '+tar.targetID
 
 # gameHotLine.Ping('4A120FF040408\n') # blitz kommando
 
