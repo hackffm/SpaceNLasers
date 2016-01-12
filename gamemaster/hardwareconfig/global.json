@@ -7,7 +7,8 @@
 			"effects":
 			{
 				"enable":"{targetGroup}a{targetID}02FFFFFF\n",
-				"disable":"{targetGroup}a{targetID}02000000\n"
+				"disable":"{targetGroup}a{targetID}02000000\n",
+				"destroy":""
 			}
 		},
 		"mothership":
