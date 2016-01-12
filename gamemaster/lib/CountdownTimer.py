@@ -2,21 +2,25 @@
 ## Class to manage delayed actions similar to setTimeout in JS
 class CountdownTimer:
 	all_timers=[]
-	def __init__(self,action,time):
+	def __init__(self,action,time,loop=False):
 		assert time>=0
 		self.action=action
 		self.time=time
 		self.done=False
+		self.originalTime=time if loop else None
 
 	def Update(self,dt):
 		self.time-=dt
 		if self.time<0 and not self.done:
 			self.action()
-			self.done=True
+			if self.originalTime is None:
+				self.done=True
+			else: # loop
+				self.time+=self.originalTime
 	
 	@staticmethod
-	def Add(action,time):
-		obj=CountdownTimer(action,time)
+	def Add(action,time,**kwargs):
+		obj=CountdownTimer(action,time,**kwargs)
 		CountdownTimer.all_timers.append(obj)
 	
 	@staticmethod
