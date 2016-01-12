@@ -2,6 +2,7 @@ var searchData=
 [
   ['checknewgamestart',['CheckNewGameStart',['../classlib_1_1MenuGod_1_1FakeMenuGod.html#a878e5331038578f4f6e41207106dd32d',1,'lib.MenuGod.FakeMenuGod.CheckNewGameStart()'],['../classlib_1_1MenuGod_1_1MenuGod.html#afd41e3ac16d74c9b6114a6a176c0e432',1,'lib.MenuGod.MenuGod.CheckNewGameStart()']]],
   ['checktimeout',['checkTimeout',['../classlib_1_1TimeCounter_1_1TimeCounter.html#a93ba1f2dc127c6cdf4646c05df4a49a9',1,'lib::TimeCounter::TimeCounter']]],
+  ['clear',['Clear',['../classlib_1_1CountdownTimer_1_1CountdownTimer.html#a4b3b345b36b86362c82b478f2d2cf195',1,'lib::CountdownTimer::CountdownTimer']]],
   ['close',['Close',['../classlib_1_1SerialHalfDuplex_1_1SerialHalfDuplex.html#a223f6199ec527a50a0ea59a00648b55c',1,'lib::SerialHalfDuplex::SerialHalfDuplex']]],
   ['code',['code',['../classlib_1_1Weapon_1_1Weapon.html#a298b2255d1c9ef57e60dd8ad44093a4a',1,'lib::Weapon::Weapon']]],
   ['code_5fbarrelanimation',['code_BarrelAnimation',['../namespacelib_1_1LaserWeapon.html#aa0e5af0adc04c4044995ed98a7a6b14e',1,'lib::LaserWeapon']]],

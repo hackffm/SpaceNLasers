@@ -89,7 +89,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="classlib_1_1CountdownTimer_1_1CountdownTimer-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">lib.CountdownTimer.CountdownTimer Class Reference</div>  </div>
@@ -106,6 +108,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab202f72222ff34b31bd3159a4b944ebe"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1CountdownTimer_1_1CountdownTimer.html#ab202f72222ff34b31bd3159a4b944ebe">Update</a> (self, dt)</td></tr>
 <tr class="separator:ab202f72222ff34b31bd3159a4b944ebe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a8d549054a3c292f4a6ff631b2e16e4d2"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1CountdownTimer_1_1CountdownTimer.html#a8d549054a3c292f4a6ff631b2e16e4d2">Add</a> (<a class="el" href="classlib_1_1CountdownTimer_1_1CountdownTimer.html#a644c598eec71a6ee77d5fa2de29e7785">action</a>, <a class="el" href="classlib_1_1CountdownTimer_1_1CountdownTimer.html#a6832d7133b95af0cd25014b839c3fcf0">time</a>)</td></tr>
+<tr class="separator:a8d549054a3c292f4a6ff631b2e16e4d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab55916f2b5c0920fd4284a5631ddaa04"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1CountdownTimer_1_1CountdownTimer.html#ab55916f2b5c0920fd4284a5631ddaa04">UpdateAll</a> (dt)</td></tr>
+<tr class="separator:ab55916f2b5c0920fd4284a5631ddaa04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6728dccb3c115ef9b1681fc3987bbb23"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1CountdownTimer_1_1CountdownTimer.html#a6728dccb3c115ef9b1681fc3987bbb23">Remove</a> (obj)</td></tr>
+<tr class="separator:a6728dccb3c115ef9b1681fc3987bbb23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b3b345b36b86362c82b478f2d2cf195"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1CountdownTimer_1_1CountdownTimer.html#a4b3b345b36b86362c82b478f2d2cf195">Clear</a> ()</td></tr>
+<tr class="separator:a4b3b345b36b86362c82b478f2d2cf195"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a644c598eec71a6ee77d5fa2de29e7785"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1CountdownTimer_1_1CountdownTimer.html#a644c598eec71a6ee77d5fa2de29e7785">action</a></td></tr>
@@ -114,6 +127,11 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a6832d7133b95af0cd25014b839c3fcf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3701ee13c59f924c656b1f3e8d50e842"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1CountdownTimer_1_1CountdownTimer.html#a3701ee13c59f924c656b1f3e8d50e842">done</a></td></tr>
 <tr class="separator:a3701ee13c59f924c656b1f3e8d50e842"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:ae7cfc3e20365b4235a31793889fcf971"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1CountdownTimer_1_1CountdownTimer.html#ae7cfc3e20365b4235a31793889fcf971">all_timers</a> = []</td></tr>
+<tr class="separator:ae7cfc3e20365b4235a31793889fcf971"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class to manage delayed actions similar to setTimeout in JS. </p>
@@ -151,6 +169,87 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a8d549054a3c292f4a6ff631b2e16e4d2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lib.CountdownTimer.CountdownTimer.Add </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>action</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>time</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4b3b345b36b86362c82b478f2d2cf195"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lib.CountdownTimer.CountdownTimer.Clear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6728dccb3c115ef9b1681fc3987bbb23"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lib.CountdownTimer.CountdownTimer.Remove </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>obj</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="ab202f72222ff34b31bd3159a4b944ebe"></a>
 <div class="memitem">
 <div class="memproto">
@@ -177,6 +276,30 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ab55916f2b5c0920fd4284a5631ddaa04"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">def lib.CountdownTimer.CountdownTimer.UpdateAll </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>dt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a class="anchor" id="a644c598eec71a6ee77d5fa2de29e7785"></a>
 <div class="memitem">
@@ -186,6 +309,26 @@ Public Attributes</h2></td></tr>
           <td class="memname">lib.CountdownTimer.CountdownTimer.action</td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae7cfc3e20365b4235a31793889fcf971"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">list lib.CountdownTimer.CountdownTimer.all_timers = []</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
