@@ -158,6 +158,7 @@ class GameEngine:
 
 		except AbortGameException:
 			print("aborting game due to command from menugod")
+		self._disableAllTargets(targets)
 		CountdownTimer.Clear()
 	
 	## Play a predefined sound and sleep
@@ -179,6 +180,10 @@ class GameEngine:
 		self.sounds["music"].play(loops=-1)
 
 		self._turnOnLaserWeapons()
+	
+	def _disableAllTargets(self,targets):
+		for target in targets:
+			target.Effect("disable")
 	
 	## Start shooting sequence (disable lights, send laser info)
 	# Hit data evaluation is done in _pollTargetHits to allow for delay in the targets
