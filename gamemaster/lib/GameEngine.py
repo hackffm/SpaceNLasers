@@ -124,6 +124,9 @@ class GameEngine:
 					weapon.SetCurrentState(code)
 					weapon.Update(dt)
 
+				# timer logic
+				CountdownTimer.UpdateAll(dt)
+
 				# start shoot sequence if trigger pulled
 				self._shootSequence()
 
@@ -155,6 +158,7 @@ class GameEngine:
 
 		except AbortGameException:
 			print("aborting game due to command from menugod")
+		CountdownTimer.Clear()
 	
 	## Play a predefined sound and sleep
 	# \param sound sound name to play. The sound has to be defined previously
