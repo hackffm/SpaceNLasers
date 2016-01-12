@@ -17,18 +17,18 @@ class CountdownTimer:
 	@staticmethod
 	def Add(action,time):
 		obj=CountdownTimer(action,time)
-		all_timers.append(obj)
+		CountdownTimer.all_timers.append(obj)
 	
 	@staticmethod
 	def UpdateAll(dt):
-		for timer in all_timers:
+		for timer in CountdownTimer.all_timers:
 			timer.Update(dt)
-		all_timers=[timer for timer in all_timers if timer.time>=0]
+		CountdownTimer.all_timers=[timer for timer in CountdownTimer.all_timers if timer.time>=0]
 	
 	@staticmethod
 	def Remove(obj):
-		all_timers.remove(obj)
+		CountdownTimer.all_timers.remove(obj)
 	
 	@staticmethod
 	def Clear():
-		all_timers=[]
+		CountdownTimer.all_timers=[]
