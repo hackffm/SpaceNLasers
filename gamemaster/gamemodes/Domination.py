@@ -13,6 +13,7 @@ class Target(lib.Target.Target):
 		self.setColor("FFFFFF")
 	
 	def Hit(self,event):
+		lib.Target.Target.Hit(self,event)
 		if not self.protected:
 			self.setOwner(event.weapon.player)
 

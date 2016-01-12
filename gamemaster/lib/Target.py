@@ -14,7 +14,7 @@ class Target:
 	## Called from game engine when this target has been hit.
 	# \param event a TargetHitEvent
 	def Hit(self,event):
-		raise NotImplementedError()
+		self.Effect("hit")
 
 	## Return a list of all buffered bus commands.
 	def CollectSerialBuffer(self):

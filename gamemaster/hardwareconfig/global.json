@@ -8,6 +8,7 @@
 			{
 				"enable":"{targetGroup}a{targetID}02FFFFFF\n",
 				"disable":"{targetGroup}a{targetID}02000000\n",
+				"hit":"",
 				"destroy":""
 			}
 		},
@@ -17,6 +18,7 @@
 			{
 				"enable":"",
 				"disable":"",
+				"hit":"",
 				"destroy":""
 			}
 		},
@@ -26,6 +28,7 @@
 			{
 				"enable":"",
 				"disable":"",
+				"hit":"",
 				"destroy":""
 			}
 		}

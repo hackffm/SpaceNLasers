@@ -10,6 +10,7 @@ class Target(lib.Target.Target):
 		self.setColor("0000FF")
 	
 	def Hit(self,event):
+		lib.Target.Target.Hit(self,event)
 		print("dummy target Hit()")
 		print(event)
 		self.setColor("00FF00")

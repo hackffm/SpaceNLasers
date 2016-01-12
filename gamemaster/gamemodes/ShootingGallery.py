@@ -26,6 +26,7 @@ class Target(lib.Target.Target):
 		self.Effect("disable")
 	
 	def Hit(self,event):
+		lib.Target.Target.Hit(self,event)
 		if self.active:
 			print("hit!")
 			self.gameModeMaster.gameEngine.PlaySoundAndWait("targetDestroyed",0)
