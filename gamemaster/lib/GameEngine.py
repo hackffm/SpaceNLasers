@@ -99,7 +99,9 @@ class GameEngine:
 					gamemode_classes["targetClass"](hwTarget,self.gamemodeMaster)
 					for hwTarget in self.hardwareTargets
 				}
+			self._disableAllTargets(targets)
 			self.gamemodeMaster.SetTargets(targets)
+			self.gamemodeMaster.Init()
 
 			if not lobbymode:
 				self._gameStart()
@@ -145,11 +147,10 @@ class GameEngine:
 					self.beamer.SendGameInfo(info)
 
 				# send target buffer
-				for target in targets:
-					for buf in target.CollectSerialBuffer():
-						self.gameHotLine.Ping(buf)
+				self._sendTargetBuffers(targets)
 
 		except gamemodes.GameOverException:
+			self._disableAllTargets(targets)
 			self.menugod.GameOver()
 			self.beamer.GameOver()
 			self.Effect("gameOver")
@@ -158,8 +159,8 @@ class GameEngine:
 			print("GAME OVER!")
 
 		except AbortGameException:
+			self._disableAllTargets(targets)
 			print("aborting game due to command from menugod")
-		self._disableAllTargets(targets)
 		CountdownTimer.Clear()
 	
 	## Play a predefined sound and sleep
@@ -168,6 +169,12 @@ class GameEngine:
 	def PlaySoundAndWait(self,sound,wait):
 		self.sounds[sound].play()
 		time.sleep(wait)
+	
+	def _sendTargetBuffers(self,targets):
+		for target in targets:
+			for buf in target.CollectSerialBuffer():
+				self.gameHotLine.Ping(buf)
+
 	
 	def _turnOnLaserWeapons(self):
 		for weapon in self.weapons:
@@ -185,6 +192,7 @@ class GameEngine:
 	def _disableAllTargets(self,targets):
 		for target in targets:
 			target.Effect("disable")
+		self._sendTargetBuffers(targets)
 	
 	## Start shooting sequence (disable lights, send laser info)
 	# Hit data evaluation is done in _pollTargetHits to allow for delay in the targets

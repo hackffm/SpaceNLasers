@@ -8,6 +8,9 @@ class Gamemode:
 		self.durationLeft=duration
 		self.gameEngine=gameEngine
 	
+	def Init(self):
+		pass
+	
 	def Update(self,dt):
 		if self.durationLeft is not None:
 			self.durationLeft-=dt
