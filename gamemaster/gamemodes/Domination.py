@@ -2,6 +2,8 @@ import lib.Target
 import gamemodes
 import json
 from lib.CountdownTimer import CountdownTimer
+import random
+from lib.Player import Player
 
 class Target(lib.Target.Target):
 	def __init__(self,hwTarget,gameModeMaster):
@@ -10,12 +12,18 @@ class Target(lib.Target.Target):
 		self.protected=False
 		self.owner=None
 		self.gameModeMaster=gameModeMaster
-		self.setColor("FFFFFF")
+		self.active=False
+		self.Effect("disable")
+	
+	def Activate(self):
+		self.Effect("enable")
+		self.active=True
 	
 	def Hit(self,event):
-		lib.Target.Target.Hit(self,event)
-		if not self.protected:
-			self.setOwner(event.weapon.player)
+		if self.active:
+			lib.Target.Target.Hit(self,event)
+			if not self.protected:
+				self.setOwner(event.weapon.player)
 
 	def Update(self,dt):
 		self.protectionTimer.Update(dt)
@@ -42,6 +50,33 @@ class Gamemode(gamemodes.Gamemode):
 		self.occupiedArea={p:0.0 for p in players}
 		with open("gamemodes/Domination.json","r") as fp:
 			self.conf=json.load(fp)
+		CountdownTimer.Add(self._activateSimpleTarget, self.conf["newTargetTime"], loop=True)
+		CountdownTimer.Add(self._activateVirobis, self.conf["buildupDuration"])
+		CountdownTimer.Add(self._startEndgame, self.conf["endgameTime"])
+		self.mode="buildup"
+		self.alienFaction=Player("alien",self.conf["alienFactionColor"])
+		self.occupiedArea[self.alienFaction]=0.0
+	
+	def Init(self):
+		for i in range(self.conf["startupTargetCount"]):
+			self._activateSimpleTarget()
+	
+	def _activateSimpleTarget(self):
+		inactive_simple_targets=[target for target in self.targets if not target.active and target.hardwareTarget.type["group"]=="simple"]
+		if len(inactive_simple_targets)>0:
+			target=random.choice(inactive_simple_targets)
+			target.Activate()
+	
+	def _activateVirobis(self):
+		for target in self.targets:
+			if target.hardwareTarget.type["group"]=="extra":
+				target.Activate()	
+	def _startEndgame(self):
+		ms=self._getMothership()
+		ms.Activate()
+		ms.setOwner(self.alienFaction)
+		CountdownTimer.Add(self._mothershipFire,self.conf["mothershipReload"],loop=True)
+
 
 	def getGameInfo(self,additionalConsoleOutput=""):
 		myConsoleOutput=""
@@ -56,7 +91,15 @@ class Gamemode(gamemodes.Gamemode):
 		gamemodes.Gamemode.Update(self,dt)
 		for p in self.players:
 			self.scores[p]+=self.occupiedArea[p]*dt*self.conf["scoreFactor"]/self.duration
+	
+	def _getMothership(self):
+		return [t for t in self.targets if t.hardwareTarget.type["group"]=="mothership"][0]
 
+	
+	def _mothershipFire(self):
+		target=random.choice([t for t in self.targets if t.hardwareTarget.type["group"]=="simple"])
+		if not target.protected:
+			target.setOwner(self._getMothership().owner)
 
 
 def GetClasses():

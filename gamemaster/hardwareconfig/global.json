@@ -4,6 +4,7 @@
 	{
 		"simple":
 		{
+			"group":"simple",
 			"effects":
 			{
 				"enable":"{targetGroup}a{targetID}02FFFFFF\n",
@@ -14,20 +15,22 @@
 		},
 		"mothership":
 		{
+			"group":"mothership",
 			"effects":
 			{
-				"enable":"",
-				"disable":"",
+				"enable":"{targetGroup}a{targetID}02FFFFFF\n",
+				"disable":"{targetGroup}a{targetID}02000000\n",
 				"hit":"",
 				"destroy":""
 			}
 		},
 		"virobi":
 		{
+			"group":"extra",
 			"effects":
 			{
-				"enable":"",
-				"disable":"",
+				"enable":"{targetGroup}a{targetID}02FFFFFF\n",
+				"disable":"{targetGroup}a{targetID}02000000\n",
 				"hit":"",
 				"destroy":""
 			}
