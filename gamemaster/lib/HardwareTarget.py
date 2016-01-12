@@ -3,6 +3,7 @@ class HardwareTarget:
 		self.groupID=groupID
 		self.id=hwdef["id"]
 		self.zIndex=hwdef["zIndex"]
+		self.scoreValue=hwdef["scoreValue"]
 		self.type=globalConfig["targetTypes"][hwdef["type"]]
 	
 	def getEffect(self,name,*args):

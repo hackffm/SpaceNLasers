@@ -25,9 +25,9 @@ class Target(lib.Target.Target):
 	def setOwner(self,player):
 		self.setColor(player.color)
 		if self.owner is not None:
-			self.gameModeMaster.numOccupiedTargets[self.owner]-=1
+			self.gameModeMaster.occupiedArea[self.owner]-=self.hardwareTarget.scoreValue
 		if player is not None:
-			self.gameModeMaster.numOccupiedTargets[player]+=1
+			self.gameModeMaster.occupiedArea[player]+=self.hardwareTarget.scoreValue
 			self.gameModeMaster.gameEngine.PlaySoundAndWait("targetDestroyed",0)
 		self.protectionTimer=CountdownTimer(self._unprotect, self.gameModeMaster.conf["targetProtectionDuration"])
 		self.protected=True
@@ -38,7 +38,7 @@ class Gamemode(gamemodes.Gamemode):
 		gamemodes.Gamemode.__init__(self,gameInfo["duration"],gameEngine)
 		self.players=players
 		self.scores={p:0.0 for p in players}
-		self.numOccupiedTargets={p:0 for p in players}
+		self.occupiedArea={p:0.0 for p in players}
 		with open("gamemodes/Domination.json","r") as fp:
 			self.conf=json.load(fp)
 
@@ -54,7 +54,7 @@ class Gamemode(gamemodes.Gamemode):
 	def Update(self,dt):
 		gamemodes.Gamemode.Update(self,dt)
 		for p in self.players:
-			self.scores[p]+=self.numOccupiedTargets[p]*dt*self.conf["scoreFactor"]/self.duration
+			self.scores[p]+=self.occupiedArea[p]*dt*self.conf["scoreFactor"]/self.duration
 
 
 

@@ -9,7 +9,6 @@ class Target(lib.Target.Target):
 		lib.Target.Target.__init__(self,hwTarget)
 		self.gameModeMaster=gameModeMaster
 
-		self.value=10.0 # how many points this target ist worth
 		self.timeout=CountdownTimer(lambda: None, 0.0)
 
 		self.Deactivate()
@@ -34,7 +33,7 @@ class Target(lib.Target.Target):
 			self.owner=event.weapon.player
 			self.setColor(event.weapon.player.color)
 			self.timeout=CountdownTimer(self.Deactivate, self.gameModeMaster.conf["owningTime"])
-			self.gameModeMaster.AddPoint(event.weapon.player, self.value)
+			self.gameModeMaster.AddPoint(event.weapon.player, self.hardwareTarget.scoreValue)
 	
 	def Update(self,dt):
 		self.timeout.Update(dt)
