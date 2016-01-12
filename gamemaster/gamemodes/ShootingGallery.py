@@ -29,6 +29,7 @@ class Target(lib.Target.Target):
 	def Hit(self,event):
 		if self.active:
 			print("hit!")
+			self.gameModeMaster.gameEngine.PlaySoundAndWait("targetDestroyed",0)
 			self.active=False
 			self.owner=event.weapon.player
 			self.setColor(event.weapon.player.color)

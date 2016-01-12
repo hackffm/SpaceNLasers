@@ -20,24 +20,25 @@ parser.add_argument("--beamer",type=str, nargs="?", default=None, const="", help
 args=parser.parse_args()
 
 # init audio mixer
-os.system("amixer cset numid=3 1")
-os.system("amixer set PCM -- 1000")
+if False:
+	os.system("amixer cset numid=3 1")
+	os.system("amixer set PCM -- 1000")
 
 pygame.mixer.init(frequency=22050, size=-16, channels=2, buffer=64)
 pygame.mixer.set_num_channels(20)
 
 # load audio files in list
-sounds = {
-"mixer": pygame.mixer,
-"introSound": pygame.mixer.Sound("sounds/intro.wav"), 
-"gameOverSound": pygame.mixer.Sound("sounds/gameover.wav"), 
-"gameOverJingleSound": pygame.mixer.Sound("sounds/gameoverjingle.wav"), 
-"boing8bitSound": pygame.mixer.Sound("sounds/boing8bit.wav"), 
-"musicSound": pygame.mixer.Sound("sounds/music.wav"), 
-"startSound": pygame.mixer.Sound("sounds/start.wav"), 
-"laserblasterSound":pygame.mixer.Sound("sounds/laser1.wav"), 
-"explosionSound":pygame.mixer.Sound("sounds/explo_robot_down.wav")
+soundFiles = {
+"intro": "intro.wav", 
+"gameOver": "gameover.wav",
+"gameOverJingle": "gameoverjingle.wav",
+"boing8bit": "boing8bit.wav",
+"music": "music.wav",
+"start": "start.wav",
+"laserblaster":"laser1.wav",
+"targetDestroyed":"explo_robot_down.wav"
 }
+sounds={k:pygame.mixer.Sound("sounds/{soundtheme}/{filename}".format(soundtheme="default",filename=v)) for k,v in soundFiles.iteritems()}
 
 # init serial comunication
 gameHotLine = SerialHalfDuplex('/dev/ttyUSB0',38400)

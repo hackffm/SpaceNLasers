@@ -149,6 +149,8 @@ class GameEngine:
 			self.menugod.GameOver()
 			self.beamer.GameOver()
 			self.Effect("gameOver")
+			self.sounds["music"].stop()
+			self.PlaySoundAndWait("gameOver",2.0)
 			print("GAME OVER!")
 
 		except AbortGameException:
@@ -168,9 +170,9 @@ class GameEngine:
 	## Game start sequence with lots of effects
 	def _gameStart(self):
 		self.Effect("gameIntro")
-		self.PlaySoundAndWait("boing8bitSound",1.5)
-		self.PlaySoundAndWait("startSound",0.0)
-		self.PlaySoundAndWait("musicSound",0.0)
+		self.PlaySoundAndWait("boing8bit",1.5)
+		self.PlaySoundAndWait("start",10.0)
+		self.sounds["music"].play(loops=-1)
 
 		self._turnOnLaserWeapons()
 	
@@ -193,7 +195,7 @@ class GameEngine:
 		time.sleep(0.01)
 		# end: laser shoot
 
-		self.sounds["laserblasterSound"].play()
+		self.sounds["laserblaster"].play()
 	
 	## Retrieve hit data from all targets and start Target-specific processing
 	# \param targets list of Target instances

@@ -28,6 +28,7 @@ class Target(lib.Target.Target):
 			self.gameModeMaster.numOccupiedTargets[self.owner]-=1
 		if player is not None:
 			self.gameModeMaster.numOccupiedTargets[player]+=1
+			self.gameModeMaster.gameEngine.PlaySoundAndWait("targetDestroyed",0)
 		self.protectionTimer=CountdownTimer(self._unprotect, self.gameModeMaster.conf["targetProtectionDuration"])
 		self.protected=True
 		self.owner=player
