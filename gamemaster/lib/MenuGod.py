@@ -59,10 +59,10 @@ import gamemodes
 DISPLAY_PORT_NUMBER = 5000
 
 ## Exception which is thrown if fully received message is available during game (all message transmissions mean "abort")
-class AbortGameException(Exception):
+class AbortGameException(BaseException):
 	pass
 
-class FakeMenuGod:
+class FakeMenuGod(object):
 	def __init__(self):
 		pass
 	def CheckNewGameStart(self):
@@ -97,7 +97,7 @@ class FakeMenuGod:
 #		# cleanup game
 #		return
 # \endcode
-class MenuGod:
+class MenuGod(object):
 	## Initialises state and sends player information to display.
 	# \param targetHostname IP of server to connect to. Use empty string to use server-mode
 	def __init__(self, targetHostname):
@@ -107,19 +107,19 @@ class MenuGod:
 
 		# init network
 		self.targetHostname = targetHostname
-		self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		if targetHostname is "": # server mode
 			print("server mode: waiting for connection...")
-			self.s.bind(("", DISPLAY_PORT_NUMBER))
-			self.s.listen(1)
-			conn, addr = self.s.accept()
+			s.bind(("", DISPLAY_PORT_NUMBER))
+			s.listen(1)
+			conn, addr = s.accept()
 			print("connection from {}".format(addr))
 			self.connection = conn
 		else:
 			print("connecting to {}...".format(targetHostname))
-			self.s.connect((targetHostname, DISPLAY_PORT_NUMBER))
+			s.connect((targetHostname, DISPLAY_PORT_NUMBER))
 			print("connected")
-			self.connection = self.s
+			self.connection = s
 		self.connection.setblocking(0) # non-blocking mode
 
 		# send capabilities

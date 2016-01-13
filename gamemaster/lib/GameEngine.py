@@ -11,7 +11,7 @@ from Weapon import Weapon
 from CountdownTimer import CountdownTimer
 import gamemodes
 
-class GameEngine:
+class GameEngine(object):
 	##
 	# \param gameHotLine SerialHalfDuplex object for bus communication
 	# \param sounds dictionary which maps sound names on sound files

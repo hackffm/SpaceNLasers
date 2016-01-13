@@ -1,40 +1,40 @@
 import serial          
 
 
-class SerialHalfDuplex:
-	def __init__(self,device,baud):
-		self.__device = device
-		self.__baud = baud
+class SerialHalfDuplex(object):
+	def __init__(self, device, baud):
+		self._device = device
+		self._baud = baud
 		self.Init()
 
 	def Init(self):
-		print(self.__device)
-		print(self.__baud)
-		self.__serial = serial.Serial(self.__device, self.__baud,timeout=0.1) # Requires device/baud and returns an ID
+		print(self._device)
+		print(self._baud)
+		self._serial = serial.Serial(self._device, self._baud, timeout=0.1) # Requires device/baud and returns an ID
 
-	def SetBuffer(self,buffer):
+	def SetBuffer(self, buf):
 		#print("set buffer={}".format(buffer))
-		self.__serialBuffer = buffer
+		self._serialBuffer = buf
 
 	def WriteBuffer(self):
 		# print(self.__serialBuffer)
 		# wiringpi2.digitalWrite(1,1) # set txn pin to write mode
 		#print("write buffer={}".format(self.__serialBuffer))
-		self.__serial.write(self.__serialBuffer) # sending buffer
-		self.__serial.flush()
+		self._serial.write(self._serialBuffer) # sending buffer
+		self._serial.flush()
 		#wiringpi2.digitalWrite(1,0) # set txn pin back to read mode
 
-	def Ping(self,ping):
+	def Ping(self, ping):
 		self.SetBuffer(ping)
 		self.WriteBuffer()
 
-	def PingPong(self,ping):
+	def PingPong(self, ping):
 		self.SetBuffer(ping)
 		self.WriteBuffer()
-		return self.__serial.readline()
+		return self._serial.readline()
 
 	def ReadLine(self):
-		return self.__serial.readline()
+		return self._serial.readline()
 
 	def Close(self):
-		self.__serial.close()
+		self._serial.close()

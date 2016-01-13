@@ -7,7 +7,7 @@ import Lobby
 class GameOverException(BaseException):
 	pass
 
-class Gamemode:
+class Gamemode(object):
 	def __init__(self, duration, gameEngine):
 		self.duration = duration
 		self.durationLeft = duration
