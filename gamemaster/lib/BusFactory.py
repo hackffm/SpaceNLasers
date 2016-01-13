@@ -10,9 +10,6 @@ def shootNow():
 def getWeaponButtons(weaponLetter):
 	return "{}b\n".format(weaponLetter)
 
-def readyToShoot(weaponLetter):
-	return "s{}\n".format(weaponLetter)
-
 def startShootingSequence():
 	return "S\n"
 
