@@ -1,7 +1,7 @@
 import BusFactory
 
 ## Base class for gamemode target AIs
-class Target:
+class Target(object):
 	def __init__(self, hwTarget):
 		self.hardwareTarget = hwTarget
 		self.buffer = []
@@ -22,8 +22,8 @@ class Target:
 		raise NotImplementedError()
 
 	## Write new color command for target to the target queue
-	def setColor(self, color):
-		self.buffer.append(BusFactory.setTargetColor(self.hardwareTarget.groupID, self.hardwareTarget.id, color))
+	def SetColor(self, color):
+		self.buffer.append(BusFactory.SetTargetColor(self.hardwareTarget.groupID, self.hardwareTarget.id, color))
 
 	## Put effect to the target queue
 	def Effect(self, name, *args):

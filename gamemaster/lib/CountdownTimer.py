@@ -1,6 +1,6 @@
 
 ## Class to manage delayed actions similar to setTimeout in JS
-class CountdownTimer:
+class CountdownTimer(object):
 	_allTimers = []
 	def __init__(self, action, time, loop=False):
 		assert time >= 0

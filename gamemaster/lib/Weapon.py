@@ -10,7 +10,7 @@ class Weapon(object):
 
 	## parse state from bus
 	def SetCurrentState(self, stateCode):
-		buttonState = int(eval("0x"+stateCode[0:2]))
+		buttonState = int(stateCode[0:2], 16)
 		self.primaryPressed = bool(buttonState & BusFactory.Constants.WEAPON_PRIMARY_BTN)
 		if not self.primaryPressed:
 			self.primaryWasReleased = True

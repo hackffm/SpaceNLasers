@@ -1,4 +1,4 @@
-class Event:
+class Event(object):
 	def __init__(self, time):
 		self.time = time
 

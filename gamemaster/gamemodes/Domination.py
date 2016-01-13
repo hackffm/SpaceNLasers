@@ -33,7 +33,7 @@ class Target(lib.Target.Target):
 		self.protected = False
 
 	def SetOwner(self, player):
-		self.setColor(player.color)
+		self.SetColor(player.color)
 		if self.owner is not None:
 			self.gameModeMaster.occupiedArea[self.owner] -= self.hardwareTarget.scoreValue
 		if player is not None:

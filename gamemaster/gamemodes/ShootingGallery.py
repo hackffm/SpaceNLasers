@@ -33,7 +33,7 @@ class Target(lib.Target.Target):
 			self.gameModeMaster.gameEngine.PlaySoundAndWait("targetDestroyed",0)
 			self.active = False
 			self.owner = event.weapon.player
-			self.setColor(event.weapon.player.color)
+			self.SetColor(event.weapon.player.color)
 			self.timeout = CountdownTimer(self.Deactivate, self.gameModeMaster.conf["owningTime"])
 			self.gameModeMaster.AddPoint(event.weapon.player, self.hardwareTarget.scoreValue)
 

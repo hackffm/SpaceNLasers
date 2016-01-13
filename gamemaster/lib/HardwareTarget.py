@@ -1,4 +1,4 @@
-class HardwareTarget:
+class HardwareTarget(object):
 	def __init__(self, groupID, hwdef, globalConfig):
 		self.groupID = groupID
 		self.id = hwdef["id"]

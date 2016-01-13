@@ -7,13 +7,13 @@ class Target(lib.Target.Target):
 	def __init__(self, hwTarget, gameModeMaster):
 		lib.Target.Target.__init__(self, hwTarget)
 		print(self.__dict__)
-		self.setColor("0000FF")
+		self.SetColor("0000FF")
 
 	def Hit(self, event):
 		lib.Target.Target.Hit(self, event)
 		print("dummy target Hit()")
 		print(event)
-		self.setColor("00FF00")
+		self.SetColor("00FF00")
 
 	def Update(self, dt):
 		"""Do game mode specific stuff."""

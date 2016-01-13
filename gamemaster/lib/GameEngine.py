@@ -121,7 +121,7 @@ class GameEngine(object):
 
 				# weapons
 				for weapon in self.weapons:
-					code = self.gameHotLine.PingPong(BusFactory.getWeaponButtons(weapon.code))
+					code = self.gameHotLine.PingPong(BusFactory.GetWeaponButtons(weapon.code))
 					weapon.SetCurrentState(code)
 					weapon.Update(dt)
 
@@ -176,7 +176,7 @@ class GameEngine(object):
 
 	def _TurnOnLaserWeapons(self):
 		for weapon in self.weapons:
-			self.gameHotLine.Ping(BusFactory.enableWeapon(weapon.code))
+			self.gameHotLine.Ping(BusFactory.EnableWeapon(weapon.code))
 
 	## Game start sequence with lots of effects
 	def _GameStart(self):
@@ -199,15 +199,15 @@ class GameEngine(object):
 		for weapon in self.weapons:
 			if weapon.ShootsThisFrame():
 				shootingCodes += weapon.code
-				self.gameHotLine.Ping(BusFactory.rumbleShootAnimation(weapon.code))
-				self.gameHotLine.Ping(BusFactory.doSomethingAnimationLikeOnWeapon(weapon.code))
+				self.gameHotLine.Ping(BusFactory.RumbleShootAnimation(weapon.code))
+				self.gameHotLine.Ping(BusFactory.DoSomethingAnimationLikeOnWeapon(weapon.code))
 		if len(shootingCodes) == 0:
 			return
 
 		# begin: laser shoot
-		self.gameHotLine.Ping(BusFactory.readyToShoot(shootingCodes))
+		self.gameHotLine.Ping(BusFactory.ReadyToShoot(shootingCodes))
 		time.sleep(0.01)
-		self.gameHotLine.PingPong(BusFactory.startShootingSequence())
+		self.gameHotLine.PingPong(BusFactory.StartShootingSequence())
 		time.sleep(0.01)
 		# end: laser shoot
 
@@ -217,9 +217,9 @@ class GameEngine(object):
 	# \param targets list of Target instances
 	def _PollTargetHits(self, targets):
 		for targetGroupID in self.targetGroupIDs:
-			hitRaw = self.gameHotLine.PingPong(BusFactory.pollTargetState(targetGroupID)) # get target status
+			hitRaw = self.gameHotLine.PingPong(BusFactory.PollTargetState(targetGroupID)) # get target status
 			for weapon in self.weapons:
-				hitList = [str(i) for i in range(6) if int(eval("0x"+hitRaw[i*2:(i+1)*2])) == weapon.shotCode]
+				hitList = [str(i) for i in range(6) if int(hitRaw[i*2:(i+1)*2], 16) == weapon.shotCode]
 				for targetID in hitList:
 					targetObj = [t for t in targets if t.hardwareTarget.id == targetID and t.hardwareTarget.groupID == targetGroupID][0]
 					event = Events.TargetHitEvent(time.time(), weapon, targetObj)
