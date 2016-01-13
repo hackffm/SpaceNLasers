@@ -16,7 +16,7 @@ class Gamemode(object):
 	def Init(self):
 		pass
 
-	def Update(self,dt):
+	def Update(self, dt):
 		if self.durationLeft is not None:
 			self.durationLeft -= dt
 			if self.durationLeft <= 0:

@@ -30,7 +30,7 @@ class Target(lib.Target.Target):
 		lib.Target.Target.Hit(self, event)
 		if self.active:
 			print("hit!")
-			self.gameModeMaster.gameEngine.PlaySoundAndWait("targetDestroyed",0)
+			self.gameModeMaster.gameEngine.PlaySoundAndWait("targetDestroyed", 0)
 			self.active = False
 			self.owner = event.weapon.player
 			self.SetColor(event.weapon.player.color)

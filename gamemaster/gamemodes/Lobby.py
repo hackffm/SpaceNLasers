@@ -2,7 +2,7 @@ import random
 
 import gamemodes
 from lib.CountdownTimer import CountdownTimer
-from lib.hexstring import myhex
+from lib.hexstring import Myhex
 import lib.Target
 
 ## Target which changes color randomly
@@ -22,7 +22,7 @@ class Target(lib.Target.Target):
 		r = random.randint(0, 255)
 		g = random.randint(0, 255)
 		b = random.randint(0, 255)
-		self.SetColor(myhex(r)+myhex(g)+myhex(b))
+		self.SetColor(Myhex(r)+Myhex(g)+Myhex(b))
 		self.countdownTimer = CountdownTimer(self._ChangeColor, random.uniform(0.8, 1.2))
 
 
