@@ -12,49 +12,54 @@ import gamemodes
 # g->m gameover: -
 # gamemaster goes to lobby mode
 
-# capabilities
-"""
-"capabilities": {
-	"gamemodes":["domination"]
-}
-"""
-
-# gamestart
-"""
-"gamestart": {
-	"players": [
-		{"name":"Player1","color":"00FF00"},
-		{"name":"Player2","color":"FF0000"}
-	],
-	"game": {"mode":"domination","duration":60}
-}
-"""
-
-# gameinfo
-"""
-"gameinfo":{
-	"scores":{
-		"score": {"type":"int","values":[200,182]},
-		"area": {"type":"bar","values":[0.3,0.25]}
-	},
-	"consoleoutput":{"blablabla"}
-}
-"""
-
-# abort (any m->g communication aborts!)
-"""
-"abort":0
-"""
-
-# gameover
-"""
-"gameover":0
-"""
-
-# protocol or state machine error
-"""
-"error":"error text"
-"""
+## \defgroup menugodMessages MenuGod messages
+# Messages sent between the gamemaster and a menugod instance
+# \{
+# \page capabilities Capabilities of this GameMaster
+# \code
+# "capabilities": {
+# 	"gamemodes":["domination"]
+# }
+# \endcode
+#
+# \page gamestart Start a game
+# \code
+# "gamestart": {
+# 	"players": [
+# 		{"name":"Player1","color":"00FF00"},
+# 		{"name":"Player2","color":"FF0000"}
+# 	],
+# 	"game": {"mode":"domination","duration":60}
+# }
+# \endcode
+#
+# \page gameinfo Continuous information about current game state
+# \code
+# "gameinfo":{
+# 	"scores":{
+# 		"score": {"type":"int","values":[200,182]},
+# 		"area": {"type":"bar","values":[0.3,0.25]}
+# 	},
+# 	"consoleoutput":{"blablabla"}
+# }
+# \endcode
+#
+# \page abort Abort a game
+# \w any menugod->gamemaster communication aborts!
+# \code
+# "abort":0
+# \endcode
+#
+# \page gameover The game is over. Use last \ref gamestart data as score
+# \code
+# "gameover":0
+# \endcode
+#
+# \page error protocol or state machine error
+# \code
+# "error":"error text"
+# \endcode
+# \}
 
 DISPLAY_PORT_NUMBER = 5000
 
