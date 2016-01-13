@@ -9,7 +9,6 @@ import os
 
 #########################################
 # game class import 
-from lib.GameWorld import GameWorld
 from lib.SerialHalfDuplex import SerialHalfDuplex
 from lib.LaserWeapon import LaserWeapon
 
@@ -22,7 +21,6 @@ gameHotLine = SerialHalfDuplex('/dev/ttyUSB0',38400)
 
 #########################################
 # init game world class
-gameWorld = GameWorld() # create game world
 
 
 gameHotLine.Ping('AA10200\n')
@@ -66,10 +64,6 @@ print gameHotLine.PingPong('2t1\n') # debug target group
 print gameHotLine.PingPong('3t1\n') # debug target group
 print gameHotLine.PingPong('4t1\n') # debug target group
 print 'debug target stop';
-
-for tg in gameWorld.targetGroupList:
-  for tar in tg.targetsList:
-    print 'tg: '+tg.targetGroupID+' tar: '+tar.targetID  
 
 
 #for x in ["1","2","3","4"]:
