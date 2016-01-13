@@ -132,9 +132,9 @@ class MenuGod:
 		msg = self._GetSpecificMessage("gamestart")
 		if msg:
 			try:
-				if msg["game"]["mode"] not in gamemodes.available_modes.keys():
+				if msg["game"]["mode"] not in gamemodes.availableModes.keys():
 
-					raise KeyError("I don't know game mode {}. I only know these game modes: {}".format(msg["game"]["mode"], gamemodes.available_modes.keys()))
+					raise KeyError("I don't know game mode {}. I only know these game modes: {}".format(msg["game"]["mode"], gamemodes.availableModes.keys()))
 
 				self.state = "game"
 			except KeyError as e:
@@ -150,7 +150,7 @@ class MenuGod:
 
 	## Send available game modes etc.
 	def _SendCapabilities(self):
-		self._SendJson({"capabilities":{"gamemodes":gamemodes.available_modes.keys()}})
+		self._SendJson({"capabilities":{"gamemodes":gamemodes.availableModes.keys()}})
 
 	## Try to get specific message and throw error is other messages are incoming
 	# \returns message if available, None if not

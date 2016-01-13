@@ -79,7 +79,7 @@ class GameEngine:
 	def RunGame(self, gamestart, lobbymode=False):
 		try:
 			print("reading gamemode {}".format(gamestart["game"]["mode"]))
-			gamemodeClasses = gamemodes.available_modes[gamestart["game"]["mode"]]
+			gamemodeClasses = gamemodes.availableModes[gamestart["game"]["mode"]]
 
 			print("creating players...")
 			players = [Player(p["name"], p["color"]) for p in gamestart["players"]]
@@ -135,7 +135,7 @@ class GameEngine:
 				self._PollTargetHits(targets)
 
 				# menugod communication
-				info = gamemodeMaster.getGameInfo()
+				info = gamemodeMaster.GetGameInfo()
 				if lobbymode:
 					gamestart = self.menugod.CheckNewGameStart()
 					if gamestart:
