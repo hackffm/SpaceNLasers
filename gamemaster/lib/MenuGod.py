@@ -203,32 +203,3 @@ class MenuGod:
 		j = json.dumps(data)+"\0"
 		self.connection.send(j)
 
-if __name__=="__main__":
-	import time
-	m = MenuGod("10.0.0.158")
-
-	if False: # skip gamestart
-		print("skipping waiting for gamestart")
-		m.state = "game"
-	else:
-		while(True):
-			gamestart = m.CheckNewGameStart()
-			if gamestart is not None:
-				print("starting game with info: {}".format(gamestart))
-				break
-	try:
-		for i in range(10):
-			info = {
-				"scores":{
-					"score": {"type":"int", "values": [i, i*3]},
-					"area": {"type":"bar", "values": [0.0, 0.0]}
-				},
-				"consoleoutput":"this is transmission number {}".format(i)
-			}
-			m.SendGameInfo(info)
-			time.sleep(1.0)
-	except AbortGameException:
-		print("game aborted")
-	print("sending gameover...")
-	m.GameOver()
-	print("end")
