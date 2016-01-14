@@ -37,20 +37,20 @@ def MainMenu():
 
 def Ping():
 	code = raw_input("command:")
-	ExecuteCode(code)
+	ExecuteCode(code+"\n")
 
 def PingPong():
 	code = raw_input("command:")
-	result=ExecuteCode(code, waitForReturn=True)
+	result=ExecuteCode(code+"\n", waitForReturn=True)
 	d.msgbox(result)
 
 def ExecuteCode(code, waitForReturn=False):
 	print(code)
 	#return code
 	if waitForReturn:
-		return gameHotLine.PingPong(code)
+		return gameHotLine.PingPong(str(code))
 	else:
-		gameHotLine.Ping(code)
+		gameHotLine.Ping(str(code))
 
 def GlobalCode():
 	effects = hwconfig["globalEffects"]
