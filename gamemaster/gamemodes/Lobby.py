@@ -1,6 +1,6 @@
 import random
 
-import gamemodes
+import baseclasses
 from lib.CountdownTimer import CountdownTimer
 from lib.hexstring import Myhex
 import lib.Target
@@ -26,7 +26,7 @@ class Target(lib.Target.Target):
 		self.countdownTimer = CountdownTimer(self._ChangeColor, random.uniform(0.8, 1.2))
 
 
-class Gamemode(gamemodes.Gamemode):
+class Gamemode(baseclasses.Gamemode):
 	def __init__(self, players, gamestartInfo, gameEngine):
 		pass
 

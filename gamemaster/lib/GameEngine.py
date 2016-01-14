@@ -147,7 +147,7 @@ class GameEngine(object):
 				# send target buffer
 				self._SendTargetBuffers(targets)
 
-		except gamemodes.GameOverException:
+		except gamemodes.baseclasses.GameOverException:
 			self._DisableAllTargets(targets)
 			self.menugod.GameOver()
 			self.beamer.GameOver()

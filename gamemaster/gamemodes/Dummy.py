@@ -1,4 +1,4 @@
-import gamemodes
+import baseclasses
 import lib.Target
 from lib.CountdownTimer import CountdownTimer
 
@@ -19,9 +19,9 @@ class Target(lib.Target.Target):
 		"""Do game mode specific stuff."""
 		pass
 
-class Gamemode(gamemodes.Gamemode):
+class Gamemode(baseclasses.Gamemode):
 	def __init__(self, players, gameInfo, gameEngine):
-		gamemodes.Gamemode.__init__(self, gameInfo["duration"], gameEngine)
+		baseclasses.Gamemode.__init__(self, gameInfo["duration"], gameEngine)
 		self.players = players
 		self.effectCountdown = CountdownTimer(lambda: self.gameEngine.Effect("makeTargetRed"), 2.0)
 
@@ -35,7 +35,7 @@ class Gamemode(gamemodes.Gamemode):
 		return targets
 
 	def Update(self, dt):
-		gamemodes.Gamemode.Update(self, dt)
+		baseclasses.Gamemode.Update(self, dt)
 		self.effectCountdown.Update(dt)
 
 def GetClasses():

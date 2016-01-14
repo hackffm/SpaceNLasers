@@ -1,7 +1,7 @@
 import json
 import random
 
-import gamemodes
+import baseclasses
 import lib.Target
 from lib.CountdownTimer import CountdownTimer
 from lib.Player import Player
@@ -43,9 +43,9 @@ class Target(lib.Target.Target):
 		self.protected = True
 		self.owner = player
 
-class Gamemode(gamemodes.Gamemode):
+class Gamemode(baseclasses.Gamemode):
 	def __init__(self, players, gameInfo, gameEngine):
-		gamemodes.Gamemode.__init__(self, gameInfo["duration"], gameEngine)
+		baseclasses.Gamemode.__init__(self, gameInfo["duration"], gameEngine)
 		self.players = players
 		self.scores = {p:0.0 for p in players}
 		self.occupiedArea = {p:0.0 for p in players}
@@ -90,7 +90,7 @@ class Gamemode(gamemodes.Gamemode):
 		return targets
 
 	def Update(self, dt):
-		gamemodes.Gamemode.Update(self, dt)
+		baseclasses.Gamemode.Update(self, dt)
 		for player in self.players:
 			self.scores[player] += self.occupiedArea[player]*dt*self.conf["scoreFactor"]/self.duration
 
