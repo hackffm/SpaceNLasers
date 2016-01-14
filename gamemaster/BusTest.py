@@ -53,14 +53,20 @@ def ExecuteCode(code, waitForReturn=False):
 		gameHotLine.Ping(str(code))
 
 def GlobalCode():
-	effects = hwconfig["globalEffects"]
-	Menu("Global effect", options=[(name, lambda: ExecuteCode(code)) for name, code in effects.iteritems()])
+	while(True):
+		try:
+			effects = hwconfig["globalEffects"]
+			Menu("Global effect", options=[(name, lambda code=code: ExecuteCode(code)) for name, code in effects.iteritems()]) # note the code=code to fix capturing
+		except AbortException:
+			break
 
 def TargetCode():
 	while(True):
 		try:
 			effects = config["targetTypes"]["simple"]["effects"]
-			Menu("Target effect", options=[("Choose targets (currently {} selected)".format(len(selectedTargets)), ChooseTargets)]+[(name, lambda: ExecuteTargetCode(code)) for name, code in effects.iteritems()])
+			Menu("Target effect", options=
+					[("Choose targets (currently {} selected)".format(len(selectedTargets)), ChooseTargets)]+
+					[(name, lambda name=name: ExecuteTargetCode(name)) for name in effects]) # note the name=name to fix capturing
 		except AbortException:
 			break
 
@@ -76,16 +82,16 @@ def InitTargetList():
 def ChooseTargets():
 	global selectedTargets
 	choices = [(str(i), target[1], i in selectedTargets) for i, target in enumerate(targetList)]
-	print(choices)
 	code, tags = d.checklist("Select targets", choices=choices)
 	if code == d.OK:
 		selectedTargets = [int(tag) for tag in tags]
 
-def ExecuteTargetCode(code):
+def ExecuteTargetCode(effectName):
 	for index in selectedTargets:
 		target = targetList[index][0]
+		commandPattern = config["targetTypes"][target["type"]]["effects"][effectName]
 		groupID = targetList[index][2]
-		ExecuteCode(code.format(targetGroup=groupID, targetID=target["id"]))
+		ExecuteCode(commandPattern.format(targetGroup=groupID, targetID=target["id"]))
 
 InitTargetList()
 while(True):
