@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['baseclasses',['baseclasses',['../namespacegamemodes_1_1baseclasses.html',1,'gamemodes']]],
   ['domination',['Domination',['../namespacegamemodes_1_1Domination.html',1,'gamemodes']]],
   ['dummy',['Dummy',['../namespacegamemodes_1_1Dummy.html',1,'gamemodes']]],
   ['gamemaster',['GameMaster',['../namespaceGameMaster.html',1,'']]],

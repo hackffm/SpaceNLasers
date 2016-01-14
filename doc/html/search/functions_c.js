@@ -7,7 +7,7 @@ var searchData=
   ['setcurrentstate',['SetCurrentState',['../classlib_1_1Weapon_1_1Weapon.html#ae882466da93f68c3686149c9ad1d8a91',1,'lib::Weapon::Weapon']]],
   ['setowner',['SetOwner',['../classgamemodes_1_1Domination_1_1Target.html#ae13c18103c79ac3b051aefc49085a26a',1,'gamemodes::Domination::Target']]],
   ['settargetcolor',['SetTargetColor',['../namespacelib_1_1BusFactory.html#a80552a0dfd6cf4a22b01a187162b18eb',1,'lib::BusFactory']]],
-  ['settargets',['SetTargets',['../classgamemodes_1_1Gamemode.html#ad0921f854ea1979481d1b942ac49a617',1,'gamemodes::Gamemode']]],
+  ['settargets',['SetTargets',['../classgamemodes_1_1baseclasses_1_1Gamemode.html#aa639371183f8b81bc53b5b100e8291b9',1,'gamemodes::baseclasses::Gamemode']]],
   ['shootnow',['ShootNow',['../namespacelib_1_1BusFactory.html#a4e6abb68fdcc6ba71d6e969d599be5d9',1,'lib::BusFactory']]],
   ['shootsthisframe',['ShootsThisFrame',['../classlib_1_1Weapon_1_1Weapon.html#af645aab99132c338eea1adc107a04ac1',1,'lib::Weapon::Weapon']]],
   ['startshootingsequence',['StartShootingSequence',['../namespacelib_1_1BusFactory.html#a10ed8a001fdea97b7d061bbe94cf5569',1,'lib::BusFactory']]]
