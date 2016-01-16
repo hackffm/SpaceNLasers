@@ -45,7 +45,8 @@ import gamemodes
 # \endcode
 #
 # \page abort Abort a game
-# \w any menugod->gamemaster communication aborts!
+# \warning any menugod->gamemaster communication aborts!
+#
 # \code
 # "abort":0
 # \endcode

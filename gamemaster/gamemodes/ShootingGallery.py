@@ -5,6 +5,17 @@ import baseclasses
 import lib.Target
 from lib.CountdownTimer import CountdownTimer
 
+## \defgroup shootingGallery shootingGallery
+# \ingroup gamemodes
+# A simple "free for all" shoot 'em up
+# \{
+#
+# Targets are activated randomly.
+# Hitting an activated target gives a certain amount of points and disables the target again.
+# Hits are visualised by changing the target to the player color for a short time.
+#
+# \}
+
 class Target(lib.Target.Target):
 	def __init__(self, hwTarget, gameModeMaster):
 		lib.Target.Target.__init__(self, hwTarget)
