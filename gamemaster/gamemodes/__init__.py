@@ -1,6 +1,6 @@
 import Dummy
 import domination
-import ShootingGallery
+import shootingGallery
 import Lobby
 
 ## \defgroup gamemodes Gamemodes
@@ -9,6 +9,6 @@ import Lobby
 availableModes = {
 	"dummy":Dummy.GetClasses(),
 	"domination":domination.GetClasses(),
-	"shootingGallery":ShootingGallery.GetClasses(),
+	"shootingGallery":shootingGallery.GetClasses(),
 	"lobby":Lobby.GetClasses()
 	}
