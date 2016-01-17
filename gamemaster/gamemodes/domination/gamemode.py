@@ -1,14 +1,14 @@
 import random
 
-import gamemodes
+import gamemodes.baseclasses
 from config import Config
 
 from lib.Player import Player
 from lib.CountdownTimer import CountdownTimer
 
-class Gamemode(gamemodes.Gamemode):
+class Gamemode(gamemodes.baseclasses.Gamemode):
 	def __init__(self, players, gameInfo, gameEngine):
-		gamemodes.Gamemode.__init__(self, gameInfo["duration"], gameEngine)
+		gamemodes.baseclasses.Gamemode.__init__(self, gameInfo["duration"], gameEngine)
 		self.players = players
 		self.scores = {p:0.0 for p in players}
 		self.occupiedArea = {p:0.0 for p in players}
@@ -52,7 +52,7 @@ class Gamemode(gamemodes.Gamemode):
 		return targets
 
 	def Update(self, dt):
-		gamemodes.Gamemode.Update(self, dt)
+		gamemodes.baseclasses.Gamemode.Update(self, dt)
 		for player in self.players:
 			self.scores[player] += self.occupiedArea[player]*dt*self.conf.scoreFactor/self.duration
 
