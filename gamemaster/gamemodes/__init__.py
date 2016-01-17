@@ -1,5 +1,5 @@
 import Dummy
-import Domination
+import domination
 import ShootingGallery
 import Lobby
 
@@ -8,7 +8,7 @@ import Lobby
 ## Exception that is thrown when the game is finished to break the game loop
 availableModes = {
 	"dummy":Dummy.GetClasses(),
-	"domination":Domination.GetClasses(),
+	"domination":domination.GetClasses(),
 	"shootingGallery":ShootingGallery.GetClasses(),
 	"lobby":Lobby.GetClasses()
 	}
