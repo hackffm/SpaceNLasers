@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['scores',['scores',['../classgamemodes_1_1Domination_1_1Gamemode.html#aec3228d29e3ec3acc3d5a950b9c16377',1,'gamemodes.Domination.Gamemode.scores()'],['../classgamemodes_1_1ShootingGallery_1_1Gamemode.html#acfc99211f9548f6c2e67b97634366bc5',1,'gamemodes.ShootingGallery.Gamemode.scores()']]],
   ['scorevalue',['scoreValue',['../classlib_1_1HardwareTarget_1_1HardwareTarget.html#aba8518f2438dee7af1e00e81393c7bb0',1,'lib::HardwareTarget::HardwareTarget']]],
   ['selectedtargets',['selectedTargets',['../namespaceBusTest.html#acb92cfd53039cb82cf6748790ef11108',1,'BusTest']]],
   ['serialport',['serialPort',['../namespaceBusTest.html#a10f93b824c32000a072416f36031a858',1,'BusTest']]],
