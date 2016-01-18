@@ -139,6 +139,7 @@ class GameEngine(object):
 				if lobbymode:
 					gamestart = self.menugod.CheckNewGameStart()
 					if gamestart:
+						self.beamer.SendNewGameStart(gamestart)
 						return gamestart
 				else:
 					self.menugod.SendGameInfo(info)

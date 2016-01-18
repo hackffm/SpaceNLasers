@@ -73,6 +73,8 @@ class FakeMenuGod(object):
 		pass
 	def CheckNewGameStart(self):
 		return {"players": [{"name":"Player1", "color":"00FF00"}], "game": {"mode":"dummy", "duration":60}}
+	def SendNewGameStart(self, msg):
+		pass
 	def SendGameInfo(self, info):
 		#print("game info: {}".format(info))
 		pass
@@ -146,6 +148,10 @@ class MenuGod(object):
 			except KeyError as e:
 				self.SendError(str(e))
 		return msg
+
+	## Send gamestart. Only used for beamer
+	def SendNewGameStart(self, msg):
+		self._SendJson({"gamestart":msg})
 
 	## Send game info (scores). Raises AbortGameException if data received
 	def SendGameInfo(self, info):
