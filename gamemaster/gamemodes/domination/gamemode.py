@@ -21,6 +21,7 @@ class Gamemode(gamemodes.baseclasses.Gamemode):
 		self.occupiedArea[self.alienFaction] = 0.0
 
 	def Init(self):
+		self.totalArea=sum((target.hardwareTarget.scoreValue for target in self.targets))
 		for _ in range(self.conf.startupTargetCount):
 			self._ActivateSimpleTarget()
 
@@ -39,7 +40,12 @@ class Gamemode(gamemodes.baseclasses.Gamemode):
 		ms = self._GetMothership()
 		ms.Activate()
 		ms.SetOwner(self.alienFaction)
-		CountdownTimer.Add(self._MothershipFire, self.conf.mothershipReload, loop=True)
+		self._SetMothershipCountdown()
+	
+	def _SetMothershipCountdown(self):
+		reloadTime=self.conf.mothershipBaseReload + self.conf.mothershipScalingReload * self.occupiedArea[self._GetMothership().owner]/self.totalArea
+		print("reload time: {} - occupied area: {}, total area: {}".format(reloadTime, self.occupiedArea[self._GetMothership().owner], self.totalArea))
+		CountdownTimer.Add(self._MothershipFire, reloadTime)
 
 
 	def GetGameInfo(self, additionalConsoleOutput=""):
@@ -64,5 +70,6 @@ class Gamemode(gamemodes.baseclasses.Gamemode):
 		target = random.choice([t for t in self.targets if t.hardwareTarget.type["group"] == "simple"])
 		if not target.protected:
 			target.SetOwner(self._GetMothership().owner)
+		self._SetMothershipCountdown()
 
 
