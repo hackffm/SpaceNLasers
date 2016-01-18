@@ -26,14 +26,15 @@ class Target(lib.Target.Target):
 
 	def _Unprotect(self):
 		self.protected = False
+		self.SetColor(self.owner.color)
 
 	def SetOwner(self, player):
-		self.SetColor(player.color)
 		if self.owner is not None:
 			self.gameModeMaster.occupiedArea[self.owner] -= self.hardwareTarget.scoreValue
 		if player is not None:
 			self.gameModeMaster.occupiedArea[player] += self.hardwareTarget.scoreValue
 			self.gameModeMaster.gameEngine.PlaySoundAndWait("targetDestroyed", 0)
+			self.Effect("destroy")
 		self.protectionTimer = CountdownTimer(self._Unprotect, self.gameModeMaster.conf.targetProtectionDuration)
 		self.protected = True
 		self.owner = player
