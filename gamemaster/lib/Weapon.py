@@ -17,7 +17,7 @@ class Weapon(object):
 			if not self.primaryPressed:
 				self.primaryWasReleased = True
 		except Exception as e:
-			print("skipping weapon state: {}".format(e))
+			raise BusFactory.InvalidBusReply(self.code, e, "error parsing weapon state: {}".format(e))
 
 	## virtual weapon logic (cooloff etc.)
 	def Update(self, dt):

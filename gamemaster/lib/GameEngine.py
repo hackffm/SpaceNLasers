@@ -20,6 +20,7 @@ class GameEngine(object):
 	# \param beamer similar connection for non-controlling connection. None disables beamer output
 	def __init__(self, gameHotLine, hwconfig, menugod, beamer):
 		self.gameHotLine = gameHotLine
+		self.busErrorLog = {}
 
 		print("initialising sound system...")
 		self.soundManager = SoundManager()
@@ -69,6 +70,23 @@ class GameEngine(object):
 	def LogEvent(self, event):
 		self.eventLog.append(event)
 		print(event)
+	
+	def AddBusError(self, e):
+		print("new error: {}".format(e))
+
+		if False: # raise all errors instead of logging
+			if e.e is not None:
+				raise e.e
+			else:
+				raise e
+
+		if not e.source in self.busErrorLog:
+			self.busErrorLog[e.source] = 0
+		self.busErrorLog[e.source] += 1
+
+		print("current bus error statistic:")
+		for source, count in self.busErrorLog.iteritems():
+			print("{}: {}".format(source, count))
 
 	## Start the game engine and loop-run games started from MenuGod
 	def Run(self):
@@ -133,8 +151,11 @@ class GameEngine(object):
 
 				# weapons
 				for weapon in self.weapons:
-					code = self.gameHotLine.PingPong(BusFactory.GetWeaponButtons(weapon.code))
-					weapon.SetCurrentState(code)
+					try:
+						code = self.gameHotLine.PingPong(BusFactory.GetWeaponButtons(weapon.code))
+						weapon.SetCurrentState(code)
+					except BusFactory.InvalidBusReply as e:
+						self.AddBusError(e)
 					weapon.Update(dt)
 
 				# timer logic
@@ -213,7 +234,7 @@ class GameEngine(object):
 		# begin: laser shoot
 		self.gameHotLine.Ping(BusFactory.ReadyToShoot(shootingCodes))
 		time.sleep(0.01)
-		self.gameHotLine.PingPong(BusFactory.StartShootingSequence())
+		self.gameHotLine.PingPong(BusFactory.StartShootingSequence()) # TODO why pong necessary?
 		time.sleep(0.01)
 		# end: laser shoot
 
@@ -223,12 +244,17 @@ class GameEngine(object):
 	# \param targets list of Target instances
 	def _PollTargetHits(self, targets):
 		for targetGroupID in self.targetGroupIDs:
-			hitRaw = self.gameHotLine.PingPong(BusFactory.PollTargetState(targetGroupID)) # get target status
-			for weapon in self.weapons:
-				hitList = [str(i) for i in range(len(hitRaw)/2-1) if int(hitRaw[i*2:(i+1)*2], 16) == weapon.shotCode] # -2 because of \r\n
-				for targetID in hitList:
-					targetObj = [t for t in targets if t.hardwareTarget.id == targetID and t.hardwareTarget.groupID == targetGroupID][0]
-					event = Events.TargetHitEvent(time.time(), weapon, targetObj)
-					targetObj.Hit(event)
-					self.LogEvent(event)
+			try:
+				hitRaw = self.gameHotLine.PingPong(BusFactory.PollTargetState(targetGroupID)) # get target status
+				if len(hitRaw) < 12:
+					raise BusFactory.InvalidBusReply(None, "hitRaw response too short ({}): \"{}\"".format(len(hitRaw), hitRaw))
+				for weapon in self.weapons:
+					hitList = [str(i) for i in range(len(hitRaw)/2-1) if int(hitRaw[i*2:(i+1)*2], 16) == weapon.shotCode] # -2 because of \r\n
+					for targetID in hitList:
+						targetObj = [t for t in targets if t.hardwareTarget.id == targetID and t.hardwareTarget.groupID == targetGroupID][0]
+						event = Events.TargetHitEvent(time.time(), weapon, targetObj)
+						targetObj.Hit(event)
+						self.LogEvent(event)
+			except BusFactory.InvalidBusReply as e:
+				self.AddBusError(e)
 

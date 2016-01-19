@@ -1,3 +1,9 @@
+class InvalidBusReply(BaseException):
+	def __init__(self, source, e, text):
+		BaseException.__init__(self, text)
+		self.source = source
+		self.e=e
+
 def SetTargetColor(groupID, targetID, color):
 	return "{grp}a{target}02{color}\n".format(grp=groupID, target=targetID, color=color)
 
