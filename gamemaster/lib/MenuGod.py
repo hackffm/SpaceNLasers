@@ -1,6 +1,7 @@
 import socket
 import json
 import gamemodes
+from SoundManager import SoundManager
 
 # menugod connects to gamemaster
 # g->m capabilities
@@ -18,18 +19,20 @@ import gamemodes
 # \page capabilities Capabilities of this GameMaster
 # \code
 # "capabilities": {
-# 	"gamemodes":["domination"]
+# 	"gamemodes":["domination"],
+# 	"durations":[90.0, 120.0]
 # }
 # \endcode
 #
 # \page gamestart Start a game
+# duration is an index for the capabilities::durations array
 # \code
 # "gamestart": {
 # 	"players": [
 # 		{"name":"Player1","color":"00FF00"},
 # 		{"name":"Player2","color":"FF0000"}
 # 	],
-# 	"game": {"mode":"domination","duration":60}
+# 	"game": {"mode":"domination","duration":0}
 # }
 # \endcode
 #
@@ -72,7 +75,17 @@ class FakeMenuGod(object):
 	def __init__(self):
 		pass
 	def CheckNewGameStart(self):
-		return {"players": [{"name":"Player1", "color":"00FF00"}], "game": {"mode":"dummy", "duration":60}}
+		return {
+			"players":
+			[
+				{"name":"orange", "color":"FF4000"},
+				{"name":"green", "color":"00FF00"}
+			],
+			"game":
+			{
+				"mode":"shootingGallery", "duration":0
+			}
+		}
 	def SendNewGameStart(self, msg):
 		pass
 	def SendGameInfo(self, info):
@@ -162,7 +175,11 @@ class MenuGod(object):
 
 	## Send available game modes etc.
 	def _SendCapabilities(self):
-		self._SendJson({"capabilities":{"gamemodes":gamemodes.availableModes.keys()}})
+		self._SendJson({"capabilities":
+			{
+				"gamemodes":gamemodes.availableModes.keys(),
+				"durations":[duration for _,_,duration in SoundManager.instance.GetDurations()]
+			}})
 
 	## Try to get specific message and throw error is other messages are incoming
 	# \returns message if available, None if not

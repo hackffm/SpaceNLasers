@@ -10,30 +10,36 @@ import BusFactory
 from Weapon import Weapon
 from CountdownTimer import CountdownTimer
 import gamemodes
+from SoundManager import SoundManager
 
 class GameEngine(object):
 	##
 	# \param gameHotLine SerialHalfDuplex object for bus communication
-	# \param sounds dictionary which maps sound names on sound files
 	# \param hwconfig filename of hardware configuration
 	# \param menugod which menugod host to connect to. empty string for server mode, None for testing FakeMenuGod
 	# \param beamer similar connection for non-controlling connection. None disables beamer output
-	def __init__(self, gameHotLine, sounds, hwconfig, menugod, beamer):
+	def __init__(self, gameHotLine, hwconfig, menugod, beamer):
 		self.gameHotLine = gameHotLine
 
+		print("initialising sound system...")
+		self.soundManager = SoundManager()
+		self.sound = self.soundManager.sets[0]
+
+		print("connecting to beamer...")
 		if beamer is None:
 			self.beamer = FakeMenuGod()
 		else:
 			self.beamer = MenuGod(beamer)
 
+		print("connecting to menugod")
 		if menugod is None:
 			self.menugod = FakeMenuGod()
 		else:
 			self.menugod = MenuGod(menugod)
 
 		self.eventLog = []
-		self.sounds = sounds
 
+		print("loading hardware configuration...")
 		with open("hardwareconfig/global.json", "r") as fp:
 			self.globalConfig = json.load(fp)
 		with open(hwconfig, "r") as fp:
@@ -67,7 +73,7 @@ class GameEngine(object):
 	## Start the game engine and loop-run games started from MenuGod
 	def Run(self):
 		while(True):
-			lobbydef = {"game":{"mode":"lobby", "duration":None}, "players":[]}
+			lobbydef = {"game":{"mode":"lobby", "duration":0}, "players":[]}
 			print("starting lobby...")
 			gamestart = self.RunGame(lobbydef, lobbymode=True)
 			print("starting game...")
@@ -78,6 +84,10 @@ class GameEngine(object):
 	# \param lobbymode If set to True, a gamestart message will be expected from Menugod. If False (default), the game aborts on all messages received.
 	def RunGame(self, gamestart, lobbymode=False):
 		try:
+			soundSetNumber, musicNumber, duration = self.soundManager.GetDurations()[gamestart["game"]["duration"]]
+			gamestart["game"]["duration"] = duration # dirty hack!
+			self.sound = self.soundManager.sets[soundSetNumber]
+
 			print("reading gamemode {}".format(gamestart["game"]["mode"]))
 			gamemodeClasses = gamemodes.availableModes[gamestart["game"]["mode"]]
 
@@ -103,6 +113,8 @@ class GameEngine(object):
 
 			if not lobbymode:
 				self._GameStart()
+
+			self.sound.mainMusics[musicNumber].play()
 			lastTime = time.time()
 			print("starting game!")
 			self.Effect("lobby" if lobbymode else "gameStart")
@@ -153,21 +165,16 @@ class GameEngine(object):
 			self.menugod.GameOver()
 			self.beamer.GameOver()
 			self.Effect("gameOver")
-			self.sounds["music"].stop()
-			self.PlaySoundAndWait("gameOver", 2.0)
+			self.sound.PlayAndSleep("gameOver")
 			print("GAME OVER!")
 
 		except AbortGameException:
 			self._DisableAllTargets(targets)
 			print("aborting game due to command from menugod")
-		CountdownTimer.Clear()
-
-	## Play a predefined sound and sleep
-	# \param sound sound name to play. The sound has to be defined previously
-	# \param time seconds to wait after play
-	def PlaySoundAndWait(self, sound, wait):
-		self.sounds[sound].play()
-		time.sleep(wait)
+		finally:
+			CountdownTimer.Clear()
+			self.sound.mainMusics[musicNumber].stop()
+	
 
 	def _SendTargetBuffers(self, targets):
 		for target in targets:
@@ -182,9 +189,7 @@ class GameEngine(object):
 	## Game start sequence with lots of effects
 	def _GameStart(self):
 		self.Effect("gameIntro")
-		self.PlaySoundAndWait("boing8bit", 1.5)
-		self.PlaySoundAndWait("start", 10.0)
-		self.sounds["music"].play(loops=-1)
+		self.sound.intro.play()
 
 		self._TurnOnLaserWeapons()
 
@@ -212,7 +217,7 @@ class GameEngine(object):
 		time.sleep(0.01)
 		# end: laser shoot
 
-		self.sounds["laserblaster"].play()
+		self.sound.laser.play()
 
 	## Retrieve hit data from all targets and start Target-specific processing
 	# \param targets list of Target instances

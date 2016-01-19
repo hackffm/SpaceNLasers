@@ -21,27 +21,11 @@ if False:
 	os.system("amixer cset numid=3 1")
 	os.system("amixer set PCM -- 1000")
 
-pygame.mixer.init(frequency=22050, size=-16, channels=2, buffer=64)
-pygame.mixer.set_num_channels(20)
-
-# load audio files in list
-soundFiles = {
-	"intro": "intro.wav",
-	"gameOver": "gameover.wav",
-	"gameOverJingle": "gameoverjingle.wav",
-	"boing8bit": "boing8bit.wav",
-	"music": "music.wav",
-	"start": "start.wav",
-	"laserblaster":"laser1.wav",
-	"targetDestroyed":"explo_robot_down.wav"
-}
-sounds = {k:pygame.mixer.Sound("sounds/{soundtheme}/{filename}".format(soundtheme="default", filename=v)) for k, v in soundFiles.iteritems()}
-
 # init serial comunication
 gameHotLine = SerialHalfDuplex('/dev/ttyUSB0', 38400)
 
 # init game engine class and wait for menugod
-gameEngine = GameEngine(gameHotLine, sounds, args.hwconfig, args.menugod, args.beamer)
+gameEngine = GameEngine(gameHotLine, args.hwconfig, args.menugod, args.beamer)
 
 
 gameHotLine.Ping('AA10200\n')
