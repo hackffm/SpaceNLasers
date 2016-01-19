@@ -1,0 +1,12 @@
+[MESSAGES-CONTROL]
+disable=mixed-indentation,line-too-long,relative-import,missing-docstring,superfluous-parens,attribute-defined-outside-init,bad-continuation,no-self-use,too-few-public-methods,unused-argument,too-many-arguments,too-many-instance-attributes,too-many-locals,too-many-statements
+
+[BASIC]
+class-rgx=[A-Z][a-zA-Z]+$
+function-rgx=[A-Z][a-zA-Z]+$
+method-rgx=(_?[A-Z][a-zA-Z]+|(__[a-z]+__))$
+attr-rgx=_?[a-z][a-zA-Z]+$
+argument-rgx=[a-z][a-zA-Z]+$
+variable-rgx=[a-z][a-zA-Z]*$
+const-rgx=[a-z][a-zA-Z]*$
+class-attribute-rgx=([A-Z_]+|[_a-z][a-zA-Z]*)$
