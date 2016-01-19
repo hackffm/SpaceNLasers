@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SpaceNLasers: gamemaster/GameMaster.py File Reference</title>
+<title>SpaceNLasers: gamemaster/lib/SoundManager.py File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -81,33 +81,43 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_281d32fa459f528f2e5031658b334f87.html">gamemaster</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_281d32fa459f528f2e5031658b334f87.html">gamemaster</a></li><li class="navelem"><a class="el" href="dir_53fbdbc9d5f5450cd23225f699257a47.html">lib</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
-<div class="title">GameMaster.py File Reference</div>  </div>
+<div class="title">SoundManager.py File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1SoundManager_1_1SoundSet.html">lib.SoundManager.SoundSet</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlib_1_1SoundManager_1_1SoundManager.html">lib.SoundManager.SoundManager</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
-<tr class="memitem:namespaceGameMaster"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html">GameMaster</a></td></tr>
+<tr class="memitem:namespacelib_1_1SoundManager"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelib_1_1SoundManager.html">lib.SoundManager</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a6cb87faaf45f8941090c8687e9b90e7e"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelib_1_1SoundManager.html#a6cb87faaf45f8941090c8687e9b90e7e">lib.SoundManager.loadSound</a> (filename)</td></tr>
+<tr class="separator:a6cb87faaf45f8941090c8687e9b90e7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a393e67ae1b3fd2bb245aa1ccb05ee62c"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#a393e67ae1b3fd2bb245aa1ccb05ee62c">GameMaster.parser</a> = argparse.ArgumentParser(description=&quot;SpaceNLasers game master&quot;)</td></tr>
-<tr class="separator:a393e67ae1b3fd2bb245aa1ccb05ee62c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2db493f42e7f9f3509192288415ace73"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#a2db493f42e7f9f3509192288415ace73">GameMaster.args</a> = parser.parse_args()</td></tr>
-<tr class="separator:a2db493f42e7f9f3509192288415ace73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78f9289087d979b578508e506d40d5ec"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#a78f9289087d979b578508e506d40d5ec">GameMaster.gameHotLine</a> = SerialHalfDuplex('/dev/ttyUSB0', 38400)</td></tr>
-<tr class="separator:a78f9289087d979b578508e506d40d5ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04595adb1c3c2bb948cd60529956f09e"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#a04595adb1c3c2bb948cd60529956f09e">GameMaster.gameEngine</a> = GameEngine(gameHotLine, args.hwconfig, args.menugod, args.beamer)</td></tr>
-<tr class="separator:a04595adb1c3c2bb948cd60529956f09e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adae6f8743a1c130226d347de33d449eb"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelib_1_1SoundManager.html#adae6f8743a1c130226d347de33d449eb">lib.SoundManager.soundFolder</a> = &quot;sounds/set{setnumber}/&quot;</td></tr>
+<tr class="separator:adae6f8743a1c130226d347de33d449eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d1fd5fc515ed6fc5101a0fc4c1519e4"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelib_1_1SoundManager.html#a3d1fd5fc515ed6fc5101a0fc4c1519e4">lib.SoundManager.sm</a> = SoundManager()</td></tr>
+<tr class="separator:a3d1fd5fc515ed6fc5101a0fc4c1519e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

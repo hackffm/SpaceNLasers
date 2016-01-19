@@ -95,13 +95,9 @@ Variables</h2></td></tr>
 <tr class="separator:a393e67ae1b3fd2bb245aa1ccb05ee62c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2db493f42e7f9f3509192288415ace73"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#a2db493f42e7f9f3509192288415ace73">args</a> = parser.parse_args()</td></tr>
 <tr class="separator:a2db493f42e7f9f3509192288415ace73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f9037d20a01840cfad42fdb6080d632"><td class="memItemLeft" align="right" valign="top">dictionary&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#a0f9037d20a01840cfad42fdb6080d632">soundFiles</a></td></tr>
-<tr class="separator:a0f9037d20a01840cfad42fdb6080d632"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefb99e3c560fac3a3a4b7768d6f4a51a"><td class="memItemLeft" align="right" valign="top">dictionary&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#aefb99e3c560fac3a3a4b7768d6f4a51a">sounds</a> = {k:pygame.mixer.Sound(&quot;sounds/{soundtheme}/{filename}&quot;.format(soundtheme=&quot;default&quot;, filename=v)) for k, v in soundFiles.iteritems()}</td></tr>
-<tr class="separator:aefb99e3c560fac3a3a4b7768d6f4a51a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78f9289087d979b578508e506d40d5ec"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#a78f9289087d979b578508e506d40d5ec">gameHotLine</a> = <a class="el" href="classlib_1_1SerialHalfDuplex_1_1SerialHalfDuplex.html">SerialHalfDuplex</a>('/dev/ttyUSB0', 38400)</td></tr>
 <tr class="separator:a78f9289087d979b578508e506d40d5ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04595adb1c3c2bb948cd60529956f09e"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#a04595adb1c3c2bb948cd60529956f09e">gameEngine</a> = <a class="el" href="classlib_1_1GameEngine_1_1GameEngine.html">GameEngine</a>(<a class="el" href="namespaceGameMaster.html#a78f9289087d979b578508e506d40d5ec">gameHotLine</a>, <a class="el" href="namespaceGameMaster.html#aefb99e3c560fac3a3a4b7768d6f4a51a">sounds</a>, args.hwconfig, args.menugod, args.beamer)</td></tr>
+<tr class="memitem:a04595adb1c3c2bb948cd60529956f09e"><td class="memItemLeft" align="right" valign="top">tuple&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGameMaster.html#a04595adb1c3c2bb948cd60529956f09e">gameEngine</a> = <a class="el" href="classlib_1_1GameEngine_1_1GameEngine.html">GameEngine</a>(<a class="el" href="namespaceGameMaster.html#a78f9289087d979b578508e506d40d5ec">gameHotLine</a>, args.hwconfig, args.menugod, args.beamer)</td></tr>
 <tr class="separator:a04595adb1c3c2bb948cd60529956f09e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Variable Documentation</h2>
@@ -122,7 +118,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">tuple GameMaster.gameEngine = <a class="el" href="classlib_1_1GameEngine_1_1GameEngine.html">GameEngine</a>(<a class="el" href="namespaceGameMaster.html#a78f9289087d979b578508e506d40d5ec">gameHotLine</a>, <a class="el" href="namespaceGameMaster.html#aefb99e3c560fac3a3a4b7768d6f4a51a">sounds</a>, args.hwconfig, args.menugod, args.beamer)</td>
+          <td class="memname">tuple GameMaster.gameEngine = <a class="el" href="classlib_1_1GameEngine_1_1GameEngine.html">GameEngine</a>(<a class="el" href="namespaceGameMaster.html#a78f9289087d979b578508e506d40d5ec">gameHotLine</a>, args.hwconfig, args.menugod, args.beamer)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -147,40 +143,6 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">tuple GameMaster.parser = argparse.ArgumentParser(description=&quot;SpaceNLasers game master&quot;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a0f9037d20a01840cfad42fdb6080d632"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">dictionary GameMaster.soundFiles</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="namespaceGameMaster.html">    1</a></span>&#160;= {</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    <span class="stringliteral">&quot;intro&quot;</span>: <span class="stringliteral">&quot;intro.wav&quot;</span>,</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    <span class="stringliteral">&quot;gameOver&quot;</span>: <span class="stringliteral">&quot;gameover.wav&quot;</span>,</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    <span class="stringliteral">&quot;gameOverJingle&quot;</span>: <span class="stringliteral">&quot;gameoverjingle.wav&quot;</span>,</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <span class="stringliteral">&quot;boing8bit&quot;</span>: <span class="stringliteral">&quot;boing8bit.wav&quot;</span>,</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="stringliteral">&quot;music&quot;</span>: <span class="stringliteral">&quot;music.wav&quot;</span>,</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="stringliteral">&quot;start&quot;</span>: <span class="stringliteral">&quot;start.wav&quot;</span>,</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="stringliteral">&quot;laserblaster&quot;</span>:<span class="stringliteral">&quot;laser1.wav&quot;</span>,</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="stringliteral">&quot;targetDestroyed&quot;</span>:<span class="stringliteral">&quot;explo_robot_down.wav&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="aefb99e3c560fac3a3a4b7768d6f4a51a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">dictionary GameMaster.sounds = {k:pygame.mixer.Sound(&quot;sounds/{soundtheme}/{filename}&quot;.format(soundtheme=&quot;default&quot;, filename=v)) for k, v in soundFiles.iteritems()}</td>
         </tr>
       </table>
 </div><div class="memdoc">

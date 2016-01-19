@@ -11,6 +11,7 @@ var searchData=
   ['menugod',['MenuGod',['../namespacelib_1_1MenuGod.html',1,'lib']]],
   ['player',['Player',['../namespacelib_1_1Player.html',1,'lib']]],
   ['serialhalfduplex',['SerialHalfDuplex',['../namespacelib_1_1SerialHalfDuplex.html',1,'lib']]],
+  ['soundmanager',['SoundManager',['../namespacelib_1_1SoundManager.html',1,'lib']]],
   ['target',['Target',['../namespacelib_1_1Target.html',1,'lib']]],
   ['weapon',['Weapon',['../namespacelib_1_1Weapon.html',1,'lib']]]
 ];
