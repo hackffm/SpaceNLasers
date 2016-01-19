@@ -225,7 +225,7 @@ class GameEngine(object):
 		for targetGroupID in self.targetGroupIDs:
 			hitRaw = self.gameHotLine.PingPong(BusFactory.PollTargetState(targetGroupID)) # get target status
 			for weapon in self.weapons:
-				hitList = [str(i) for i in range(6) if int(hitRaw[i*2:(i+1)*2], 16) == weapon.shotCode]
+				hitList = [str(i) for i in range(len(hitRaw)/2-1) if int(hitRaw[i*2:(i+1)*2], 16) == weapon.shotCode] # -2 because of \r\n
 				for targetID in hitList:
 					targetObj = [t for t in targets if t.hardwareTarget.id == targetID and t.hardwareTarget.groupID == targetGroupID][0]
 					event = Events.TargetHitEvent(time.time(), weapon, targetObj)
