@@ -5,6 +5,7 @@ var searchData=
   ['effectcountdown',['effectCountdown',['../classgamemodes_1_1Dummy_1_1Gamemode.html#a4e431b39564017ee3facdc09557efbd7',1,'gamemodes::Dummy::Gamemode']]],
   ['effects',['effects',['../classlib_1_1GameEngine_1_1GameEngine.html#a2cfbc468be7451dcf2c25c66ccf42f5a',1,'lib::GameEngine::GameEngine']]],
   ['enableweapon',['EnableWeapon',['../namespacelib_1_1BusFactory.html#a3cc9886e622dda9a5389d179f38d9ac6',1,'lib::BusFactory']]],
+  ['endgametime',['endgameTime',['../classgamemodes_1_1domination_1_1config_1_1Config.html#a94d9ee095dd7e9e7408146271f57880f',1,'gamemodes::domination::config::Config']]],
   ['event',['Event',['../classlib_1_1Events_1_1Event.html',1,'lib::Events']]],
   ['eventlog',['eventLog',['../classlib_1_1GameEngine_1_1GameEngine.html#aeb36947e41b134b9b2c82c66d56f1043',1,'lib::GameEngine::GameEngine']]],
   ['events_2epy',['Events.py',['../Events_8py.html',1,'']]],

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gamemodes',['Gamemodes',['../group__gamemodes.html',1,'']]]
+  ['domination',['domination',['../group__domination.html',1,'']]]
 ];

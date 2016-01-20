@@ -6,6 +6,7 @@ var searchData=
   ['setbuffer',['SetBuffer',['../classlib_1_1SerialHalfDuplex_1_1SerialHalfDuplex.html#a1fb6c51049e88f8b65c1d022410f3d06',1,'lib::SerialHalfDuplex::SerialHalfDuplex']]],
   ['setcolor',['SetColor',['../classlib_1_1Target_1_1Target.html#abc4d98845f3ff6ba9b404f7f4d7279a5',1,'lib::Target::Target']]],
   ['setcurrentstate',['SetCurrentState',['../classlib_1_1Weapon_1_1Weapon.html#ae882466da93f68c3686149c9ad1d8a91',1,'lib::Weapon::Weapon']]],
+  ['setowner',['SetOwner',['../classgamemodes_1_1domination_1_1target_1_1Target.html#af02e49c3a1d848009c286cf9ee1658e9',1,'gamemodes::domination::target::Target']]],
   ['settargetcolor',['SetTargetColor',['../namespacelib_1_1BusFactory.html#a80552a0dfd6cf4a22b01a187162b18eb',1,'lib::BusFactory']]],
   ['settargets',['SetTargets',['../classgamemodes_1_1baseclasses_1_1Gamemode.html#aa639371183f8b81bc53b5b100e8291b9',1,'gamemodes::baseclasses::Gamemode']]],
   ['shootnow',['ShootNow',['../namespacelib_1_1BusFactory.html#a4e6abb68fdcc6ba71d6e969d599be5d9',1,'lib::BusFactory']]],

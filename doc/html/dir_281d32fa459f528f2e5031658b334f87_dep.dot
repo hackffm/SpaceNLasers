@@ -5,7 +5,8 @@ digraph "gamemaster" {
   subgraph clusterdir_281d32fa459f528f2e5031658b334f87 {
     graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_281d32fa459f528f2e5031658b334f87.html"];
     dir_281d32fa459f528f2e5031658b334f87 [shape=plaintext label="gamemaster"];
-    dir_3b2df2d6d5d3c2d374c7abc50d273719 [shape=box label="gamemodes" color="black" fillcolor="white" style="filled" URL="dir_3b2df2d6d5d3c2d374c7abc50d273719.html"];
+    dir_c251ec0a777a7d8763d50c6614cf61a2 [shape=box label="devTools" color="black" fillcolor="white" style="filled" URL="dir_c251ec0a777a7d8763d50c6614cf61a2.html"];
+    dir_3b2df2d6d5d3c2d374c7abc50d273719 [shape=box label="gamemodes" color="red" fillcolor="white" style="filled" URL="dir_3b2df2d6d5d3c2d374c7abc50d273719.html"];
     dir_53fbdbc9d5f5450cd23225f699257a47 [shape=box label="lib" color="black" fillcolor="white" style="filled" URL="dir_53fbdbc9d5f5450cd23225f699257a47.html"];
   }
 }

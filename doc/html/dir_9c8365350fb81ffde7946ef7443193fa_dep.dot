@@ -1,0 +1,9 @@
+digraph "gamemaster/gamemodes/domination" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_3b2df2d6d5d3c2d374c7abc50d273719 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="gamemodes" fontname="Helvetica", fontsize="10", URL="dir_3b2df2d6d5d3c2d374c7abc50d273719.html"]
+  dir_9c8365350fb81ffde7946ef7443193fa [shape=box, label="domination", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_9c8365350fb81ffde7946ef7443193fa.html"];
+  }
+}
