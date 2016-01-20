@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import json
 from dialog import Dialog
 from lib.SerialHalfDuplex import SerialHalfDuplex
@@ -48,15 +49,15 @@ def ExecuteCode(code, waitForReturn=False):
 	print(code)
 	#return code
 	if waitForReturn:
-		return gameHotLine.PingPong(str(code))
+		return gameHotLine.PingPong(code.encode("utf-8")+"\n")
 	else:
-		gameHotLine.Ping(str(code))
+		gameHotLine.Ping(code.encode("utf-8"))
 
 def GlobalCode():
 	while(True):
 		try:
 			effects = hwconfig["globalEffects"]
-			Menu("Global effect", options=[(name, lambda code=code: ExecuteCode(code)) for name, code in effects.iteritems()]) # note the code=code to fix capturing
+			Menu("Global effect", options=[(name, lambda code=code: ExecuteCode(code)) for name, code in effects.items()]) # note the code=code to fix capturing
 		except AbortException:
 			break
 
@@ -73,7 +74,7 @@ def TargetCode():
 
 def InitTargetList():
 	global selectedTargets
-	for groupID, group in hwconfig["targetControllers"].iteritems():
+	for groupID, group in hwconfig["targetControllers"].items():
 		for target in group["targets"]:
 			text = "{}.{} ({})".format(groupID, target["id"], target["type"])
 			targetList.append((target, text, groupID))
