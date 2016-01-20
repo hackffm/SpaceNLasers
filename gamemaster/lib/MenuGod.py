@@ -119,6 +119,9 @@ class FakeMenuGod(object):
 #		return
 # \endcode
 class MenuGod(object):
+	## Time to try to establish a new connection
+	CONNECTION_TIMEOUT = 0.1
+
 	## Initialises state and sends player information to display.
 	# \param targetHostname IP of server to connect to. Use empty string to use server-mode
 	def __init__(self, targetHostname):
@@ -126,26 +129,55 @@ class MenuGod(object):
 
 		self.buffer = ""
 
-		# init network
+		self.server = None
+		self.connection = None
 		self.targetHostname = targetHostname
-		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		if targetHostname is "": # server mode
-			print("server mode: waiting for connection...")
-			s.bind(("", DISPLAY_PORT_NUMBER))
-			s.listen(1)
-			conn, addr = s.accept()
-			print("connection from {}".format(addr))
-			self.connection = conn
+		self._TryConnect()
+	
+	def _CleanupConnections(self):
+		self.server = None
+		self.connection = None
+
+	## Try to connect to remote host.
+	# If connection succeeds, internal state is updated accordingly.
+	def _TryConnect(self):
+		# server mode
+		if self.targetHostname is "":
+			# if server is not already running, start it
+			if self.server is None:
+				s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+				print("server mode: waiting for connection...")
+				s.bind(("", DISPLAY_PORT_NUMBER))
+				s.listen(1)
+				s.settimeout(MenuGod.CONNECTION_TIMEOUT)
+				self.server = s
+
+			# check for new connections on server
+			try:
+				conn, addr = self.server.accept()
+				print("connection from {}".format(addr))
+				self.connection = conn
+				self.connection.setblocking(0) # non-blocking mode
+				self.server.close()
+				self.server = None
+				self._SendCapabilities()
+			except socket.timeout:
+				print("timeout")
+
+		# client mode
 		else:
-			print("connecting to {}...".format(targetHostname))
-			s.connect((targetHostname, DISPLAY_PORT_NUMBER))
-			print("connected")
-			self.connection = s
-		self.connection.setblocking(0) # non-blocking mode
+			print("connecting to {}...".format(self.targetHostname))
+			try:
+				socket.create_connection((self.targetHostname, DISPLAY_PORT_NUMBER), MenuGod.CONNECTION_TIMEOUT)
+				self.connection = s
+				print("connected")
+				self.connection.setblocking(0) # non-blocking mode
+				self._SendCapabilities()
+			except socket.timeout:
+				print("timeout")
 
 		# send capabilities
-		self._SendCapabilities()
-		self.state = "lobby"
+	pass
 
 	## Check if new game start is available. If yes, MenuGod goes to game mode
 	# \returns game info if present, else None
@@ -206,12 +238,20 @@ class MenuGod(object):
 	# \returns True if new message complete available, else False
 	# use popMessage to retrieve the message
 	def _CheckForMessage(self):
+		if self.connection is None:
+			self._TryConnect()
+			return False
 		if len(self.buffer) > 0 and self.buffer[-1] == "\0": # already a message in the buffer
 			return True
 		try:
 			while(True):
-				self.buffer += self.connection.recv(1)
-				if self.buffer[-1] == "\0":
+				print(self.connection.gettimeout())
+				buf = self.connection.recv(1)
+				if len(buf) == 0: # this will only occur on disconnects. if no data is available, a socket.error will be raised and handled below!
+					self._CleanupConnections()
+					return False
+				self.buffer += buf
+				if len(self.buffer) > 0 and self.buffer[-1] == "\0":
 					return True
 		except socket.error: # no data available
 			return False
@@ -229,6 +269,11 @@ class MenuGod(object):
 
 	## Internal helper function
 	def _SendJson(self, data):
-		j = json.dumps(data)+"\0"
-		self.connection.send(j)
+		if self.connection is None:
+			self._TryConnect()
+		else:
+			j = json.dumps(data)+"\0"
+			print("sending...")
+			self.connection.send(j)
+			print("sent!")
 
