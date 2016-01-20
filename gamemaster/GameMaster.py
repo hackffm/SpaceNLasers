@@ -41,8 +41,5 @@ time.sleep(0.1)
 gameHotLine.Ping('4T0020\n') # set treshold to 205
 time.sleep(0.1)
 
-try:
-	gameEngine.Run()
-except KeyboardInterrupt:
-	gameHotLine.Close()
+gameEngine.Run()
 
