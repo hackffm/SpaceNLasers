@@ -247,7 +247,7 @@ class GameEngine(object):
 			try:
 				hitRaw = self.gameHotLine.PingPong(BusFactory.PollTargetState(targetGroupID)) # get target status
 				if len(hitRaw) < 12:
-					raise BusFactory.InvalidBusReply(None, "hitRaw response too short ({}): \"{}\"".format(len(hitRaw), hitRaw))
+					raise BusFactory.InvalidBusReply(targetGroupID, None, "hitRaw response too short ({}): \"{}\"".format(len(hitRaw), hitRaw))
 				for weapon in self.weapons:
 					hitList = [str(i) for i in range(len(hitRaw)/2-1) if int(hitRaw[i*2:(i+1)*2], 16) == weapon.shotCode] # -2 because of \r\n
 					for targetID in hitList:
