@@ -31,6 +31,7 @@ class Gamemode(gamemodes.baseclasses.Gamemode):
 		if len(inactiveSimpleTargets) > 0:
 			target = random.choice(inactiveSimpleTargets)
 			target.Activate()
+			target.SetColor(self.alienFaction.color)
 
 	def _ActivateVirobis(self):
 		for target in self.targets:
