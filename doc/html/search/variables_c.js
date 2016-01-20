@@ -3,6 +3,7 @@ var searchData=
   ['scorevalue',['scoreValue',['../classlib_1_1HardwareTarget_1_1HardwareTarget.html#aba8518f2438dee7af1e00e81393c7bb0',1,'lib::HardwareTarget::HardwareTarget']]],
   ['selectedtargets',['selectedTargets',['../namespaceBusTest.html#acb92cfd53039cb82cf6748790ef11108',1,'BusTest']]],
   ['serialport',['serialPort',['../namespaceBusTest.html#a10f93b824c32000a072416f36031a858',1,'BusTest']]],
+  ['server',['server',['../classlib_1_1MenuGod_1_1MenuGod.html#aa5081f7b0a64d0d17dc19201be9e5ad9',1,'lib::MenuGod::MenuGod']]],
   ['sets',['sets',['../classlib_1_1SoundManager_1_1SoundManager.html#a5ae8e9e630abe7c8ec6e15ae3342c3ac',1,'lib::SoundManager::SoundManager']]],
   ['shotcode',['shotCode',['../classlib_1_1Weapon_1_1Weapon.html#a9016940ed76668dd27274a426a5e3120',1,'lib::Weapon::Weapon']]],
   ['sm',['sm',['../namespacelib_1_1SoundManager.html#a3d1fd5fc515ed6fc5101a0fc4c1519e4',1,'lib::SoundManager']]],
