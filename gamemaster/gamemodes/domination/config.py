@@ -8,10 +8,12 @@ class Config(object):
 		self.scoreFactor = 1000.0
 
 		## Time after which "extra" targets are activated
-		self.buildupDuration = 10.0
+		# Relative to total duration
+		self.buildupDuration = 0.5
 
 		## Time after which the mothership is activated
-		self.endgameTime = 5.0
+		# Relative to total duration
+		self.endgameTime = 0.8
 
 		## Activate a new target every newTargetTime seconds
 		self.newTargetTime = 1.0

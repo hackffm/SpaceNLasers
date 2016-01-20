@@ -8,14 +8,15 @@ from lib.CountdownTimer import CountdownTimer
 
 class Gamemode(gamemodes.baseclasses.Gamemode):
 	def __init__(self, players, gameInfo, gameEngine):
-		gamemodes.baseclasses.Gamemode.__init__(self, gameInfo["duration"], gameEngine)
+		duration = gameInfo["duration"]
+		gamemodes.baseclasses.Gamemode.__init__(self, duration, gameEngine)
 		self.players = players
 		self.scores = {p:0.0 for p in players}
 		self.occupiedArea = {p:0.0 for p in players}
 		self.conf = Config()
 		CountdownTimer.Add(self._ActivateSimpleTarget, self.conf.newTargetTime, loop=True)
-		CountdownTimer.Add(self._ActivateVirobis, self.conf.buildupDuration)
-		CountdownTimer.Add(self._StartEndgame, self.conf.endgameTime)
+		CountdownTimer.Add(self._ActivateVirobis, self.conf.buildupDuration*duration)
+		CountdownTimer.Add(self._StartEndgame, self.conf.endgameTime*duration)
 		self.mode = "buildup"
 		self.alienFaction = Player("alien", self.conf.alienFactionColor)
 		self.occupiedArea[self.alienFaction] = 0.0
