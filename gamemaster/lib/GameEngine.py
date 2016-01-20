@@ -103,8 +103,9 @@ class GameEngine(object):
 	def RunGame(self, gamestart, lobbymode=False):
 		try:
 			soundSetNumber, musicNumber, duration = self.soundManager.GetDurations()[gamestart["game"]["duration"]]
-			gamestart["game"]["duration"] = duration # dirty hack!
 			self.sound = self.soundManager.sets[soundSetNumber]
+			duration -= self.sound.intro.get_length()
+			gamestart["game"]["duration"] = duration # dirty hack!
 
 			print("reading gamemode {}".format(gamestart["game"]["mode"]))
 			gamemodeClasses = gamemodes.availableModes[gamestart["game"]["mode"]]
@@ -211,6 +212,7 @@ class GameEngine(object):
 	def _GameStart(self):
 		self.Effect("gameIntro")
 		self.sound.intro.play()
+		time.sleep(self.sound.intro.get_length())
 
 		self._TurnOnLaserWeapons()
 
