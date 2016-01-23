@@ -195,7 +195,8 @@ class GameEngine(object):
 			print("aborting game due to command from menugod")
 		finally:
 			CountdownTimer.Clear()
-			self.sound.mainMusics[musicNumber].stop()
+			for m in self.sound.mainMusics:
+				m.stop()
 	
 
 	def _SendTargetBuffers(self, targets):
