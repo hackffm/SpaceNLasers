@@ -257,7 +257,10 @@ class GameEngine(object):
 					except ValueError as e:
 						raise BusFactory.InvalidBusReply(targetGroupID, e, str(e))
 					for targetID in hitList:
-						targetObj = [t for t in targets if t.hardwareTarget.id == targetID and t.hardwareTarget.groupID == targetGroupID][0]
+						try:
+							targetObj = [t for t in targets if t.hardwareTarget.id == targetID and t.hardwareTarget.groupID == targetGroupID][0]
+						except IndexError as e:
+							raise BusFactory.InvalidBusReply(targetGroupID, e, "invalid target number: {}".format(targetID))
 						event = Events.TargetHitEvent(time.time(), weapon, targetObj)
 						targetObj.Hit(event)
 						self.LogEvent(event)
