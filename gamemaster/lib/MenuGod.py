@@ -188,10 +188,16 @@ class MenuGod(object):
 				if msg["game"]["mode"] not in gamemodes.availableModes.keys():
 
 					raise KeyError("I don't know game mode {}. I only know these game modes: {}".format(msg["game"]["mode"], gamemodes.availableModes.keys()))
+				
+				try:
+					_ = SoundManager.instance.GetDurations()[msg["game"]["duration"]]
+				except IndexError:
+					raise IndexError("{} is not a valid duration index!")
 
 				self.state = "game"
-			except KeyError as e:
+			except (KeyError, IndexError) as e:
 				self.SendError(str(e))
+				msg = None
 		return msg
 
 	## Send gamestart. Only used for beamer
