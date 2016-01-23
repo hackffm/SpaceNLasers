@@ -131,9 +131,9 @@ class GameEngine(object):
 			gamemodeMaster.Init()
 
 			if not lobbymode:
+				self.sound.mainMusics[musicNumber].play()
 				self._GameStart()
 
-			self.sound.mainMusics[musicNumber].play()
 			lastTime = time.time()
 			print("starting game!")
 			self.Effect("lobby" if lobbymode else "gameStart")
