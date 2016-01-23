@@ -1,9 +1,12 @@
 #!/usr/bin/python3
 import json
+import sys
 from dialog import Dialog
 from lib.SerialHalfDuplex import SerialHalfDuplex
 
-hwconfigName="testbox"
+if len(sys.argv) != 2:
+	sys.exit("USAGE: {} hardwareconfig".format(sys.argv[0]))
+hwconfigName=sys.argv[1]
 serialPort="/dev/ttyUSB0"
 
 d = Dialog(dialog="dialog")
@@ -13,7 +16,7 @@ selectedTargets = [] # list of indices
 gameHotLine = SerialHalfDuplex(serialPort, 38400)
 
 
-with open("hardwareconfig/{}.json".format(hwconfigName), "r") as fp: # TODO: cmdline parameter
+with open(hwconfigName, "r") as fp:
 	hwconfig = json.load(fp)
 with open("hardwareconfig/global.json", "r") as fp:
 	config = json.load(fp)
