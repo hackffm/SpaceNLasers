@@ -3,11 +3,24 @@
 	[
 		{
 			"code":"A",
-			"shotCode":137
+			"shotCode":145
+		}
+		,
+		{
+			"code":"B",
+			"shotCode":69
 		}
 	],
 	"targetControllers":
 	{
+		"0":
+		{
+			"targets":
+			[
+				{"id":"0","zIndex":0,"type":"simple","scoreValue":1.0},
+				{"id":"1","zIndex":0,"type":"simple","scoreValue":1.0}
+			]
+		},
 		"1":{
 			"targets":
 			[
