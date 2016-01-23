@@ -279,7 +279,8 @@ class MenuGod(object):
 			self._TryConnect()
 		else:
 			j = json.dumps(data)+"\0"
-			print("sending...")
-			self.connection.send(j)
-			print("sent!")
+			try:
+				self.connection.send(j)
+			except socket.error:
+				self._CleanupConnections()
 
