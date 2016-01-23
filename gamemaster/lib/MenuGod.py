@@ -136,6 +136,7 @@ class MenuGod(object):
 		self._TryConnect()
 	
 	def _CleanupConnections(self):
+		print("disconnect!")
 		self.server = None
 		self.connection = None
 
@@ -159,8 +160,6 @@ class MenuGod(object):
 				print("connection from {}".format(addr))
 				self.connection = conn
 				self.connection.setblocking(0) # non-blocking mode
-				self.server.close()
-				self.server = None
 				self._SendCapabilities()
 			except socket.timeout:
 				print("timeout")
@@ -169,7 +168,7 @@ class MenuGod(object):
 		else:
 			print("connecting to {}...".format(self.targetHostname))
 			try:
-				socket.create_connection((self.targetHostname, DISPLAY_PORT_NUMBER), MenuGod.CONNECTION_TIMEOUT)
+				s = socket.create_connection((self.targetHostname, DISPLAY_PORT_NUMBER), MenuGod.CONNECTION_TIMEOUT)
 				self.connection = s
 				print("connected")
 				self.connection.setblocking(0) # non-blocking mode
