@@ -84,7 +84,8 @@ class FakeMenuGod(object):
 			"game":
 			{
 				"mode":"shootingGallery", "duration":0
-			}
+			},
+			"consoleoutput":"starting"
 		}
 	def SendNewGameStart(self, msg):
 		pass
