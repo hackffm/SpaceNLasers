@@ -1,4 +1,5 @@
 import random
+from colorsys import hsv_to_rgb
 
 import baseclasses
 from lib.CountdownTimer import CountdownTimer
@@ -19,10 +20,10 @@ class Target(lib.Target.Target):
 		self.countdownTimer.Update(dt)
 
 	def _ChangeColor(self):
-		r = random.randint(0, 255)
-		g = random.randint(0, 255)
-		b = random.randint(0, 255)
-		self.SetColor(Myhex(r)+Myhex(g)+Myhex(b))
+		hue = random.random()
+		rgb = hsv_to_rgb(hue, 1.0, 1.0)
+		colorstring = "".join([Myhex(int(rgb[i]*255)) for i in range(3)])
+		self.SetColor(colorstring)
 		self.countdownTimer = CountdownTimer(self._ChangeColor, random.uniform(0.8, 1.2))
 
 
