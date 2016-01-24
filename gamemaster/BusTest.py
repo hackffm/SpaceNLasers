@@ -44,15 +44,19 @@ def Ping():
 	ExecuteCode(code+"\n")
 
 def PingPong():
-	code = raw_input("command:")
+	code = input("command:")
 	result=ExecuteCode(code+"\n", waitForReturn=True)
-	d.msgbox(result)
+	print(result)
+	input()
 
 def ExecuteCode(code, waitForReturn=False):
 	print(code)
+	code = str(code)
+	if code[-1] != "\n":
+		code += "\n"
 	#return code
 	if waitForReturn:
-		return gameHotLine.PingPong(code.encode("utf-8")+"\n")
+		return gameHotLine.PingPong(code.encode("utf-8"))
 	else:
 		gameHotLine.Ping(code.encode("utf-8"))
 
