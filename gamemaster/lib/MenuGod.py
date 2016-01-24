@@ -133,6 +133,8 @@ class MenuGod(object):
 		self.server = None
 		self.connection = None
 		self.targetHostname = targetHostname
+		self.port = DISPLAY_PORT_NUMBER
+
 		self._TryConnect()
 	
 	def _CleanupConnections(self):
@@ -149,7 +151,13 @@ class MenuGod(object):
 			if self.server is None:
 				s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 				print("server mode: waiting for connection...")
-				s.bind(("", DISPLAY_PORT_NUMBER))
+				try:
+					s.bind(("", self.port))
+				except socket.error: # address already in use?
+					if self.port == DISPLAY_PORT_NUMBER+10:
+						self.port = DISPLAY_PORT_NUMBER
+					else:
+						self.port += 1
 				s.listen(1)
 				s.settimeout(MenuGod.CONNECTION_TIMEOUT)
 				self.server = s
@@ -162,7 +170,7 @@ class MenuGod(object):
 				self.connection.setblocking(0) # non-blocking mode
 				self._SendCapabilities()
 			except socket.timeout:
-				print("timeout")
+				print("timeout - using port {}".format(self.port))
 
 		# client mode
 		else:
