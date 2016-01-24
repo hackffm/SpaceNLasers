@@ -40,7 +40,7 @@ def MainMenu():
 		("Manual pingpong", PingPong)])
 
 def Ping():
-	code = raw_input("command:")
+	code = input("command:")
 	ExecuteCode(code+"\n")
 
 def PingPong():
