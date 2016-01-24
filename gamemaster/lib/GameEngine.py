@@ -21,6 +21,7 @@ class GameEngine(object):
 	def __init__(self, gameHotLine, hwconfig, menugod, beamer):
 		self.gameHotLine = gameHotLine
 		self.busErrorLog = {}
+		self.busErrorString = ""
 
 		print("initialising sound system...")
 		self.soundManager = SoundManager()
@@ -84,9 +85,7 @@ class GameEngine(object):
 			self.busErrorLog[e.source] = 0
 		self.busErrorLog[e.source] += 1
 
-		print("current bus error statistic:")
-		for source, count in self.busErrorLog.iteritems():
-			print("{}: {}".format(source, count))
+		self.busErrorString = "current bus error statistic:\n" + "\n".join("{}: {}".format(source, count) for source, count in self.busErrorLog.iteritems())
 
 	## Start the game engine and loop-run games started from MenuGod
 	def Run(self):
@@ -176,8 +175,9 @@ class GameEngine(object):
 						self.beamer.SendNewGameStart(gamestart)
 						return gamestart
 				else:
-					self.menugod.SendGameInfo(info)
 					self.beamer.SendGameInfo(info)
+					info["consoleoutput"] += self.busErrorString
+					self.menugod.SendGameInfo(info)
 
 				# send target buffer
 				self._SendTargetBuffers(targets)
