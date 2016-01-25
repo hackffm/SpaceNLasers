@@ -26,20 +26,5 @@ gameHotLine = SerialHalfDuplex('/dev/ttyUSB0', 38400)
 
 # init game engine class and wait for menugod
 gameEngine = GameEngine(gameHotLine, args.hwconfig, args.menugod, args.beamer)
-
-
-gameHotLine.Ping('AA10200\n')
-time.sleep(0.1)
-gameHotLine.Ping('BA10200\n')
-
-gameHotLine.Ping('1T00FF\n') # set treshold to 205
-time.sleep(0.1)
-gameHotLine.Ping('2T0050\n') # set treshold to 205
-time.sleep(0.1)
-gameHotLine.Ping('3T0020\n') # set treshold to 205
-time.sleep(0.1)
-gameHotLine.Ping('4T0020\n') # set treshold to 205
-time.sleep(0.1)
-
 gameEngine.Run()
 
