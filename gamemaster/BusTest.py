@@ -52,7 +52,7 @@ def PingPong():
 def ExecuteCode(code, waitForReturn=False):
 	print(code)
 	code = str(code)
-	if code[-1] != "\n":
+	if len(code) > 0 and code[-1] != "\n":
 		code += "\n"
 	#return code
 	if waitForReturn:
