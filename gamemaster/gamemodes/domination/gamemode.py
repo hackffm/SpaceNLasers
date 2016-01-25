@@ -41,6 +41,9 @@ class Gamemode(gamemodes.baseclasses.Gamemode):
 	def _StartEndgame(self):
 		ms = self._GetMothership()
 		ms.Activate()
+		for part in self._GetMothershipParts():
+			part.Activate()
+			part.SetOwner(self.alienFaction)
 		ms.SetOwner(self.alienFaction)
 		self._SetMothershipCountdown()
 	
@@ -48,7 +51,13 @@ class Gamemode(gamemodes.baseclasses.Gamemode):
 		reloadTime=self.conf.mothershipBaseReload + self.conf.mothershipScalingReload * self.occupiedArea[self._GetMothership().owner]/self.totalArea
 		print("reload time: {} - occupied area: {}, total area: {}".format(reloadTime, self.occupiedArea[self._GetMothership().owner], self.totalArea))
 		CountdownTimer.Add(self._MothershipFire, reloadTime)
-
+	
+	## Check whether all mothership parts have the same alignment and set alignment for whole mothership accordingly
+	def _CheckMothershipAlignment(self):
+		parts = self._GetMothershipParts()
+		owners = set([p.owner for p in parts])
+		if len(owners) == 1 and parts[0].owner != self._GetMothership().owner: # all parts owned by the same owner
+			self._GetMothership().SetOwner(parts[0].owner)
 
 	def GetGameInfo(self, additionalConsoleOutput=""):
 		myConsoleOutput = ""
@@ -63,6 +72,10 @@ class Gamemode(gamemodes.baseclasses.Gamemode):
 		gamemodes.baseclasses.Gamemode.Update(self, dt)
 		for player in self.players:
 			self.scores[player] += self.occupiedArea[player]*dt*self.conf.scoreFactor/self.duration
+		self._CheckMothershipAlignment()
+
+	def _GetMothershipParts(self):
+		return [t for t in self.targets if t.hardwareTarget.type["group"] == "mothershipPart"]
 
 	def _GetMothership(self):
 		return [t for t in self.targets if t.hardwareTarget.type["group"] == "mothership"][0]

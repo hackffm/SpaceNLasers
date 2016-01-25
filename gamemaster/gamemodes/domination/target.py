@@ -16,7 +16,7 @@ class Target(lib.Target.Target):
 		self.active = True
 
 	def Hit(self, event):
-		if self.active:
+		if self.active and self.hardwareTarget.type["group"] != "mothership":
 			lib.Target.Target.Hit(self, event)
 			if not self.protected:
 				self.SetOwner(event.weapon.player)
