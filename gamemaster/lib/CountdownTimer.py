@@ -17,6 +17,8 @@ class CountdownTimer(object):
 				self.done = True
 			else: # loop
 				self.time += self.originalTime
+				if self.time < 0: # update loop shorter than countdown timer interval
+					self.time = 0
 
 	@staticmethod
 	def Add(action, time, **kwargs):
