@@ -27,5 +27,6 @@ class Target(object):
 
 	## Put effect to the target queue
 	def Effect(self, name, *args):
-		print("target effect: {}".format(name))
-		self.buffer.append(self.hardwareTarget.GetEffect(name,*args))
+		effect = self.hardwareTarget.GetEffect(name,*args)
+		self.buffer.append(effect)
+		print("target effect: {} = {}".format(name,effect))

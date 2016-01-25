@@ -63,7 +63,7 @@ class GameEngine(object):
 		self.targetGroupIDs = self.config["targetControllers"].keys()
 		for groupID, groupDef in self.config["targetControllers"].iteritems():
 			for target in groupDef["targets"]:
-				self.hardwareTargets.append(HardwareTarget(groupID, target, self.globalConfig))
+				self.hardwareTargets.append(HardwareTarget(groupID, target, self.globalConfig, self.config))
 
 	## Starts a global effect
 	# Global effects are: fog, stroboscope etc.
