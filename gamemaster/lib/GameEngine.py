@@ -11,6 +11,7 @@ from Weapon import Weapon
 from CountdownTimer import CountdownTimer
 import gamemodes
 from SoundManager import SoundManager
+from DMXEffects import DMXEffectManager
 
 class GameEngine(object):
 	##
@@ -18,7 +19,7 @@ class GameEngine(object):
 	# \param hwconfig filename of hardware configuration
 	# \param menugod which menugod host to connect to. empty string for server mode, None for testing FakeMenuGod
 	# \param beamer similar connection for non-controlling connection. None disables beamer output
-	def __init__(self, gameHotLine, hwconfig, menugod, beamer):
+	def __init__(self, gameHotLine, hwconfig, menugod, beamer, dmxEffects):
 		self.gameHotLine = gameHotLine
 		self.busErrorLog = {}
 		self.busErrorString = ""
@@ -45,18 +46,22 @@ class GameEngine(object):
 		with open("hardwareconfig/global.json", "r") as fp:
 			self.globalConfig = json.load(fp)
 		with open(hwconfig, "r") as fp:
-			self._InitHardware(json.load(fp))
+			self.config = json.load(fp)
+
+		self._InitHardware()
+
+		self.dmxController = DMXEffectManager(dmxEffects, self.config["dmx"])
 
 		print("initialising bus...")
 		self.Effect("busInit")
 
 	## Reads the hardware definitions (weapon/target controller codes etc.)
-	def _InitHardware(self, config):
-		self.weapons = [Weapon(str(w["code"]), int(w["shotCode"])) for w in config["weaponControllers"]]
-		self.effects = {str(name):str(command) for name, command in config["globalEffects"].iteritems()}
+	def _InitHardware(self):
+		self.weapons = [Weapon(str(w["code"]), int(w["shotCode"])) for w in self.config["weaponControllers"]]
+		self.effects = {str(name):str(command) for name, command in self.config["globalEffects"].iteritems()}
 		self.hardwareTargets = []
-		self.targetGroupIDs = config["targetControllers"].keys()
-		for groupID, groupDef in config["targetControllers"].iteritems():
+		self.targetGroupIDs = self.config["targetControllers"].keys()
+		for groupID, groupDef in self.config["targetControllers"].iteritems():
 			for target in groupDef["targets"]:
 				self.hardwareTargets.append(HardwareTarget(groupID, target, self.globalConfig))
 
@@ -66,6 +71,7 @@ class GameEngine(object):
 		command = self.effects[name]
 		print("global effect: {} -> command={}".format(name, command))
 		self.gameHotLine.Ping(command)
+		self.dmxController.Effect(name)
 
 	## Log an Event for later analysis
 	def LogEvent(self, event):

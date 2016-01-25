@@ -14,6 +14,7 @@ parser = argparse.ArgumentParser(description="SpaceNLasers game master")
 parser.add_argument("hwconfig", type=str, help="a json file describing the current hardware setup")
 parser.add_argument("--menugod", type=str, nargs="?", default=None, const="", help="IP of menugod to connect to. Leave empty to run in server mode. Omit this option to use a FakeMenuGod for testing")
 parser.add_argument("--beamer", type=str, nargs="?", default=None, const="", help="IP of beamer to connect to. Leave empty to run in server mode. Omit this option to disable beamer output")
+parser.add_argument("--dmx", type=str, nargs="?", default=None, const="", help="IP of beamer to connect to. Omit this option to disable DMX")
 args = parser.parse_args()
 
 # init audio mixer
@@ -25,6 +26,6 @@ if False:
 gameHotLine = SerialHalfDuplex('/dev/ttyUSB0', 38400)
 
 # init game engine class and wait for menugod
-gameEngine = GameEngine(gameHotLine, args.hwconfig, args.menugod, args.beamer)
+gameEngine = GameEngine(gameHotLine, args.hwconfig, args.menugod, args.beamer, args.dmx)
 gameEngine.Run()
 
