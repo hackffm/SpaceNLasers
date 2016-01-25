@@ -188,11 +188,15 @@ class GameEngine(object):
 				# send target buffer
 				self._SendTargetBuffers(targets)
 
-		except gamemodes.baseclasses.GameOverException:
+		except gamemodes.baseclasses.GameOverException as gameOver:
 			self._DisableAllTargets(targets)
 			self.menugod.GameOver()
 			self.beamer.GameOver()
 			self.Effect("gameOver")
+			scoreList = [gameOver.scores[p] for p in players]
+			for i in range(len(players)):
+				if scoreList[i] == max(scoreList):
+					self.Effect("gameOverPlayer{}".format(i))
 			self.sound.PlayAndSleep("gameOver")
 			print("GAME OVER!")
 

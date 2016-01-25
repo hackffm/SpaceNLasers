@@ -9,9 +9,8 @@ from lib.CountdownTimer import CountdownTimer
 class Gamemode(gamemodes.baseclasses.Gamemode):
 	def __init__(self, players, gameInfo, gameEngine):
 		duration = gameInfo["duration"]
-		gamemodes.baseclasses.Gamemode.__init__(self, duration, gameEngine)
+		gamemodes.baseclasses.Gamemode.__init__(self, duration, gameEngine, players)
 		self.players = players
-		self.scores = {p:0.0 for p in players}
 		self.occupiedArea = {p:0.0 for p in players}
 		self.conf = Config()
 		CountdownTimer.Add(self._ActivateSimpleTarget, self.conf.newTargetTime, loop=True)

@@ -6,9 +6,8 @@ from config import Config
 
 class Gamemode(gamemodes.baseclasses.Gamemode):
 	def __init__(self, players, gameInfo, gameEngine):
-		gamemodes.baseclasses.Gamemode.__init__(self, gameInfo["duration"], gameEngine)
+		gamemodes.baseclasses.Gamemode.__init__(self, gameInfo["duration"], gameEngine, players)
 		self.players = players
-		self.scores = {p:0.0 for p in players}
 		self.numOccupiedTargets = {p:0 for p in players}
 		self.conf = Config()
 
