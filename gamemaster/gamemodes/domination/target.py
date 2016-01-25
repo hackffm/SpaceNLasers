@@ -29,14 +29,16 @@ class Target(lib.Target.Target):
 		self.SetColor(self.owner.color)
 
 	def SetOwner(self, player):
-		if self.owner is not None:
-			self.gameModeMaster.occupiedArea[self.owner] -= self.hardwareTarget.scoreValue
-		if player is not None:
-			self.gameModeMaster.occupiedArea[player] += self.hardwareTarget.scoreValue
-			self.gameModeMaster.gameEngine.sound.targetDestroyed.play()
-			self.Effect("destroy")
-		self.protectionTimer = CountdownTimer(self._Unprotect, self.gameModeMaster.conf.targetProtectionDuration)
-		self.protected = True
-		self.owner = player
+		if self.owner != player:
+			if self.owner is not None:
+				self.gameModeMaster.occupiedArea[self.owner] -= self.hardwareTarget.scoreValue
+			if player is not None:
+				self.gameModeMaster.occupiedArea[player] += self.hardwareTarget.scoreValue
+				self.gameModeMaster.gameEngine.sound.targetDestroyed.play()
+				self.Effect("destroy")
+			self.protectionTimer = CountdownTimer(self._Unprotect, self.gameModeMaster.conf.targetProtectionDuration)
+			self.protected = True
+			self.owner = player
+			self.SetColor(self.owner.color)
 
 
