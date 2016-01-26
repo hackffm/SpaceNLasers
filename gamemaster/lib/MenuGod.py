@@ -1,5 +1,6 @@
 import socket
 import json
+import random
 import gamemodes
 from SoundManager import SoundManager
 
@@ -83,7 +84,7 @@ class FakeMenuGod(object):
 			],
 			"game":
 			{
-				"mode":"shootingGallery", "duration":0
+				"mode":"domination", "duration": random.randint(0, len(SoundManager.instance.GetDurations())-1)
 			},
 			"consoleoutput":"starting"
 		}
@@ -198,6 +199,9 @@ class MenuGod(object):
 					raise KeyError("I don't know game mode {}. I only know these game modes: {}".format(msg["game"]["mode"], gamemodes.availableModes.keys()))
 				
 				try:
+					# use random music if no duration index given
+					if "duration" not in msg["game"]:
+						msg["game"]["duration"] = random.randint(0, len(SoundManager.instance.GetDurations()))
 					_ = SoundManager.instance.GetDurations()[msg["game"]["duration"]]
 				except IndexError:
 					raise IndexError("{} is not a valid duration index!")
