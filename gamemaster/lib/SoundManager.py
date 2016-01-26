@@ -21,7 +21,7 @@ class SoundSet(object):
 		self.mainMusics = []
 		i = 0
 		while(True):
-			filename = (soundFolder+"music_{}.wav").format(i,**params)
+			filename = (soundFolder+"music_{}.ogg").format(i,**params)
 			if os.path.exists(filename):
 				self.mainMusics.append(loadSound(filename))
 				i += 1
