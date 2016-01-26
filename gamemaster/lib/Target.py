@@ -23,7 +23,7 @@ class Target(object):
 
 	## Write new color command for target to the target queue
 	def SetColor(self, color):
-		self.buffer.append(BusFactory.SetTargetColor(self.hardwareTarget.groupID, self.hardwareTarget.id, color))
+		self.Effect("setColor",color)
 
 	## Put effect to the target queue
 	def Effect(self, name, *args):

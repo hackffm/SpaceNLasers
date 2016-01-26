@@ -4,9 +4,6 @@ class InvalidBusReply(BaseException):
 		self.source = source
 		self.e=e
 
-def SetTargetColor(groupID, targetID, color):
-	return "{grp}a{target}02{color}\n".format(grp=groupID, target=targetID, color=color)
-
 def ReadyToShoot(weaponLetter):
 	return "s{}\n".format(weaponLetter)
 

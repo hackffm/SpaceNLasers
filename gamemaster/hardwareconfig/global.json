@@ -7,10 +7,11 @@
 			"group":"simple",
 			"effects":
 			{
-				"enable":"{targetGroup}a{targetID}02FFFFFF\n",
-				"disable":"{targetGroup}a{targetID}02000000\n",
+				"enable":"",
+				"disable":"",
 				"hit":"",
-				"destroy":""
+				"destroy":"",
+				"setColor":"{targetGroup}a{targetID}02{0}"
 			}
 		},
 		"mothership":
@@ -30,10 +31,11 @@
 			"group":"mothershipPart",
 			"effects":
 			{
-				"enable":"",
+				"enable":"{targetGroup}a{targetID}02FFFFFF\n",
 				"disable":"{targetGroup}a{targetID}02000000\n",
 				"hit":"",
-				"destroy":""
+				"destroy":"",
+				"setColor":"{targetGroup}a{targetID}02{0}"
 			}
 		},
 		"virobi":
@@ -44,7 +46,8 @@
 				"enable":"{targetGroup}a{targetID}02FFFFFF\n",
 				"disable":"{targetGroup}a{targetID}02000000\n",
 				"hit":"",
-				"destroy":""
+				"destroy":"",
+				"setColor":"{targetGroup}a{targetID}02{0}"
 			}
 		}
 	}
