@@ -8,10 +8,10 @@
 			"effects":
 			{
 				"enable":"",
-				"disable":"",
+				"disable":"{targetGroup}a{targetID}02000000\n",
 				"hit":"",
 				"destroy":"",
-				"setColor":"{targetGroup}a{targetID}02{0}"
+				"setColor":"{targetGroup}a{targetID}02{0}\n"
 			}
 		},
 		"mothership":
@@ -19,8 +19,8 @@
 			"group":"mothership",
 			"effects":
 			{
-				"enable":"MA801\n{targetGroup}a{targetID}02FFFFFF\n",
-				"disable":"MA800\n{targetGroup}a{targetID}02000000\n",
+				"enable":"mA801\n",
+				"disable":"mA800\nma802000000\n",
 				"hit":"",
 				"destroy":"",
 				"setColor":"ma810{0}\n"
@@ -31,11 +31,11 @@
 			"group":"mothershipPart",
 			"effects":
 			{
-				"enable":"{targetGroup}a{targetID}02FFFFFF\n",
+				"enable":"",
 				"disable":"{targetGroup}a{targetID}02000000\n",
 				"hit":"",
 				"destroy":"",
-				"setColor":"{targetGroup}a{targetID}02{0}"
+				"setColor":"{targetGroup}a{targetID}02{0}\n"
 			}
 		},
 		"virobi":
@@ -47,7 +47,7 @@
 				"disable":"{targetGroup}a{targetID}02000000\n",
 				"hit":"",
 				"destroy":"",
-				"setColor":"{targetGroup}a{targetID}02{0}"
+				"setColor":"{targetGroup}a{targetID}02{0}\n"
 			}
 		}
 	}

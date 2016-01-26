@@ -55,7 +55,7 @@ class Target(lib.Target.Target):
 					print("fadeout for player {} is {}".format(fadeout, player))
 					self.fadeoutTimer = CountdownTimer(lambda: self.SetOwner(None), fadeout)
 
-				self.SetColor(player)
+				self.SetColor(player.color)
 				self.protectionTimer = CountdownTimer(self._Unprotect, self.gameModeMaster.conf.targetProtectionDuration)
 				self.protected = True
 			else:
