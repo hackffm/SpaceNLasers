@@ -21,7 +21,8 @@
 				"enable":"MA801\n{targetGroup}a{targetID}02FFFFFF\n",
 				"disable":"MA800\n{targetGroup}a{targetID}02000000\n",
 				"hit":"",
-				"destroy":""
+				"destroy":"",
+				"setColor":"ma810{0}\n"
 			}
 		},
 		"mothershipPart":
