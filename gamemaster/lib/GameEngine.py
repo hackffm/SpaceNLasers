@@ -67,8 +67,8 @@ class GameEngine(object):
 
 	## Starts a global effect
 	# Global effects are: fog, stroboscope etc.
-	def Effect(self, name):
-		command = self.effects[name]
+	def Effect(self, name, *args):
+		command = self.effects[name].format(*args)
 		print("global effect: {} -> command={}".format(name, command))
 		self.gameHotLine.Ping(command)
 		self.dmxController.Effect(name)
