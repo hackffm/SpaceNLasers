@@ -18,6 +18,18 @@ class Config(object):
 		## Activate a new target every newTargetTime seconds
 		self.newTargetTime = 1.0
 
+		## Maximum number of simple targets active at the same time
+		self.maxSimpleTargets = 3
+
+		## Time after which an ignored target times out (gets disabled again)
+		# only affects simple targets
+		self.alienTargetTimeout = 3.0
+
+		## Interval in which an occupied target fades out
+		# This is to keep the total number of simple targets at maxSimpleTargets and still allow for some dynamics
+		# only affects simple targets
+		self.playerTargetTimeoutInterval = (8.0, 10.0)
+
 		## Number of targets active at gamestart
 		self.startupTargetCount = 1
 

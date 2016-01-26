@@ -19,23 +19,26 @@ class Gamemode(gamemodes.baseclasses.Gamemode):
 		self.mode = "buildup"
 		self.alienFaction = Player("alien", self.conf.alienFactionColor)
 		self.occupiedArea[self.alienFaction] = 0.0
+		self.totalArea = 0.0 # gets populated by activated/deactivated targets
 
 	def Init(self):
-		self.totalArea=sum((target.hardwareTarget.scoreValue for target in self.targets))
 		for _ in range(self.conf.startupTargetCount):
 			self._ActivateSimpleTarget()
 
 	def _ActivateSimpleTarget(self):
-		inactiveSimpleTargets = [target for target in self.targets if not target.active and target.hardwareTarget.type["group"] == "simple"]
-		if len(inactiveSimpleTargets) > 0:
-			target = random.choice(inactiveSimpleTargets)
-			target.Activate()
-			target.SetColor(self.alienFaction.color)
+		activeSimpleTargets = [target for target in self.targets if target.active and target.hardwareTarget.type["group"] == "simple"]
+		print("active simple targets: {}".format(len(activeSimpleTargets)))
+		if len(activeSimpleTargets) < self.conf.maxSimpleTargets:
+			inactiveSimpleTargets = [target for target in self.targets if not target.active and target.hardwareTarget.type["group"] == "simple"]
+			#print("{} targets left to activate!".format(len(inactiveSimpleTargets)))
+			if len(inactiveSimpleTargets) > 0:
+				target = random.choice(inactiveSimpleTargets)
+				target.SetOwner(self.alienFaction, nodestroy=True)
 
 	def _ActivateVirobis(self):
 		for target in self.targets:
 			if target.hardwareTarget.type["group"] == "extra":
-				target.Activate()
+				target.SetOwner(self.alienFaction, nodestroy=True)
 
 	def _StartEndgame(self):
 		ms = self._GetMothership()
@@ -43,7 +46,7 @@ class Gamemode(gamemodes.baseclasses.Gamemode):
 		for part in self._GetMothershipParts():
 			part.Activate()
 			part.SetOwner(self.alienFaction)
-		ms.SetOwner(self.alienFaction)
+		ms.SetOwner(self.alienFaction, nodestroy=True)
 		self._SetMothershipCountdown()
 	
 	def _SetMothershipCountdown(self):
@@ -81,7 +84,7 @@ class Gamemode(gamemodes.baseclasses.Gamemode):
 
 
 	def _MothershipFire(self):
-		target = random.choice([t for t in self.targets if t.hardwareTarget.type["group"] == "simple"])
+		target = random.choice([t for t in self.targets if t.hardwareTarget.type["group"] == "simple" and t.active])
 		if not target.protected:
 			target.SetOwner(self._GetMothership().owner)
 		self._SetMothershipCountdown()
