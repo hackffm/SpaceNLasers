@@ -26,7 +26,7 @@ def PollTargetState(targetGroupID):
 	return "{}tr\n".format(targetGroupID)
 
 def EnableWeapon(weaponLetter):
-	return "{}A102FF\n".format(weaponLetter)
+	return "{}A10240\n".format(weaponLetter)
 
 class Constants(object):
 	WEAPON_PRIMARY_BTN = 1
