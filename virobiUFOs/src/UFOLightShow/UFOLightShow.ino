@@ -31,33 +31,38 @@ CRGB leds[NUM_LEDS];
 CHSV ledsHSV[NUM_LEDS];
 
 byte ufoState = 0;
+unsigned long ufoTimer=0UL;
 
 AnalogClass Analog;
 AnimClass Anim;
+
+uint8_t ufoMode;
+uint8_t ufoArguments[10];
+bool ufoStateChange = false;
 
 // This function sets up the ledsand tells the controller about them
 void setup() {
 	// sanity check delay - allows reprogramming if accidently blowing power w/leds
 	delay(2000);
 
-	Serial.begin(38400);
+	Serial.begin(2400);
 
 	FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
 
 	// ufo engine LEDs
 	Anim.AnimElm[0].pLeds = leds;
 	Anim.AnimElm[0].LedOffset = 0;
-    Anim.AnimElm[0].LedCount = 3;
+	Anim.AnimElm[0].LedCount = 3;
 
-    // ufo cockpit LEDs
+	// ufo cockpit LEDs
 	Anim.AnimElm[1].pLeds = leds;
 	Anim.AnimElm[1].LedOffset = 3;
-    Anim.AnimElm[1].LedCount = 3;
+	Anim.AnimElm[1].LedCount = 3;
 
-    // ufo laser shot LED
+	// ufo laser shot LED
 	Anim.AnimElm[2].pLeds = leds;
 	Anim.AnimElm[2].LedOffset = 6;
-    Anim.AnimElm[2].LedCount = 1;
+	Anim.AnimElm[2].LedCount = 1;
 	
 	// init virobi motor driver
 	pinMode(MOTOR_PIN_A, OUTPUT);
@@ -88,6 +93,11 @@ void loop() {
 	unsigned long current_millis = millis();
 
 	receive_serial_cmd();
+
+
+	virobiUFOLoopNormalMode();
+
+	virobiUFOLoopPanicMode();
 
 	/*
 	CHSV temp_hsv;
@@ -130,7 +140,7 @@ void loop() {
 	*/
 
 	Anim.worker();
-    Analog.worker();
+	Analog.worker();
 	FastLED.show();
 }
 
@@ -157,7 +167,8 @@ void receive_serial_cmd(void) {
 					if(cmdcount >= 4) {
 						uint8_t objectNum = get1Hex(cmd[1]);
 						uint8_t aniNum = get2Hex((char *)&cmd[2]);
-						if(objectNum>=0) {
+						if(objectNum>=8) {
+							objectNum = objectNum-8;
 							if(cmdcount >= 5) {
 								Anim.AnimElm[objectNum].Arguments[0] = get2Hex((char *)&cmd[4]);
 							}
@@ -180,7 +191,8 @@ void receive_serial_cmd(void) {
 					if(cmdcount >= 4) {
 						uint8_t objectNum = get1Hex(cmd[1]);
 						uint8_t aniNum = get2Hex((char *)&cmd[2]);
-						if(objectNum < MAXANALOGELM) {
+						if(objectNum==4) {
+							objectNum = objectNum - 4;
 							if(cmdcount >= 5) {
 								Analog.AnimElm[objectNum].Arguments[0] = get2Hex((char *)&cmd[4]);
 							}
@@ -195,6 +207,27 @@ void receive_serial_cmd(void) {
 							}                    
 							Analog.AnimElm[objectNum].startAnimation(aniNum);
 						}
+
+						// UFO Config
+						if(objectNum==5 && cmdcount>=8) {
+							ufoArguments[5] = get2Hex((char *)&cmd[4]); // Speed Normal Move
+							ufoArguments[6] = get2Hex((char *)&cmd[6]); // Speed Hit
+						}
+
+						// UFO Sequence parser
+						if(objectNum==6 && cmdcount>=9) {
+							ufoMode = aniNum;
+							ufoArguments[0] = get2Hex((char *)&cmd[4]); // BASE Color Red
+							ufoArguments[1] = get2Hex((char *)&cmd[6]); // BASE Color Green
+							ufoArguments[2] = get2Hex((char *)&cmd[8]); // BASE Color Blue
+
+							ufoArguments[3] = get1Hex(cmd[9]); // Sec Move
+							ufoArguments[4] = get1Hex(cmd[10]); // Sec Attack
+
+							ufoStateChange = true;
+							
+						}
+						Serial.println(cmdcount);
 					}
 					break;
 
@@ -210,6 +243,161 @@ void receive_serial_cmd(void) {
 		}
 	}
 }  
+
+void virobiUFOLoopNormalMode() {
+	switch (ufoMode) { // UFO Statemachine
+		case 0x00:
+			Analog.AnimElm[0].Arguments[0] = 0x00;
+			Analog.AnimElm[0].Arguments[1] = 0x00;
+			Analog.AnimElm[0].startAnimation(0x30);
+
+			Anim.AnimElm[0].Arguments[0] = 0x00;
+			Anim.AnimElm[0].Arguments[1] = 0x00;
+			Anim.AnimElm[0].Arguments[2] = 0x00;
+			Anim.AnimElm[0].Arguments[3] = 0x05;
+			Anim.AnimElm[0].startAnimation(0x09);
+
+			Anim.AnimElm[1].Arguments[0] = 0x00;
+			Anim.AnimElm[1].Arguments[1] = 0x00;
+			Anim.AnimElm[1].Arguments[2] = 0x00;
+			Anim.AnimElm[1].Arguments[3] = 0x05;
+			Anim.AnimElm[1].startAnimation(0x09);
+
+			Anim.AnimElm[2].Arguments[0] = 0x00;
+			Anim.AnimElm[2].Arguments[1] = 0x00;
+			Anim.AnimElm[2].Arguments[2] = 0x00;
+			Anim.AnimElm[2].Arguments[3] = 0x05;
+			Anim.AnimElm[2].startAnimation(0x09);
+			break;
+		case 0x01:
+			Anim.AnimElm[0].Arguments[0] = 0x77;
+			Anim.AnimElm[0].Arguments[1] = 0x44;
+			Anim.AnimElm[0].Arguments[2] = 0xFF;
+			Anim.AnimElm[0].Arguments[3] = 0x02;
+			Anim.AnimElm[0].startAnimation(0x0A);
+
+			Anim.AnimElm[1].Arguments[0] = ufoArguments[0];
+			Anim.AnimElm[1].Arguments[1] = ufoArguments[1];
+			Anim.AnimElm[1].Arguments[2] = ufoArguments[2];
+			Anim.AnimElm[1].Arguments[3] = 0x02;
+			Anim.AnimElm[1].startAnimation(0x0A);
+
+			Analog.AnimElm[0].Arguments[0] = ufoArguments[5];
+			Analog.AnimElm[0].Arguments[1] = 0x00;
+			Analog.AnimElm[0].startAnimation(0x30);
+		  	ufoMode = 0x02;
+		  	ufoTimer = millis() + 2000UL;
+		  	
+			break;
+		case 0x02:
+			if(millis()>ufoTimer) {
+				ufoMode = 0x03;
+			}
+			// Serial.println("0x02");
+			break;
+		case 0x03:
+			Analog.AnimElm[0].Arguments[0] = 0x00;
+			Analog.AnimElm[0].Arguments[1] = 0x00;
+			Analog.AnimElm[0].startAnimation(0x30);
+
+			Anim.AnimElm[2].Arguments[0] = 0xFF;
+			Anim.AnimElm[2].Arguments[1] = 0xFF;
+			Anim.AnimElm[2].Arguments[2] = 0xFF;
+			Anim.AnimElm[2].Arguments[3] = 0x05;
+			Anim.AnimElm[2].startAnimation(0x09);
+
+			ufoMode = 0x04;
+			
+			ufoTimer = millis() + 2000UL;
+			break;
+		case 0x04:
+			if(millis()>ufoTimer) {
+				ufoMode = 0x05;
+			}
+			// Serial.println("0x04");
+			break;
+		case 0x05:
+			Anim.AnimElm[2].Arguments[0] = 0x00;
+			Anim.AnimElm[2].Arguments[1] = 0x00;
+			Anim.AnimElm[2].Arguments[2] = 0x00;
+			Anim.AnimElm[2].Arguments[3] = 0x05;
+			Anim.AnimElm[2].startAnimation(0x09);
+			ufoMode = 0x01;
+			
+			break;
+		default:
+		  // do something
+			break;
+	}
+}
+
+void virobiUFOLoopPanicMode() {
+	switch (ufoMode) { // UFO Statemachine
+		case 0x0A:
+			// Serial.println("0x01");
+			Analog.AnimElm[0].Arguments[0] = ufoArguments[6];
+			Analog.AnimElm[0].Arguments[1] = 0x00;
+			Analog.AnimElm[0].startAnimation(0x30);
+
+			Anim.AnimElm[0].Arguments[0] = 0xFF;
+			Anim.AnimElm[0].Arguments[1] = 0x00;
+			Anim.AnimElm[0].Arguments[2] = 0x00;
+			Anim.AnimElm[0].Arguments[3] = 0x04;
+			Anim.AnimElm[0].startAnimation(0x09);
+
+			Anim.AnimElm[1].Arguments[0] = 0xFF;
+			Anim.AnimElm[1].Arguments[1] = 0x00;
+			Anim.AnimElm[1].Arguments[2] = 0x00;
+			Anim.AnimElm[1].Arguments[3] = 0x02;
+			Anim.AnimElm[1].startAnimation(0x09);
+
+			Anim.AnimElm[2].Arguments[0] = 0x00;
+			Anim.AnimElm[2].Arguments[1] = 0x00;
+			Anim.AnimElm[2].Arguments[2] = 0x00;
+			Anim.AnimElm[2].Arguments[3] = 0x05;
+			Anim.AnimElm[2].startAnimation(0x09);
+		  	ufoMode = 0x0B;
+		  	ufoTimer = millis() + 3000UL;
+		  	
+			break;
+		case 0x0B:
+			if(millis()>ufoTimer) {
+				ufoMode = 0x0C;
+			}
+			break;
+		case 0x0C:
+			Analog.AnimElm[0].Arguments[0] = 0x00;
+			Analog.AnimElm[0].Arguments[1] = 0x00;
+			Analog.AnimElm[0].startAnimation(0x30);
+
+			Anim.AnimElm[0].Arguments[0] = 0x77;
+			Anim.AnimElm[0].Arguments[1] = 0x44;
+			Anim.AnimElm[0].Arguments[2] = 0xFF;
+			Anim.AnimElm[0].Arguments[3] = 0x02;
+			Anim.AnimElm[0].startAnimation(0x0A);
+
+			Anim.AnimElm[1].Arguments[0] = ufoArguments[0];
+			Anim.AnimElm[1].Arguments[1] = ufoArguments[1];
+			Anim.AnimElm[1].Arguments[2] = ufoArguments[2];
+			Anim.AnimElm[1].Arguments[3] = 0x02;
+			Anim.AnimElm[1].startAnimation(0x0A);
+
+			ufoTimer = millis() + 500UL;
+
+			ufoMode = 0x0D;
+			break;
+
+		case 0x0D:
+			if(millis()>ufoTimer) {
+				ufoMode = 0x01;
+			}
+			break;
+		
+		default:
+		  // do something
+			break;
+	}
+}
 
 // convert single hex digit to value
 uint8_t get1Hex(const char b) {

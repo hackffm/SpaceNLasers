@@ -109,7 +109,7 @@ void AnimElementClass::startAnimation(uint8_t EffectNo) {
 			CRGBPalette16 currentPalette=LavaColors_p;
 			brightness = 155;
 			
-			TBlendType    currentBlending = BLEND;
+			TBlendType    currentBlending = LINEARBLEND;
 			
 			// Turn current LED on
 			for(int i=0; i<LedCount; i++){
@@ -150,7 +150,7 @@ void AnimElementClass::worker(void) {
 	if(Flags & ANIFLAGBLANK) return;
 	uint8_t brightness;
 	uint8_t valR;
-	TBlendType    currentBlending = BLEND;
+	TBlendType    currentBlending = LINEARBLEND;
 	CRGBPalette16 currentPalette=LavaColors_p;
 	
 	switch(EffectNumber) {
