@@ -66,6 +66,10 @@ class SoundManager(object):
 			result += s.GetDurations()
 		return result
 
+	@staticmethod
+	def StopAll():
+		pygame.mixer.stop()
+
 if __name__ == "__main__":
 	sm = SoundManager()
 	print(sm.GetDurations())

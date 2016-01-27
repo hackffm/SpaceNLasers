@@ -205,8 +205,10 @@ class GameEngine(object):
 			print("aborting game due to command from menugod")
 		finally:
 			CountdownTimer.Clear()
-			for m in self.sound.mainMusics:
-				m.stop()
+			SoundManager.StopAll()
+			for target in targets:
+				target.Effect("disable")
+			self._SendTargetBuffers(targets)
 	
 
 	def _SendTargetBuffers(self, targets):
