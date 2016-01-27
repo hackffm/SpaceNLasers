@@ -48,6 +48,7 @@ class Gamemode(gamemodes.baseclasses.Gamemode):
 			part.SetOwner(self.alienFaction)
 		ms.SetOwner(self.alienFaction, nodestroy=True)
 		self._SetMothershipCountdown()
+		self.gameEngine.sound.mothershipFly.play(loops=-1)
 	
 	def _SetMothershipCountdown(self):
 		reloadTime=self.conf.mothershipBaseReload + self.conf.mothershipScalingReload * self.occupiedArea[self._GetMothership().owner]/self.totalArea

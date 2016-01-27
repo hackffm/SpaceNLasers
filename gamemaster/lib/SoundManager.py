@@ -13,7 +13,7 @@ class SoundSet(object):
 		self.number = number
 		params = {"setnumber":number}
 
-		sounds = ["intro", "laser", "gameOver", "targetDestroyed"]
+		sounds = ["intro", "laser", "gameOver", "targetDestroyed", "mothershipFly"]
 		for s in sounds:
 			setattr(self, s, loadSound((soundFolder+"{sound}.wav").format(sound=s, **params)))
 
