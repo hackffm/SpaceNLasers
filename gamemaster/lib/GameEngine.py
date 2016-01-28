@@ -12,6 +12,7 @@ from CountdownTimer import CountdownTimer
 import gamemodes
 from SoundManager import SoundManager
 from DMXEffects import DMXEffectManager
+from ErrorConsole import ErrorConsole
 
 class GameEngine(object):
 	##
@@ -39,6 +40,9 @@ class GameEngine(object):
 			self.menugod = FakeMenuGod()
 		else:
 			self.menugod = MenuGod(menugod)
+
+		print("opening error console...")
+		self.errorConsole = ErrorConsole("")
 
 		self.eventLog = []
 
@@ -187,6 +191,12 @@ class GameEngine(object):
 
 				# send target buffer
 				self._SendTargetBuffers(targets)
+
+				# propagate system state to error console
+				socketStatus={}
+				socketStatus["menuGod"] = self.menugod.IsInErrorState()
+				socketStatus["beamer"] = self.beamer.IsInErrorState()
+				self.errorConsole.SendStatus(self.busErrorLog, socketStatus)
 
 		except gamemodes.baseclasses.GameOverException as gameOver:
 			self._DisableAllTargets(targets)

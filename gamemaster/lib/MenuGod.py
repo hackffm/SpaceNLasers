@@ -95,6 +95,8 @@ class FakeMenuGod(object):
 		pass
 	def GameOver(self):
 		print("GAME OVER")
+	def IsInErrorState(self):
+		return False
 
 
 ## Abstraction of a display for scores and stuff.
@@ -295,4 +297,8 @@ class MenuGod(object):
 				self.connection.send(j)
 			except socket.error:
 				self._CleanupConnections()
-
+	
+	## Check whether connection is active
+	# \returns True on connection failure, False otherwise
+	def IsInErrorState(self):
+		return self.connection is None
