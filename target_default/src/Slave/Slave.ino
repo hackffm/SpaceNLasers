@@ -158,16 +158,16 @@ void setup() {
     #endif
     
     // PWM's 3,9,10 
-    pinMode(3, OUTPUT);
-    Analog.AnimElm[0].OutputID = 3;
+    pinMode(9, OUTPUT);
+    Analog.AnimElm[0].OutputID = 9;
     Analog.AnimElm[0].directSet(0);  
     
-    pinMode(9, OUTPUT);
-    Analog.AnimElm[1].OutputID = 9;
+    pinMode(10, OUTPUT);
+    Analog.AnimElm[1].OutputID = 10;
     Analog.AnimElm[1].directSet(0); 
 
-    pinMode(10, OUTPUT);
-    Analog.AnimElm[2].OutputID = 10;
+    pinMode(3, OUTPUT);
+    Analog.AnimElm[2].OutputID = 3;
     Analog.AnimElm[2].directSet(0);
   #endif
 
@@ -224,11 +224,13 @@ void receive_serial_cmd(void) {
           FeuerFrei = 0;
           Anim.shotMute(0);
           Analog.shotMute(0);
+          /*
           #ifdef I_AM_WEAPON
             txEn();
             Serial.write('x');
             txDis();
           #endif
+          */
           break;          
         
         case 's':  // Bereit machen für Schuss, Waffe aktiv schalten     
@@ -270,7 +272,7 @@ void receive_serial_cmd(void) {
           break; 
             
 
-        case 'f':
+        case 'W':
           if(cmdcount > 9) {
             uint16_t a, b;
             a = ((uint16_t)get2Hex((char *)&cmd[1]))<<8 | (uint16_t)get2Hex((char *)&cmd[3]);
@@ -304,44 +306,7 @@ void receive_serial_cmd(void) {
           if((cmd[0] == ownID) && (cmdcount >= 2)) {
             
             switch(cmd[1]) {
-              case 'd': // debug
-                if((cmdcount > 1)) {
-                  txEn();
-                  Serial.write(ownID);
-                  Serial.write(0x0d);
-                  Serial.write(0x0a);
-                  #ifdef I_AM_TARGET
-                  for(int i=0; i<MAXRXELM; i++) {
-                    Serial.print(LightRx.RxElm[i].DarkValue);
-                    Serial.write(' ');
-                    Serial.print(LightRx.RxElm[i].Threshold);
-                    Serial.write(' ');
-                    Serial.print(LightRx.RxElm[i].Data);
-                    Serial.write(' ');
-                    Serial.print(LightRx.RxElm[i].MaxValue);
-                    Serial.write(' ');
-                    Serial.println(LightRx.RxElm[i].MinValue);                
-                  }
-                  #endif
-                  txDis();
-                }
-                break;
-                
-              case 'b':  // button & Co. status
-                #ifdef I_AM_WEAPON
-                {
-                  uint8_t buttonState = 0;
-                  if(!digitalRead(FIREBUTTON))  buttonState |= 1;
-                  if(!digitalRead(LOADBUTTON))  buttonState |= 2;
-                  if(!digitalRead(THUMBBUTTON)) buttonState |= 4;
-                  if(!digitalRead(BARREL))      buttonState |= 8;
-                  txEn();
-                  print2Hex(buttonState);
-                  print2Hex(getBarrelCount());              
-                  txDis();
-                }
-                #endif
-                break;
+              
                 
               case 'a':  // NEOPIXEL Animation 
                 // 1aONN AABBCCDD O = Objekt Nummer, NN = Animation number (Hex), AABBCCDD (Hex, optionales Argument)
@@ -424,6 +389,45 @@ void receive_serial_cmd(void) {
                     LightRx.RxElm[obj].Data = 0;
                     txDis();
                   }
+                }
+                #endif
+                break;
+
+              case 'd': // debug
+                if((cmdcount > 1)) {
+                  txEn();
+                  Serial.write(ownID);
+                  Serial.write(0x0d);
+                  Serial.write(0x0a);
+                  #ifdef I_AM_TARGET
+                  for(int i=0; i<MAXRXELM; i++) {
+                    Serial.print(LightRx.RxElm[i].DarkValue);
+                    Serial.write(' ');
+                    Serial.print(LightRx.RxElm[i].Threshold);
+                    Serial.write(' ');
+                    Serial.print(LightRx.RxElm[i].Data);
+                    Serial.write(' ');
+                    Serial.print(LightRx.RxElm[i].MaxValue);
+                    Serial.write(' ');
+                    Serial.println(LightRx.RxElm[i].MinValue);                
+                  }
+                  #endif
+                  txDis();
+                }
+                break;
+                
+              case 'b':  // button & Co. status
+                #ifdef I_AM_WEAPON
+                {
+                  uint8_t buttonState = 0;
+                  if(!digitalRead(FIREBUTTON))  buttonState |= 1;
+                  if(!digitalRead(LOADBUTTON))  buttonState |= 2;
+                  if(!digitalRead(THUMBBUTTON)) buttonState |= 4;
+                  if(!digitalRead(BARREL))      buttonState |= 8;
+                  txEn();
+                  print2Hex(buttonState);
+                  print2Hex(getBarrelCount());              
+                  txDis();
                 }
                 #endif
                 break;

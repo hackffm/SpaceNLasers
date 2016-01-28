@@ -32,6 +32,12 @@
 
 #include "LightRx.h"
 
+// #define DEBUGRXPINHIGH() digitalWrite(10, HIGH)
+// #define DEBUGRXPINLOW() digitalWrite(10, LOW)
+
+#define DEBUGRXPINHIGH() 
+#define DEBUGRXPINLOW()
+
 LightRxElementClass::LightRxElementClass(void) {
   Pin = 255;
   Threshold = 150;
@@ -52,14 +58,14 @@ void LightRxElementClass::setPin(uint8_t analogPin, uint8_t pullupOn) {
 void LightRxElementClass::doReceiveBit(uint8_t state) {
   if(Pin != 255) {
     if(state == 0) {
-        digitalWrite(10, HIGH);
+        DEBUGRXPINHIGH();
       DarkValue = analogRead(Pin);
       Data = 0;
       MaxValue = DarkValue;
       MinValue = DarkValue;
-        digitalWrite(10, LOW);
+        DEBUGRXPINLOW();
     } else if((state >= 1) && (state <= 8)) {
-        digitalWrite(10, HIGH);
+        DEBUGRXPINHIGH();
       uint16_t v = analogRead(Pin);
       if(v > MaxValue) MaxValue = v;
       if(v < MinValue) MinValue = v;
@@ -67,7 +73,7 @@ void LightRxElementClass::doReceiveBit(uint8_t state) {
       if(((int16_t)DarkValue - (int16_t)v) > (int16_t)Threshold) {
         Data |= (1<<(8 - state));
       } 
-        digitalWrite(10, LOW);
+        DEBUGRXPINLOW();
     }
   }
 }

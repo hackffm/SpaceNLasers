@@ -122,12 +122,12 @@ void AnimElementClass::startAnimation(uint8_t EffectNo) {
         pLeds[i].r = Arguments[0];
         pLeds[i].g = Arguments[1];
         pLeds[i].b = Arguments[2];
-        Storage8[0] = Arguments[3]*1;
-        // Storage8[0] = 1;
+        Storage8[0] = Arguments[3];
         Storage32 = 0;
       }
       
     }
+    break;
 
     case 0x0A: {
       // wave serial animation
@@ -139,8 +139,9 @@ void AnimElementClass::startAnimation(uint8_t EffectNo) {
         Storage32 = 0;
       }
     }
+    break;
   
-    case 0x10:
+    case 0x11: // 0x10
       {
         // UFO animation
         CRGB color;
@@ -213,9 +214,9 @@ void AnimElementClass::worker(void) {
 
     case 0x09:
       // wave parallel animation
-      Storage32++;
+      Storage32+=Storage8[0];
 
-      valR = cubicwave8(Storage32*Storage8[0]); // 
+      valR = cubicwave8(Storage32); // 
       pLeds[0].r = scale8(valR,Arguments[0]);
       pLeds[0].g = scale8(valR,Arguments[1]);
       pLeds[0].b = scale8(valR,Arguments[2]);
@@ -238,7 +239,7 @@ void AnimElementClass::worker(void) {
       }
     break;
       
-    case 0x10:
+    case 0x11:
       // UFO animation
       if((millis() - Timestamp) > Storage32) {
         Timestamp += Storage32;

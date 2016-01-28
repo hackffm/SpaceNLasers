@@ -107,14 +107,22 @@ void AnalogElementClass::startAnimation(uint8_t EffectNo) {
       break;
       
     // Flash: OnVal 0, OnTime [10ms] 1, OffTime [10ms] 2, Repeat 3
-    case 0x20:
+    case 0x20: // 10ms steps
       Timestamp = millis();   
       Storage8[0] = Arguments[3];      
       Storage32 = Arguments[1] * 10;
       directSet(Arguments[0]);
       Storage8[1] = 1;
+      break;
+      
+    case 0x21: // 100ms steps
+      Timestamp = millis();   
+      Storage8[0] = Arguments[3];      
+      Storage32 = Arguments[1] * 100;
+      directSet(Arguments[0]);
+      Storage8[1] = 1;
       break;   
-  
+    
   }  
 }
 
@@ -182,6 +190,25 @@ void AnalogElementClass::worker(void) {
           Storage8[1] = 1;
           directSet(Arguments[0]);
           Storage32 = Arguments[1] * 10;
+        }
+      }
+      break;    
+
+    case 0x21: // Flash
+      if(((uint16_t)millis() - (uint16_t)Timestamp) > (uint16_t)Storage32) {
+        Timestamp += (uint16_t)Storage32;
+        if(Storage8[1]) {
+          Storage8[1] = 0;
+          directSet(0); 
+          Storage32 = Arguments[2] * 100;
+          if(Arguments[3]) {
+            Storage8[0]--;
+            if(Storage8[0] == 0) EffectNumber = 0;
+          }          
+        } else {
+          Storage8[1] = 1;
+          directSet(Arguments[0]);
+          Storage32 = Arguments[1] * 100;
         }
       }
       break;    
