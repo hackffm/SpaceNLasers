@@ -44,6 +44,7 @@ class AnimElementClass {
   public:
     CRGB        *pLeds;   
     uint8_t     LedCount;
+    uint8_t     LedOffset;
 
     uint8_t     Flags;          // Bit 0: If set object will be off while shot, Bit 1: muted
     

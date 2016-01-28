@@ -36,6 +36,7 @@
 
 AnimElementClass::AnimElementClass(void) {
   Flags = 0;
+  LedOffset = 0;
   LedCount = 0;
   EffectNumber = 0;
   State = 0;
@@ -114,6 +115,30 @@ void AnimElementClass::startAnimation(uint8_t EffectNo) {
         } 
       }
       break;    
+
+    case 0x09: {
+      // wave parallel animation
+      for(int i=0; i<LedCount; i++){
+        pLeds[i].r = Arguments[0];
+        pLeds[i].g = Arguments[1];
+        pLeds[i].b = Arguments[2];
+        Storage8[0] = Arguments[3]*1;
+        // Storage8[0] = 1;
+        Storage32 = 0;
+      }
+      
+    }
+
+    case 0x0A: {
+      // wave serial animation
+      for(int i=0; i<LedCount; i++){
+        pLeds[i].r = Arguments[0];
+        pLeds[i].g = Arguments[1];
+        pLeds[i].b = Arguments[2];
+        Storage8[0] = Arguments[3];
+        Storage32 = 0;
+      }
+    }
   
     case 0x10:
       {
@@ -139,6 +164,7 @@ void AnimElementClass::worker(void) {
   if(!pLeds || !LedCount) return;
   if(Flags & ANIFLAGBLANK) return;
   uint8_t brightness;
+  uint8_t valR;
   TBlendType    currentBlending = LINEARBLEND ;
   CRGBPalette16 currentPalette=LavaColors_p;
   CRGB color;
@@ -182,6 +208,35 @@ void AnimElementClass::worker(void) {
           
       } 
       break;  
+
+    
+
+    case 0x09:
+      // wave parallel animation
+      Storage32++;
+
+      valR = cubicwave8(Storage32*Storage8[0]); // 
+      pLeds[0].r = scale8(valR,Arguments[0]);
+      pLeds[0].g = scale8(valR,Arguments[1]);
+      pLeds[0].b = scale8(valR,Arguments[2]);
+      
+      for(int i=0; i<LedCount+0; i++) {
+        pLeds[i].r = pLeds[0].r;
+        pLeds[i].g = pLeds[0].g;
+        pLeds[i].b = pLeds[0].b;
+      }
+    break;
+
+    case 0x0A:
+      // wave serial animation
+      Storage32+=Storage8[0];
+      for(int i=0; i<LedCount; i++) {
+        valR = cubicwave8(max(min((Storage32%(192*LedCount))-(i*192),255),0));
+        pLeds[i].r = scale8(valR,Arguments[0]);
+        pLeds[i].g = scale8(valR,Arguments[1]);
+        pLeds[i].b = scale8(valR,Arguments[2]);
+      }
+    break;
       
     case 0x10:
       // UFO animation

@@ -362,11 +362,11 @@ void receive_serial_cmd(void) {
                       Anim.AnimElm[objectNum].Arguments[3] = get2Hex((char *)&cmd[11]);
                     }                    
                     Anim.AnimElm[objectNum].startAnimation(aniNum);
-                    //Serial.print(objectNum);
-                    //Serial.write(' ');
-                    //Serial.print(aniNum);
-                    //Serial.write(' '); 
-                    //Serial.print(Anim.AnimElm[objectNum].Arguments[0]);
+                    // Serial.print(objectNum);
+                    // Serial.write(' ');
+                    // Serial.print(aniNum);
+                    // Serial.write(' '); 
+                    // Serial.print(Anim.AnimElm[objectNum].Arguments[3]);
                   }
                 }
                 break;
