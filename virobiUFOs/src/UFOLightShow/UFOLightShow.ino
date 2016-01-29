@@ -30,7 +30,7 @@
 CRGB leds[NUM_LEDS];
 CHSV ledsHSV[NUM_LEDS];
 
-byte ufoState = 0;
+byte ufoState = 0xFF;
 unsigned long ufoTimer=0UL;
 
 AnalogClass Analog;
@@ -167,8 +167,33 @@ void receive_serial_cmd(void) {
 					if(cmdcount >= 4) {
 						uint8_t objectNum = get1Hex(cmd[1]);
 						uint8_t aniNum = get2Hex((char *)&cmd[2]);
-						if(objectNum>=8) {
-							objectNum = objectNum-8;
+
+						if(objectNum==0) { // main virobi ufo state object
+							switch (aniNum) {
+							    case 2:
+							      // start ufo normal mode
+							      	ufoMode = 0x01;
+							      break;
+							    case 0x09:
+							      // start ufo panic mode
+									ufoMode = 0x0A;
+							      break;
+							    default:
+							    	ufoMode = 0x00;
+							}
+							// ufoMode = aniNum;
+							ufoArguments[0] = get2Hex((char *)&cmd[4]); // BASE Color Red
+							ufoArguments[1] = get2Hex((char *)&cmd[6]); // BASE Color Green
+							ufoArguments[2] = get2Hex((char *)&cmd[8]); // BASE Color Blue
+
+							ufoArguments[3] = get1Hex(cmd[9]); // Sec Move
+							ufoArguments[4] = get1Hex(cmd[10]); // Sec Attack
+
+							ufoStateChange = true;
+						}
+
+						if(objectNum>0 && objectNum < MAXANIMELM+1) { // if(objectNum>=8) {
+							objectNum = objectNum-1;
 							if(cmdcount >= 5) {
 								Anim.AnimElm[objectNum].Arguments[0] = get2Hex((char *)&cmd[4]);
 							}
@@ -182,6 +207,7 @@ void receive_serial_cmd(void) {
 								Anim.AnimElm[objectNum].Arguments[3] = get2Hex((char *)&cmd[10]);
 							}
 							Anim.AnimElm[objectNum].startAnimation(aniNum);
+							Serial.println(Anim.AnimElm[objectNum].Arguments[3]);
 						}
 					}
 					break;
@@ -191,8 +217,8 @@ void receive_serial_cmd(void) {
 					if(cmdcount >= 4) {
 						uint8_t objectNum = get1Hex(cmd[1]);
 						uint8_t aniNum = get2Hex((char *)&cmd[2]);
-						if(objectNum==4) {
-							objectNum = objectNum - 4;
+						if(objectNum < MAXANALOGELM) { // if(objectNum==4) {
+							// objectNum = objectNum - 4;
 							if(cmdcount >= 5) {
 								Analog.AnimElm[objectNum].Arguments[0] = get2Hex((char *)&cmd[4]);
 							}
@@ -227,7 +253,7 @@ void receive_serial_cmd(void) {
 							ufoStateChange = true;
 							
 						}
-						Serial.println(cmdcount);
+						// Serial.println(cmdcount);
 					}
 					break;
 
@@ -357,7 +383,7 @@ void virobiUFOLoopPanicMode() {
 			Anim.AnimElm[2].Arguments[3] = 0x05;
 			Anim.AnimElm[2].startAnimation(0x09);
 		  	ufoMode = 0x0B;
-		  	ufoTimer = millis() + 3000UL;
+		  	ufoTimer = millis() + 5000UL;
 		  	
 			break;
 		case 0x0B:

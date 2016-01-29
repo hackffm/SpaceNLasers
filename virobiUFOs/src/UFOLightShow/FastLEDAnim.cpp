@@ -131,8 +131,10 @@ void AnimElementClass::startAnimation(uint8_t EffectNo) {
 			}
 			
 		}
+		break;
 
 		case 0x0A: {
+			// wave serial animation
 			for(int i=LedOffset; i<LedCount+LedOffset; i++){
 				pLeds[i].r = Arguments[0];
 				pLeds[i].g = Arguments[1];
@@ -194,9 +196,9 @@ void AnimElementClass::worker(void) {
 
 		case 0x09:
 			// wave parallel animation
-			Storage32++;
+			Storage32+=Arguments[3];
 
-			valR = cubicwave8(Storage32*Storage8[0]);
+			valR = cubicwave8(Storage32);
 			pLeds[LedOffset].r = scale8(valR,Arguments[0]);
 			pLeds[LedOffset].g = scale8(valR,Arguments[1]);
 			pLeds[LedOffset].b = scale8(valR,Arguments[2]);
@@ -209,7 +211,7 @@ void AnimElementClass::worker(void) {
 		break;
 
 		case 0x0A:
-			Storage32+=Storage8[0];
+			Storage32+=Arguments[3];
 			for(int i=0; i<LedCount; i++) {
 				valR = cubicwave8(max(min((Storage32%(192*LedCount))-(i*192),255),0));
 				pLeds[i+LedOffset].r = scale8(valR,Arguments[0]);
