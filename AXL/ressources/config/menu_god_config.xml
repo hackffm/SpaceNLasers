@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<space_n_lasers_config>
+	<serial>
+		<enable>false</enable>
+		<tty>COM17</tty>
+		<tty_speed>9600</tty_speed>
+	</serial>
+	<gamemaster>
+		<enable>false</enable>
+		<!--  Eee-Box HackFFM, 10.0.0.212 --> 
+		<!--  Sidekick Beamer PC, 172.16.0.223 --> 
+		<ip>10.0.0.179</ip>
+		<port>5000</port>
+	</gamemaster>
+	<beamer>
+		<enable>true</enable>
+		<!--  Eee-Box HackFFM, 10.0.0.212 --> 
+		<!--  Sidekick Beamer PC, 172.16.0.223 --> 
+		<ip>10.0.1.52</ip>
+		<port>5000</port>
+	</beamer>
+</space_n_lasers_config>

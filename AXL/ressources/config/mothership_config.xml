@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<machine_config>
+	<serial>
+		<tty>COM3</tty>
+		<tty_speed>9600</tty_speed>
+	</serial>
+</machine_config>
