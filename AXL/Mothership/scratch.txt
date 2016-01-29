@@ -1,0 +1,19 @@
+          case 's': // set speed [steps/sec]
+            s_speed = (float) val;
+            stepper.setMaxSpeed(s_speed);
+            break;
+          case 'a': // set acceleration [steps/sec/sec]
+            s_acceleration = (float) val;
+            stepper.setAcceleration(s_acceleration);
+            break;
+			
+			
+			
+			
+    if (state > 0) {
+      p = stepper.currentPosition() - home_pos;
+      stepper.setAcceleration(s_acceleration);
+
+
+      state = 0;
+    }
