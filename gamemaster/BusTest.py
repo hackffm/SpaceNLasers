@@ -55,10 +55,18 @@ def ExecuteCode(code, waitForReturn=False):
 	if len(code) > 0 and code[-1] != "\n":
 		code += "\n"
 	#return code
+	input_tuples = tuple()
+	while(True):
+		try:
+			formatted = code.format(*input_tuples)
+			break
+		except IndexError:
+			input_tuples += (input("parameter:"),)
+	
 	if waitForReturn:
-		return gameHotLine.PingPong(code.encode("utf-8"))
+		return gameHotLine.PingPong(formatted.encode("utf-8"))
 	else:
-		gameHotLine.Ping(code.encode("utf-8"))
+		gameHotLine.Ping(formatted.encode("utf-8"))
 
 def GlobalCode():
 	while(True):
