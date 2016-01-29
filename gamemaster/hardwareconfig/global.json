@@ -10,7 +10,7 @@
 				"enable":"",
 				"disable":"{targetGroup}a{targetID}02000000\n",
 				"hit":"",
-				"destroy":"",
+				"destroy":"{targetGroup}a{targetID}09FF0000\n",
 				"setColor":"{targetGroup}a{targetID}02{0}\n"
 			}
 		},
@@ -34,7 +34,7 @@
 				"enable":"",
 				"disable":"{targetGroup}a{targetID}02000000\n",
 				"hit":"",
-				"destroy":"",
+				"destroy":"{targetGroup}a{targetID}09FF0000\n",
 				"setColor":"{targetGroup}a{targetID}02{0}\n"
 			}
 		},
@@ -43,10 +43,10 @@
 			"group":"extra",
 			"effects":
 			{
-				"enable":"{targetGroup}a{targetID}02FFFFFF\n",
-				"disable":"{targetGroup}a{targetID}02000000\n",
+				"enable":"A500CCEE\n",
+				"disable":"{targetGroup}a{targetID}00000000\n",
 				"hit":"",
-				"destroy":"",
+				"destroy":"{targetGroup}a{targetID}09FF0000\n",
 				"setColor":"{targetGroup}a{targetID}02{0}\n"
 			}
 		}
