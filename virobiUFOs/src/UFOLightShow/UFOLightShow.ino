@@ -49,6 +49,12 @@ void setup() {
 
 	FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
 
+	ufoMode = 0;
+
+	// default motor settings
+	ufoArguments[5] = 204;
+	ufoArguments[6] = 238;
+
 	// ufo engine LEDs
 	Anim.AnimElm[0].pLeds = leds;
 	Anim.AnimElm[0].LedOffset = 0;
@@ -98,46 +104,6 @@ void loop() {
 	virobiUFOLoopNormalMode();
 
 	virobiUFOLoopPanicMode();
-
-	/*
-	CHSV temp_hsv;
-
-	bool requireLEDUpdate = false;
-	
-
-	if(timer_ufo_ring<current_millis) {
-		timer_ufo_ring = current_millis+1L;
-
-		led_ramp_pos+=1;
-
-		// ufo engine light FX
-		for(int i=0; i<NUM_LEDS-1; i++) {
-			ledsHSV[i].h = 180; // 100
-			ledsHSV[i].v =  255; // 128
-			ledsHSV[i].s = 255-cubicwave8(max(min((led_ramp_pos%(192*3))-(i*192),255),0));
-		}
-
-
-		// brain slug control panel light FX
-		
-		for(int i=0; i<3; i++) {
-			ledsHSV[i+3].h = 180; // 100
-			ledsHSV[i+3].v =  100; // 128
-			ledsHSV[i+3].s = 255-cubicwave8(max(min((led_ramp_pos%(100*3))-(i*100),255),0));
-		}
-		
-
-
-		// laser ground attack light FX
-		ledsHSV[6].h = 200;
-		ledsHSV[6].s = 0;
-		ledsHSV[6].v = (led_ramp_pos%50<20) && (led_ramp_pos%1000<200) ? 255:0;
-		
-		requireLEDUpdate = true;
-	}
-
-	if(requireLEDUpdate) showHSV(ledsHSV);
-	*/
 
 	Anim.worker();
 	Analog.worker();
@@ -217,6 +183,7 @@ void receive_serial_cmd(void) {
 					if(cmdcount >= 4) {
 						uint8_t objectNum = get1Hex(cmd[1]);
 						uint8_t aniNum = get2Hex((char *)&cmd[2]);
+						/*
 						if(objectNum < MAXANALOGELM) { // if(objectNum==4) {
 							// objectNum = objectNum - 4;
 							if(cmdcount >= 5) {
@@ -233,15 +200,16 @@ void receive_serial_cmd(void) {
 							}                    
 							Analog.AnimElm[objectNum].startAnimation(aniNum);
 						}
+						*/
 
 						// UFO Config
-						if(objectNum==5 && cmdcount>=8) {
+						if(objectNum==0 && cmdcount>=8) {
 							ufoArguments[5] = get2Hex((char *)&cmd[4]); // Speed Normal Move
 							ufoArguments[6] = get2Hex((char *)&cmd[6]); // Speed Hit
 						}
 
 						// UFO Sequence parser
-						if(objectNum==6 && cmdcount>=9) {
+						if(objectNum==1 && cmdcount>=9) {
 							ufoMode = aniNum;
 							ufoArguments[0] = get2Hex((char *)&cmd[4]); // BASE Color Red
 							ufoArguments[1] = get2Hex((char *)&cmd[6]); // BASE Color Green
@@ -277,23 +245,28 @@ void virobiUFOLoopNormalMode() {
 			Analog.AnimElm[0].Arguments[1] = 0x00;
 			Analog.AnimElm[0].startAnimation(0x30);
 
-			Anim.AnimElm[0].Arguments[0] = 0x00;
-			Anim.AnimElm[0].Arguments[1] = 0x00;
-			Anim.AnimElm[0].Arguments[2] = 0x00;
-			Anim.AnimElm[0].Arguments[3] = 0x05;
-			Anim.AnimElm[0].startAnimation(0x09);
+			Anim.AnimElm[0].startAnimation(0x01);
 
-			Anim.AnimElm[1].Arguments[0] = 0x00;
-			Anim.AnimElm[1].Arguments[1] = 0x00;
-			Anim.AnimElm[1].Arguments[2] = 0x00;
-			Anim.AnimElm[1].Arguments[3] = 0x05;
-			Anim.AnimElm[1].startAnimation(0x09);
+			Anim.AnimElm[1].startAnimation(0x01);
 
-			Anim.AnimElm[2].Arguments[0] = 0x00;
-			Anim.AnimElm[2].Arguments[1] = 0x00;
-			Anim.AnimElm[2].Arguments[2] = 0x00;
-			Anim.AnimElm[2].Arguments[3] = 0x05;
-			Anim.AnimElm[2].startAnimation(0x09);
+			Anim.AnimElm[2].startAnimation(0x01);
+			ufoMode = 0x10;
+		  	ufoTimer = millis() + 5000UL;
+			break;
+		case 0x10:
+			if(millis()>ufoTimer) {
+				Anim.AnimElm[0].Arguments[0] = 0x20;
+				Anim.AnimElm[0].Arguments[1] = 0x00;
+				Anim.AnimElm[0].Arguments[2] = 0x00;
+				Anim.AnimElm[0].startAnimation(0x02);
+				ufoMode = 0x11;
+		  		ufoTimer = millis() + 5UL;
+			}
+			break;
+		case 0x11:
+			if(millis()>ufoTimer) {
+				ufoMode = 0x00;
+			}
 			break;
 		case 0x01:
 			Anim.AnimElm[0].Arguments[0] = 0x77;
@@ -313,7 +286,6 @@ void virobiUFOLoopNormalMode() {
 			Analog.AnimElm[0].startAnimation(0x30);
 		  	ufoMode = 0x02;
 		  	ufoTimer = millis() + 2000UL;
-		  	
 			break;
 		case 0x02:
 			if(millis()>ufoTimer) {

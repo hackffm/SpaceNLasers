@@ -59,7 +59,7 @@ void setup()
   val_sig = false;
 
   // start serial port at 9600 bps and wait for port to open:
-  Serial.begin(9600);
+  Serial.begin(2400);
 //  Serial.println(stepper.distanceToGo());
   Serial.flush();
   

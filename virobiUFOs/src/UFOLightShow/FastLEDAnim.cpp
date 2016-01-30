@@ -73,7 +73,9 @@ void AnimElementClass::startAnimation(uint8_t EffectNo) {
 		case 1: {
 		// Blank all
 			for(uint8_t i = 0; i < LedCount; i++) {
-				pLeds[i] = CRGB::Black;
+				pLeds[i].r = 0;
+				pLeds[i].g = 0;
+				pLeds[i].b = 0;
 			}      
 		}break;
 
