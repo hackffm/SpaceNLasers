@@ -72,7 +72,7 @@ void AnimElementClass::startAnimation(uint8_t EffectNo) {
 
 		case 1: {
 		// Blank all
-			for(uint8_t i = 0; i < LedCount; i++) {
+			for(int i=LedOffset; i<LedCount+LedOffset; i++){
 				pLeds[i].r = 0;
 				pLeds[i].g = 0;
 				pLeds[i].b = 0;
@@ -81,7 +81,7 @@ void AnimElementClass::startAnimation(uint8_t EffectNo) {
 
 		case 2: {
 		// Set all to RGB 
-			for(uint8_t i = 0; i < LedCount; i++) {
+			for(int i=LedOffset; i<LedCount+LedOffset; i++){
 				pLeds[i].r = Arguments[0];
 				pLeds[i].g = Arguments[1];
 				pLeds[i].b = Arguments[2];
@@ -161,7 +161,13 @@ void AnimElementClass::worker(void) {
 		case 0:
 		case 1:
 		case 2:
-			// Do nothing.
+			/*
+			for(uint8_t i = 0; i < LedCount; i++) {
+				pLeds[i].r = Arguments[0];
+				pLeds[i].g = Arguments[1];
+				pLeds[i].b = Arguments[2];
+			} 
+			*/     
 		break;
 
 		case 7:

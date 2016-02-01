@@ -100,7 +100,6 @@ void loop() {
 
 	receive_serial_cmd();
 
-
 	virobiUFOLoopNormalMode();
 
 	virobiUFOLoopPanicMode();
@@ -238,37 +237,50 @@ void receive_serial_cmd(void) {
 	}
 }  
 
+byte ufoTurn = 0;
+
 void virobiUFOLoopNormalMode() {
 	switch (ufoMode) { // UFO Statemachine
-		case 0x00:
+		case 0x00: // ufo disable state
 			Analog.AnimElm[0].Arguments[0] = 0x00;
 			Analog.AnimElm[0].Arguments[1] = 0x00;
 			Analog.AnimElm[0].startAnimation(0x30);
 
-			Anim.AnimElm[0].startAnimation(0x01);
+			Anim.AnimElm[0].Arguments[0] = 0xFF;
+			Anim.AnimElm[0].Arguments[1] = 0x00;
+			Anim.AnimElm[0].Arguments[2] = 0x00;
+			// Anim.AnimElm[0].Arguments[3] = 0x05;
+			Anim.AnimElm[0].startAnimation(2);
 
-			Anim.AnimElm[1].startAnimation(0x01);
+			// Anim.AnimElm[1].startAnimation(0x01);
+			Anim.AnimElm[1].Arguments[0] = 0xAA;
+			Anim.AnimElm[1].Arguments[1] = 0x00;
+			Anim.AnimElm[1].Arguments[2] = 0x0F;
+			Anim.AnimElm[1].Arguments[3] = 0x01;
+			Anim.AnimElm[1].startAnimation(0x0A);
 
 			Anim.AnimElm[2].startAnimation(0x01);
 			ufoMode = 0x10;
-		  	ufoTimer = millis() + 5000UL;
+		  	ufoTimer = millis() + 1000UL;
 			break;
-		case 0x10:
+		case 0x10: // ufo disable state refresh
 			if(millis()>ufoTimer) {
-				Anim.AnimElm[0].Arguments[0] = 0x20;
+				ufoMode = 0x00;
+		  		Anim.AnimElm[0].Arguments[0] = 0xFF;
 				Anim.AnimElm[0].Arguments[1] = 0x00;
 				Anim.AnimElm[0].Arguments[2] = 0x00;
-				Anim.AnimElm[0].startAnimation(0x02);
-				ufoMode = 0x11;
-		  		ufoTimer = millis() + 5UL;
+				// Anim.AnimElm[0].Arguments[3] = 0x05;
+				Anim.AnimElm[0].startAnimation(2);
 			}
 			break;
+			/*
 		case 0x11:
 			if(millis()>ufoTimer) {
 				ufoMode = 0x00;
 			}
 			break;
-		case 0x01:
+		*/
+		case 0x01:	// start normal mode loop
 			Anim.AnimElm[0].Arguments[0] = 0x77;
 			Anim.AnimElm[0].Arguments[1] = 0x44;
 			Anim.AnimElm[0].Arguments[2] = 0xFF;
@@ -281,9 +293,19 @@ void virobiUFOLoopNormalMode() {
 			Anim.AnimElm[1].Arguments[3] = 0x02;
 			Anim.AnimElm[1].startAnimation(0x0A);
 
-			Analog.AnimElm[0].Arguments[0] = ufoArguments[5];
-			Analog.AnimElm[0].Arguments[1] = 0x00;
-			Analog.AnimElm[0].startAnimation(0x30);
+			if(ufoTurn>3) {
+				Analog.AnimElm[0].Arguments[0] = 0x00;
+				Analog.AnimElm[0].Arguments[1] = ufoArguments[5];
+				Analog.AnimElm[0].startAnimation(0x30);	
+				ufoTurn = 0;
+			} else {
+				Analog.AnimElm[0].Arguments[0] = ufoArguments[5];
+				Analog.AnimElm[0].Arguments[1] = 0x00;
+				Analog.AnimElm[0].startAnimation(0x30);	
+			}
+
+			ufoTurn++;
+			
 		  	ufoMode = 0x02;
 		  	ufoTimer = millis() + 2000UL;
 			break;
@@ -306,7 +328,7 @@ void virobiUFOLoopNormalMode() {
 
 			ufoMode = 0x04;
 			
-			ufoTimer = millis() + 2000UL;
+			ufoTimer = millis() + 4000UL;
 			break;
 		case 0x04:
 			if(millis()>ufoTimer) {
@@ -331,7 +353,7 @@ void virobiUFOLoopNormalMode() {
 
 void virobiUFOLoopPanicMode() {
 	switch (ufoMode) { // UFO Statemachine
-		case 0x0A:
+		case 0x0A: // panik mode start
 			// Serial.println("0x01");
 			Analog.AnimElm[0].Arguments[0] = ufoArguments[6];
 			Analog.AnimElm[0].Arguments[1] = 0x00;
@@ -389,10 +411,6 @@ void virobiUFOLoopPanicMode() {
 			if(millis()>ufoTimer) {
 				ufoMode = 0x01;
 			}
-			break;
-		
-		default:
-		  // do something
 			break;
 	}
 }
